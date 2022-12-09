@@ -8,8 +8,8 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-            { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
-            { "t", "<leader>t", "<cmd>exit<cr>" }
+        { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
+        { "t", "<leader>t", "<cmd>exit<cr>" }
     }
     require("core.keymaps").setKeyMap(keymaps)
 end

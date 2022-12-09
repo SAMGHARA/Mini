@@ -9,8 +9,8 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-            { "n", "<leader>e", ":NvimTreeFocus  <cr>" },
-            { "n", "<leader>f", ":NvimTreeToggle <cr>" }
+        { "n", "<leader>e", ":NvimTreeFocus  <cr>" },
+        { "n", "<leader>f", ":NvimTreeToggle <cr>" }
     }
     require("core.keymaps").setKeyMap(keymaps)
 end
