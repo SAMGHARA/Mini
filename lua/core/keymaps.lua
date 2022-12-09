@@ -7,12 +7,13 @@ others:
 ]]
 
 M.coreMappings = {
-    { { "n", "i", "v" }, "<c-b>", "<home>", { noremap = true, silent = true } }, -- Home
-    { { "n", "i", "v" }, "<c-e>", "<end>",  { noremap = true, silent = true } }, -- End
+    { { "n", "i" }, "<c-s>", "<cmd>w<cr>"    },
+    { { "n", "i" }, "<c-z>", "<cmd>undo<cr>" },
+    { { "n", "i" }, "<c-y>", "<cmd>redo<cr>" },
 
-    { { "n", "i" }, "<c-s>", "<cmd>w<cr>" },
-
-    { { "n", "v"}, "<c-v>", "p" },
+    { { "n", "v" }, "<c-v>", "p" },
+    { { "n", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } }, -- Home
+    { { "n", "v" }, "<a-e>", "<End>",  { noremap = true, silent = true } }, -- End
 
     { { "i", "v" }, "jk", "<esc>" },
 
@@ -28,8 +29,7 @@ M.coreMappings = {
     { "n", "<leader>wq", "<cmd>wq<cr>"  },
     { "n", "<leader>qq", "<cmd>qa!<cr>" },
 
-    { "n", "<c-z>", "u" },
-
+    { "n", "<c-a>", "gg0vG" },
     -- fast move cursor
     { "n", "<a-h>", "5h" },
     { "n", "<a-j>", "5j" },
@@ -41,11 +41,11 @@ M.coreMappings = {
     { "n", "<c-k>", "<c-w>k", { noremap = true, silent = true } },
     { "n", "<c-l>", "<c-w>l", { noremap = true, silent = true } },
 
-    { "n", "<a-s-j>", "<cmd> copy .   <cr>" }, -- copy current line down
-    { "n", "<a-s-k>", "<cmd> copy .-1 <cr>" }, -- copy current line up
+    { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
+    { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 
-    { "v", "<c-c>",   "y"   },
-    { "v", "<tab>",   ">gv" },
+    { "v", "<c-c>",  "y"  },
+    { "v", "<tab>", ">gv" },
     { "v", "<s-tab>", "<gv" },
     { "v", "<a-j>", ":move '>+1<cr>gv-gv" }, -- move select block down
     { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
