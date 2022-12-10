@@ -89,7 +89,7 @@ end
     ]])
     ```
 
-    - 方案二：在 `nvim` 下查看 `:help clipboard-wsl` 不需要额外安装软件，只需要添加配置：
+    - 方案二：查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置：
 
     ```lua
     vim.cmd([[
@@ -108,11 +108,17 @@ end
     ]])
     ```
 
-### COC 补全配置默认不选中第一个补全提示参数
+### coc.nvim 配置
 
-`vim nvim/coc-settings.json` 添加配置项：
+- 无特殊说明所有配置项均添加在 `nvim/coc-settings.json` 文件中，可以使用
+  `:CocConfig` 来进行配置
 
-```json
-"suggest.noselect": true
-```
+1. coc.nvim
+
+    - 补全配置默认不选中第一个补全提示参数: "suggest.noselect": true
+
+2. coc-sumneko-lua
+
+    - 构造表不显示数组索引: "Lua.hint.arrayIndex": "Disable"
+    - 关闭内联提示: "Lua.hint.enable": false
 

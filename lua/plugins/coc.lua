@@ -6,12 +6,14 @@ local M = {
 
 M.setup = function()
     vim.g.coc_global_extensions = {
+        "coc-marketplace",
         "coc-snippets",
         "coc-pairs",
         "coc-word",
         "coc-json",
         "coc-sumneko-lua",
         "coc-clangd",
+        "coc-webview", "coc-markdownlint", "coc-markdown-preview-enhanced"
     }
 
     local keymaps = {
