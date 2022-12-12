@@ -12,7 +12,7 @@
 
 > <https://www.bilibili.com/read/cv16639595>
 
-在 `packer` 配置下修改 `default_url_format`，**前提：本地 git 与 github 已经配置好 ssh 密钥连接**
+在 `packer` 配置下修改 `default_url_format`，**前提: 本地 git 与 github 已经配置好 ssh 密钥连接**
 
 ```lua
 require('packer').startup({
@@ -59,7 +59,7 @@ end
 
 3. windows wsl 下 nvim 与主机剪贴板互通
 
-    - 方案一：<https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl>
+    - 方案一: <https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl>
 
     ```sh
     curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
@@ -70,7 +70,7 @@ end
 
     然后执行第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
 
-    解决配置 `clipboard` 后启动速度慢的问题：<https://github.com/neovim/neovim/issues/9570>. 添加配置：
+    解决配置 `clipboard` 后启动速度慢的问题: <https://github.com/neovim/neovim/issues/9570>. 添加配置:
 
     ```lua
     vim.cmd([[
@@ -89,7 +89,7 @@ end
     ]])
     ```
 
-    - 方案二：查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置：
+    - 方案二: 查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置:
 
     ```lua
     vim.cmd([[
@@ -121,4 +121,4 @@ end
 
     - 构造表不显示数组索引: "Lua.hint.arrayIndex": "Disable"
     - 关闭内联提示: "Lua.hint.enable": false
-
+    - 中文补全提示: "sumneko-lua.locale": "zh-cn"

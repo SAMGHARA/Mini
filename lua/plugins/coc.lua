@@ -27,6 +27,21 @@ M.setup = function()
         { "n", "gd", "<Plug>(coc-definition)",      { silent = true } },
         { "n", "gs", "<Plug>(coc-type-definition)", { silent = true } },
 
+        { "n", "<leader>+",  "<Plug>(coc-diagnostic-next)", { silent = true } },
+        { "n", "<leader>-",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
+        { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
+
+        { "n", "K", function()
+                        local cw = vim.fn.expand('<cword>')
+                        if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+                            vim.api.nvim_command('h ' .. cw)
+                        elseif vim.api.nvim_eval('coc#rpc#ready()') then
+                            vim.fn.CocActionAsync('doHover')
+                        else
+                            vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+                        end
+                    end, { silent = true } },
+
         { { "n", "v" }, "<a-s-f>", "<Plug>(coc-format-selected)", { silent = true } },
     }
 
