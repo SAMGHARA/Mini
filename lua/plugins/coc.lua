@@ -11,8 +11,7 @@ M.setup = function()
         "coc-pairs",
         "coc-word",
         "coc-json",
-        "coc-sumneko-lua",
-        "coc-clangd",
+        "coc-sumneko-lua", "coc-clangd", "coc-go",
         "coc-webview", "coc-markdownlint", "coc-markdown-preview-enhanced"
     }
 
