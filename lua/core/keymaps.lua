@@ -12,8 +12,8 @@ M.coreMappings = {
     { { "n", "i" }, "<c-y>", "<cmd>redo<cr>" },
 
     { { "n", "v" }, "<c-v>", "p" },
-    { { "n", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } }, -- Home
-    { { "n", "v" }, "<a-e>", "<End>",  { noremap = true, silent = true } }, -- End
+    { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } }, -- Home
+    { { "n", "i", "v" }, "<a-e>", "<End>",  { noremap = true, silent = true } }, -- End
 
     { { "i", "v" }, "jk", "<esc>" },
 

@@ -60,15 +60,15 @@ Packer.plugins = {
     require("plugins.toggleterm"),
     -- git status
     require("plugins.gitsigns"),
-    -- autopairs
-    require("plugins.nvim-autopairs"),
     -- treesitter
     require("plugins.nvim-treesitter"),
+    -- surrounding delimiter pairs
+    require("plugins.nvim-surround"),
     -- coc
     require("plugins.coc")
 }
 
-require('packer').startup({
+require("packer").startup({
     config = Packer.config,
     function(use)
         for _, i in pairs(Packer.plugins) do
@@ -78,5 +78,5 @@ require('packer').startup({
 })
 
 if packer_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
 end
