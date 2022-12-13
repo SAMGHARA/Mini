@@ -23,10 +23,12 @@ M.setup = function()
         { "i", "<cr>", "coc#pum#visible() ? coc#_select_confirm() : \"\\<c-g>u\\<cr>\\<c-r>=coc#on_enter()\\<cr>\"",
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
+        { "i", "<c-j>", "<Plug>(coc-snippets-expand-jump)" },
+
         { "n", "gd", "<Plug>(coc-definition)",      { silent = true } },
         { "n", "gs", "<Plug>(coc-type-definition)", { silent = true } },
 
-        { "n", "<leader>+",  "<Plug>(coc-diagnostic-next)", { silent = true } },
+        { "n", "<leader>=",  "<Plug>(coc-diagnostic-next)", { silent = true } },
         { "n", "<leader>-",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
         { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
 

@@ -115,10 +115,17 @@ end
 
 1. coc.nvim
 
-    - 补全配置默认不选中第一个补全提示参数: "suggest.noselect": true
+    - 补全配置默认不选中第一个补全提示参数: `"suggest.noselect": true`
+    - 指定文件类型保存时自动格式化/不格式化: `"[json]": { "coc.preferences.formatonsave": true }`
 
 2. coc-sumneko-lua
 
-    - 构造表不显示数组索引: "Lua.hint.arrayIndex": "Disable"
-    - 关闭内联提示: "Lua.hint.enable": false
-    - 中文补全提示: "sumneko-lua.locale": "zh-cn"
+    - 构造表不显示数组索引: `"Lua.hint.arrayIndex": "Disable"`
+    - 关闭内联提示: `"Lua.hint.enable": false`
+    - 中文补全提示: `"sumneko-lua.locale": "zh-cn"`
+
+3. coc-snippets
+
+    - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]`
+       > <https://github.com/neoclide/coc-snippets/issues/280>
+

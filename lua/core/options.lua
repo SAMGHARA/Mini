@@ -7,9 +7,9 @@ local options = {
         showmode       = false,     -- show model
         sidescrolloff  = 8,
         list           = true,
-        listchars      = "space:·",
+        listchars      = { space = '·', tab = '> ' },
         colorcolumn    = "120",     -- column wrap
-        showtabline    = 2,
+        showtabline    = 4,
         timeoutlen     = 200,       -- <leader> timeout
         tabstop        = 4,         -- insert 4 spaces for a tab.
         shiftwidth     = 4,         -- the number of spaces insertede for each indentation.

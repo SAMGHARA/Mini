@@ -1,0 +1,19 @@
+snippet pt "Packer plugin empty configuration template" 
+local M = {
+$1
+}
+
+M.setup = function()
+$2
+end
+
+M.config = function()
+    local status, $3 = pcall(require, "$4")
+    if not status then
+        return
+    end
+
+    $0
+end
+
+return M
