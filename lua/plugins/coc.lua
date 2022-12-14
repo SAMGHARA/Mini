@@ -1,7 +1,8 @@
 local M = {
     "neoclide/coc.nvim",
 
-    branch = "release"
+    branch = "release",
+    ft = { "c", "cpp", "lua", "go", "sh", "zsh", "json", "snippets" }
 }
 
 M.setup = function()

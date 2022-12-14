@@ -55,3 +55,8 @@ let g:clipboard = {
     \ }
 ]])
 
+vim.filetype.add({
+    pattern = {
+        ['.*%.snippets'] = 'snippets',
+    },
+})

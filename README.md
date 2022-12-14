@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 -->
 # my neovim config
 
 ## reference
@@ -23,6 +24,21 @@ require('packer').startup({
     }
 })
 ```
+
+### packer.nvim 特定文件类型加载插件
+
+在加载插件时添加 `ft = { "lua", "json"... }` 配置。
+
+如果文件没有类型，如 `*.snippets` 文件，可以通过 `vim.filetype.add`进行自定义:
+
+```lua
+vim.filetype.add({
+    pattern = {
+        ['.*%.snippets'] = 'snippets',  -- 定义 *.snippets 文件类型为 snippets
+    },
+})
+```
+
 
 ### nvim-treesitter 配置代理
 
