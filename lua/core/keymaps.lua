@@ -7,35 +7,35 @@ others:
 ]]
 
 M.coreMappings = {
-    { { "n", "i" }, "<c-s>", "<cmd>w<cr>"    },
+    { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } },
+    { { "n", "i", "v" }, "<a-e>", "<end>",  { noremap = true, silent = true } },
+
+    { { "n", "i" }, "<c-s>",   "<cmd>w<cr>"  },
     { { "n", "i" }, "<c-z>", "<cmd>undo<cr>" },
     { { "n", "i" }, "<c-y>", "<cmd>redo<cr>" },
 
     { { "n", "v" }, "<c-v>", "p" },
-    { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } }, -- Home
-    { { "n", "i", "v" }, "<a-e>", "<End>",  { noremap = true, silent = true } }, -- End
 
     { { "i", "v" }, "jk", "<esc>" },
 
-    { "i", "<s-tab>", "<c-d>" }, -- see plugins/coc.lua/setup.keymaps
+    { "i", "<s-tab>", "<c-d>" },
+    { "i", "<a-h>",   "<left>",  { noremap = true, silent = true } },
+    { "i", "<a-j>",   "<down>",  { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
+    { "i", "<a-k>",   "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
+    { "i", "<a-l>",   "<right>", { noremap = true, silent = true } },
 
-    -- move cursor in INSERT mode
-    { "i", "<a-h>", "<left>",  { noremap = true, silent = true } },
-    { "i", "<a-j>", "<down>",  { noremap = true, silent = true } },
-    { "i", "<a-k>", "<up>",    { noremap = true, silent = true } },
-    { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
-
-    { "n", "<leader>w",  "<cmd>w<cr>"   },
+    { "n", "<leader>w",   "<cmd>w<cr>"  },
     { "n", "<leader>wq", "<cmd>wq<cr>"  },
     { "n", "<leader>qq", "<cmd>qa!<cr>" },
 
-    { "n", "<c-a>", "gg0vG" },
-    -- fast move cursor
+    { "n", "<c-a>", "gg0vG" },  -- VISUAL mode select all file
+    { "n", "<c-d>",  "viw"  },  -- VISUAL mode select current word
+
     { "n", "<a-h>", "5h" },
     { "n", "<a-j>", "5j" },
     { "n", "<a-k>", "5k" },
     { "n", "<a-l>", "5l" },
-    -- screen jump
+
     { "n", "<c-h>", "<c-w>h", { noremap = true, silent = true } },
     { "n", "<c-j>", "<c-w>j", { noremap = true, silent = true } },
     { "n", "<c-k>", "<c-w>k", { noremap = true, silent = true } },
@@ -44,9 +44,10 @@ M.coreMappings = {
     { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 
-    { "v", "<c-c>",  "y"  },
-    { "v", "<tab>", ">gv" },
+    { "v", "<c-c>",    "y"  },
+    { "v", "<tab>",   ">gv" },
     { "v", "<s-tab>", "<gv" },
+
     { "v", "<a-j>", ":move '>+1<cr>gv-gv" }, -- move select block down
     { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
 }

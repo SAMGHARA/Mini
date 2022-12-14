@@ -17,11 +17,11 @@ M.setup = function()
     }
 
     local keymaps = {
-        { "i", "<tab>", "coc#pum#visible() ? coc#pum#next(1) : col('.') == 1 || getline('.')[col('.') - 2] =~# '\\s' ? \"\\<tab>\" : coc#refresh()",
+        { "i", "<a-j>", [[coc#pum#visible() ? coc#pum#next(1) : "<down>"]],
+            { silent = true, noremap = true, expr = true, replace_keycodes = false }, },
+        { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"  ]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
-        { "i", "<s-tab>", "coc#pum#visible() ? coc#pum#prev(1) : \"\\<c-d>\"",
-            { silent = true, noremap = true, expr = true, replace_keycodes = false } },
-        { "i", "<cr>", "coc#pum#visible() ? coc#_select_confirm() : \"\\<c-g>u\\<cr>\\<c-r>=coc#on_enter()\\<cr>\"",
+        { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<tab>\<c-r>=coc#on_enter()\<cr>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
         { "i", "<c-j>", "<Plug>(coc-snippets-expand-jump)" },
