@@ -6,6 +6,6 @@
             "$0",
             "```"
         ],
-        "description": "code block"
+        "description": "Markdown CodeBlock Snippet"
     }
 }
