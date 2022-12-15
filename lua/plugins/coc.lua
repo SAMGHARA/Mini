@@ -9,7 +9,6 @@ M.setup = function()
     vim.g.coc_global_extensions = {
         "coc-marketplace",
         "coc-snippets",
-        "coc-pairs",
         "coc-word",
         "coc-json",
         "coc-sumneko-lua", "coc-clangd", "coc-go",
@@ -26,9 +25,8 @@ M.setup = function()
 
         { "i", "<c-j>", "<Plug>(coc-snippets-expand-jump)" },
 
-        { "n", "gd", "<Plug>(coc-definition)",      { silent = true } },
-        { "n", "gs", "<Plug>(coc-type-definition)", { silent = true } },
-
+        { "n", "<leader>d",  "<Plug>(coc-definition)",      { silent = true } },
+        { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },
         { "n", "<leader>=",  "<Plug>(coc-diagnostic-next)", { silent = true } },
         { "n", "<leader>-",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
         { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },

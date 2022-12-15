@@ -60,8 +60,12 @@ Packer.plugins = {
     require("plugins.toggleterm"),
     -- git status
     require("plugins.gitsigns"),
+    -- autopairs
+    require("plugins.nvim-autopairs"),
     -- treesitter
     require("plugins.nvim-treesitter"),
+    -- blankline
+    require("plugins.indent-blankline"),
     -- surrounding delimiter pairs
     require("plugins.nvim-surround"),
     -- coc
