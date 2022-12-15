@@ -23,7 +23,7 @@ M.setup = function()
         { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<tab>\<c-r>=coc#on_enter()\<cr>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
-        { "i", "<c-j>", "<Plug>(coc-snippets-expand-jump)" },
+        { "i", "<a-n>", "<Plug>(coc-snippets-expand-jump)" },
 
         { "n", "<leader>d",  "<Plug>(coc-definition)",      { silent = true } },
         { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },

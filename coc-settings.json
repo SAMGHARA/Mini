@@ -1,5 +1,7 @@
 {
     "suggest.noselect": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.signPriority": 1,
     "snippets.ultisnips.pythonPrompt": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],

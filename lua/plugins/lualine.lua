@@ -15,7 +15,7 @@ M.config = function()
     lualine.setup {
         options = {
             icons_enabled = true,
-            theme = require("core.theme").theme_name,
+            theme = require("core.theme").theme,
             component_separators = { left = '', right = '' },
             section_separators = { left = '', right = '' },
             disabled_filetypes = {

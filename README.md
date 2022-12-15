@@ -133,6 +133,8 @@ end
 
     - 补全配置默认不选中第一个补全提示参数: `"suggest.noselect": true`
     - 指定文件类型保存时自动格式化/不格式化: `"[json]": { "coc.preferences.formatonsave": true }`
+    - 自动显示当前行的所有诊断信息: `"diagnostic.checkCurrentLine": true`
+    - 诊断信息显示优先等级: `"diagnostic.signPriority": 1`
 
 2. coc-sumneko-lua
 

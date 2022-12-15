@@ -36,7 +36,7 @@ M.config = function()
     end
 
     treesitter.setup {
-        ensure_installed = { "c", "cpp", "go", "python", "lua" },
+        ensure_installed = { "c", "cpp", "go", "lua", "markdown" },
         -- sync_install = true,
 
         -- Automatically install missing parsers when entering buffer

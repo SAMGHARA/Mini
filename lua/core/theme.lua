@@ -1,14 +1,14 @@
 local M = {
-    "rafamadriz/neon",
+    "olimorris/onedarkpro.nvim",
 
-    theme_name = "neon",
+    theme = "onedark",
 
     setup = function()
 
     end,
 
     config = function()
-        vim.cmd [[colorscheme neon]]
+        vim.cmd [[colorscheme onedark]]
     end
 }
 
