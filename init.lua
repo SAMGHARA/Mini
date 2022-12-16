@@ -54,20 +54,22 @@ Packer.plugins = {
     require("plugins.bufferline"),
     -- nvim file tree
     require("plugins.nvim-tree"),
-    -- Comment
-    require("plugins.comment"),
     -- terminal
     require("plugins.toggleterm"),
     -- git status
     require("plugins.gitsigns"),
-    -- autopairs
-    require("plugins.nvim-autopairs"),
-    -- treesitter
-    require("plugins.nvim-treesitter"),
     -- blankline
     require("plugins.indent-blankline"),
+    -- telescope
+    require("plugins.telescope"),
+    -- comment
+    require("plugins.comment"),
+    -- autopairs
+    require("plugins.nvim-autopairs"),
     -- surrounding delimiter pairs
     require("plugins.nvim-surround"),
+    -- treesitter
+    require("plugins.nvim-treesitter"),
     -- coc
     require("plugins.coc")
 }

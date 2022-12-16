@@ -27,6 +27,9 @@ M.setup = function()
 
         { "n", "<leader>d",  "<Plug>(coc-definition)",      { silent = true } },
         { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },
+        { "n", "<leader>i",  "<Plug>(coc-implementation)",  { silent = true } },
+        { "n", "<leader>r",  "<Plug>(coc-references)",      { silent = true } },
+
         { "n", "<leader>=",  "<Plug>(coc-diagnostic-next)", { silent = true } },
         { "n", "<leader>-",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
         { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },

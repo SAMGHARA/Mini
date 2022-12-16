@@ -39,7 +39,6 @@ vim.filetype.add({
 })
 ```
 
-
 ### nvim-treesitter 配置代理
 
 使用 `https://ghproxy.com` 代理下载. thanks GitHub Proxy !
@@ -146,4 +145,3 @@ end
 
     - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]`
        > <https://github.com/neoclide/coc-snippets/issues/280>
-

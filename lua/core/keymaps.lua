@@ -1,12 +1,10 @@
-local M = {}
-
 --[[
 others:
     INSERT    <a-o>       insert next line
     INSERT    <a-s-o>     insert prev line
 ]]
 
-M.coreMappings = {
+local coreMappings = {
     { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } },
     { { "n", "i", "v" }, "<a-e>", "<end>",  { noremap = true, silent = true } },
 
@@ -52,6 +50,7 @@ M.coreMappings = {
     { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
 }
 
+local M = {}
 M.setKeyMap = function(keymaps)
     for _, maps in pairs(keymaps) do
         local opts = {}
@@ -62,6 +61,6 @@ M.setKeyMap = function(keymaps)
     end
 end
 
-M.setKeyMap(M.coreMappings)
+M.setKeyMap(coreMappings)
 
 return M
