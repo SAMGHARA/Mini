@@ -30,7 +30,7 @@ M.config = function()
             delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
             topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
             changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-            untracked    = { hl = 'GitSignsAdd', text = '┆', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+            untracked    = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
         },
         signcolumn          = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl               = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -49,7 +49,7 @@ M.config = function()
             delay = 100,
             ignore_whitespace = false,
         },
-        current_line_blame_formatter = '<author> <author_time:%Y-%m-%d>: <summary>',
+        current_line_blame_formatter = '    <author> <committer_time:%R>: <summary>',
 
         sign_priority                = 6,
         update_debounce              = 100,

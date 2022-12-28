@@ -8,7 +8,7 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-        { "n", "<leader>ff", "<cmd>Telescope find_files<cr>" }
+        { "n", "F", "<cmd>Telescope find_files<cr>" }
     }
     require("core.keymaps").setKeyMap(keymaps)
 end

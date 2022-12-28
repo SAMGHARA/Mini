@@ -37,6 +37,7 @@ Packer.config = {
         end,
     },
 }
+
 Packer.plugins = {
     -- don't know
     { "nvim-lua/plenary.nvim", module = "plenary" },

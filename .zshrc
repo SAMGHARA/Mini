@@ -79,12 +79,17 @@ SAVEHIST=1000
 export PATH=$PATH\
 :$HOME/.local/bin\
 :$HOME/.local/go/bin\
+:$HOME/.local/redis/bin\
 
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH\
 :$HOME/.local/include\
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\
 :$HOME/.local/lib\
+:$HOME/.local/boost/lib\
+:$HOME/.local/hiredis/lib\
 
 export LIBRARY_PATH=$LIBRARY_PATH\
 :$HOME/.local/lib\
+:$HOME/.local/boost/lib\
+:$HOME/.local/hiredis/lib\

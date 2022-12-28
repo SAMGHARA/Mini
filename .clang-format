@@ -1,0 +1,11 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+---
+BasedOnStyle: Microsoft
+IndentWidth: 4
+
+NamespaceIndentation: All
+ShortNamespaceLines: 0
+FixNamespaceComments: true
+
+AccessModifierOffset: -4
+---
