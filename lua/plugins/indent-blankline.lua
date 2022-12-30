@@ -1,5 +1,6 @@
 local M = {
     "lukas-reineke/indent-blankline.nvim",
+
     after = "nvim-treesitter"
 }
 

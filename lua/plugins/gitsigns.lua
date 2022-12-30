@@ -15,6 +15,15 @@ M.setup = function()
             end
         end,
     })
+
+    local keymaps = {
+        { "n", "<leader>gn", "<cmd>Gitsigns next_hunk<cr>"},
+        { "n", "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>"},
+        { "n", "<leader>gv", "<cmd>Gitsigns preview_hunk<cr>"},
+        { "n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>"},
+        { "n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>"},
+    }
+    require("core.keymaps").setKeyMap(keymaps)
 end
 
 M.config = function()

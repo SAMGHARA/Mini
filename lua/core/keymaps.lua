@@ -29,6 +29,9 @@ local coreMappings = {
     { "n", "<c-a>", "gg0vG" },  -- VISUAL mode select all file
     { "n", "<c-d>",  "viw"  },  -- VISUAL mode select current word
 
+    { "n", "<a-a>", "<c-o>" },
+    { "n", "<a-d>", "<c-i>" },
+
     { "n", "<a-h>", "5h" },
     { "n", "<a-j>", "5j" },
     { "n", "<a-k>", "5k" },

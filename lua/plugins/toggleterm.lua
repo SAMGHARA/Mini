@@ -1,15 +1,13 @@
 local M = {
     "akinsho/toggleterm.nvim",
 
-    cmd = {
-        "ToggleTerm"
-    }
+    cmd = "ToggleTerm"
 }
 
 M.setup = function()
     local keymaps = {
-        { "n", "<a-`>", "<cmd>ToggleTerm size=40 direction=float<cr>" },
-        { "t", "<a-`>", "<cmd>exit<cr>" }
+        { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
+        { "t", "<leader>t", "<cmd>exit<cr>" }
     }
     require("core.keymaps").setKeyMap(keymaps)
 end

@@ -7,11 +7,9 @@
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
 
+    "coc.preferences.formatOnSave": true,
     "[lua][json]": {
         "coc.preferences.formatOnSave": false
-    },
-    "[go]": {
-        "coc.preferences.formatOnSave": true
     },
 
     "sumneko-lua.locale": "zh-cn",

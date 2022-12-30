@@ -1,9 +1,7 @@
 local M = {
     "nvim-telescope/telescope.nvim",
 
-    cmd = {
-        "Telescope"
-    }
+    cmd = "Telescope"
 }
 
 M.setup = function()

@@ -1,5 +1,5 @@
 local M = {
-    "olimorris/onedarkpro.nvim",
+    "joshdick/onedark.vim",
 
     theme = "onedark",
 

@@ -8,4 +8,6 @@ ShortNamespaceLines: 0
 FixNamespaceComments: true
 
 AccessModifierOffset: -4
+
+AlignEscapedNewlines: Left
 ---

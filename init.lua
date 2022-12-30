@@ -61,6 +61,8 @@ Packer.plugins = {
     require("plugins.gitsigns"),
     -- blankline
     require("plugins.indent-blankline"),
+    -- which-key
+    require("plugins.which-key"),
     -- telescope
     require("plugins.telescope"),
     -- comment

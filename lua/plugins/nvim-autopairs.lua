@@ -1,9 +1,7 @@
 local M = {
     "windwp/nvim-autopairs",
 
-    event = {
-        "InsertEnter"
-    }
+    event = "InsertEnter"
 }
 
 M.setup = function()

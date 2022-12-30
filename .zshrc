@@ -50,10 +50,9 @@ done
 # bindkey
 typeset -A bindKeyMap
 bindKeyMap=(
-    "^[[H"   beginning-of-line      # <HOME>
-    "^[[F"   end-of-line            # <END>
-    "^[[j~"  delete-char            # <DELETE>
-    "^ "     autosuggest-accept
+    "\e[1~"   beginning-of-line      # <HOME>
+    "\e[4~"   end-of-line            # <END>
+    "\e[3~"   delete-char            # <DELETE>
 
     # https://blog.csdn.net/z1w10281a/article/details/121488309
     "\eh"    backward-char
