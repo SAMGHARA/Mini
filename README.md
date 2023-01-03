@@ -145,3 +145,16 @@ end
 
     - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]`
        > <https://github.com/neoclide/coc-snippets/issues/280>
+
+### todo-comments.nvim
+
+```sh
+sudo pacman -S ripgrep
+```
+
+### tagbar
+
+```sh
+sudo pacman -S ctags
+```
+

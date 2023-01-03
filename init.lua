@@ -55,6 +55,8 @@ Packer.plugins = {
     require("plugins.bufferline"),
     -- nvim file tree
     require("plugins.nvim-tree"),
+    -- tagbar
+    require("plugins.tagbar"),
     -- terminal
     require("plugins.toggleterm"),
     -- git status
@@ -67,6 +69,8 @@ Packer.plugins = {
     require("plugins.telescope"),
     -- comment
     require("plugins.comment"),
+    -- todo comment
+    require("plugins.todo-comments"),
     -- autopairs
     require("plugins.nvim-autopairs"),
     -- surrounding delimiter pairs

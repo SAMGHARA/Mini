@@ -17,3 +17,9 @@ M.config = function()
 end
 
 return M
+
+snippet keymaps "Packer plugin setup keymaps"
+local keymaps = {
+    { "$1", "$2", "$3" }
+}
+require("core.keymaps").setKeyMap(keymaps)

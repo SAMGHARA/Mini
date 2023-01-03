@@ -22,10 +22,10 @@ M.config = function()
         defaults = {
             mappings = {
                 n = {
-                    ["<leader>q"] = actions.close
+                    ["Q"] = actions.close
                 },
                 i = {
-                    ["<leader>q"] = actions.close,
+                    ["Q"] = actions.close,
                 }
             }
         }

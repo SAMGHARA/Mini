@@ -22,9 +22,8 @@ local coreMappings = {
     { "i", "<a-k>",   "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
     { "i", "<a-l>",   "<right>", { noremap = true, silent = true } },
 
-    { "n", "<leader>w",   "<cmd>w<cr>"  },
-    { "n", "<leader>wq", "<cmd>wq<cr>"  },
-    { "n", "<leader>qq", "<cmd>qa!<cr>" },
+    { "n", "<leader>w", "<cmd>w<cr>"  },
+    { "n", "<leader>q", "<cmd>qa<cr>" },
 
     { "n", "<c-a>", "gg0vG" },  -- VISUAL mode select all file
     { "n", "<c-d>",  "viw"  },  -- VISUAL mode select current word
