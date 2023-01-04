@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/numToStr/Comment.nvim
     "numToStr/Comment.nvim",
 
     ft = { "c", "cpp", "lua", "go", "sh", "zsh" }

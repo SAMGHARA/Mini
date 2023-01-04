@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/folke/todo-comments.nvim
     "folke/todo-comments.nvim",
 
     cmd = "TodoTelescope"

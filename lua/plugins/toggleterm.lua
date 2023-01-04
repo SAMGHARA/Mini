@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/akinsho/toggleterm.nvim
     "akinsho/toggleterm.nvim",
 
     cmd = "ToggleTerm"

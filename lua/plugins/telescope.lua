@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/nvim-telescope/telescope.nvim
     "nvim-telescope/telescope.nvim",
 
     cmd = "Telescope"

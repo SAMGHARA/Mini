@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/folke/which-key.nvim
     "folke/which-key.nvim",
 
     keys = "<leader>"

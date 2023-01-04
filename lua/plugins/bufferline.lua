@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/akinsho/bufferline.nvim
     "akinsho/bufferline.nvim"
 }
 

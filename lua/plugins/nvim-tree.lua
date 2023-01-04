@@ -1,4 +1,5 @@
 local M = {
+    -- https://github.com/nvim-tree/nvim-tree.lua
     "kyazdani42/nvim-tree.lua",
 
     cmd = {

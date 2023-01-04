@@ -1,5 +1,8 @@
 local M = {
-    "preservim/tagbar"
+    -- https://github.com/preservim/tagbar
+    "preservim/tagbar",
+
+    cmd = "Tagbar"
 }
 
 M.setup = function()
@@ -7,7 +10,7 @@ M.setup = function()
 end
 
 M.config = function()
-    
+
 end
 
 return M
