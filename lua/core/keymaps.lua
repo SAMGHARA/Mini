@@ -2,6 +2,9 @@
 others:
     INSERT    <a-o>       insert next line
     INSERT    <a-s-o>     insert prev line
+
+    VISUAL       u        transform to Lowercase
+    VISUAL       U        transform to Uppercase
 ]]
 
 local coreMappings = {
@@ -11,8 +14,6 @@ local coreMappings = {
     { { "n", "i" }, "<c-s>",   "<cmd>w<cr>"  },
     { { "n", "i" }, "<c-z>", "<cmd>undo<cr>" },
     { { "n", "i" }, "<c-y>", "<cmd>redo<cr>" },
-
-    { { "n", "v" }, "<c-v>", "p" },
 
     { { "i", "v" }, "jk", "<esc>" },
 
@@ -27,14 +28,13 @@ local coreMappings = {
 
     { "n", "<c-a>", "gg0vG" },  -- VISUAL mode select all file
     { "n", "<c-d>",  "viw"  },  -- VISUAL mode select current word
+    { "n", "<c-v>",   "p"   },
 
     { "n", "<a-a>", "<c-o>" },
     { "n", "<a-d>", "<c-i>" },
 
-    { "n", "<a-h>", "5h" },
     { "n", "<a-j>", "5j" },
     { "n", "<a-k>", "5k" },
-    { "n", "<a-l>", "5l" },
 
     { "n", "<c-h>", "<c-w>h", { noremap = true, silent = true } },
     { "n", "<c-j>", "<c-w>j", { noremap = true, silent = true } },
@@ -45,6 +45,8 @@ local coreMappings = {
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 
     { "v", "<c-c>",    "y"  },
+    { "v", "<c-v>",   "pgvy" },
+    { "v",   "p",     "pgvy" },
     { "v", "<tab>",   ">gv" },
     { "v", "<s-tab>", "<gv" },
 
