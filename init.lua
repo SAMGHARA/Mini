@@ -7,7 +7,7 @@ local compiled_lua = vim.fn.stdpath("config") .. '/plugin/packer_compiled.lua'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     print("Installing Packer ...")
-    vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.fn.system({ "git", "clone", "--depth", "1", "git@github.com:wbthomason/packer.nvim", install_path })
     vim.fn.system({ "rm", "-rf", compiled_lua })
 
     if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -39,45 +39,26 @@ Packer.config = {
 }
 
 Packer.plugins = {
-    -- don't know
     { "nvim-lua/plenary.nvim", module = "plenary" },
-    -- packer
     { "wbthomason/packer.nvim" },
-    -- icons
     { "kyazdani42/nvim-web-devicons" },
-    -- test nvim startuptime
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
-    -- Theme
     require("core.theme"),
-    -- status line
     require("plugins.lualine"),
-    -- buffer line
     require("plugins.bufferline"),
-    -- nvim file tree
     require("plugins.nvim-tree"),
-    -- tagbar
     require("plugins.tagbar"),
-    -- terminal
     require("plugins.toggleterm"),
-    -- git status
     require("plugins.gitsigns"),
-    -- blankline
     require("plugins.indent-blankline"),
-    -- which-key
     require("plugins.which-key"),
-    -- telescope
     require("plugins.telescope"),
-    -- comment
     require("plugins.comment"),
-    -- todo comment
     require("plugins.todo-comments"),
-    -- autopairs
     require("plugins.nvim-autopairs"),
-    -- surrounding delimiter pairs
     require("plugins.nvim-surround"),
-    -- treesitter
+    require("plugins.vim-visual-multi"),
     require("plugins.nvim-treesitter"),
-    -- coc
     require("plugins.coc")
 }
 

@@ -1,18 +1,28 @@
 local M = {
-    "nvim-treesitter/nvim-treesitter",
+    {
+        -- https://github.com/nvim-treesitter/nvim-treesitter
+        "nvim-treesitter/nvim-treesitter",
 
-    run = ":TSUpdate",
-    cmd = {
-        "TSInstall",
-        "TSBufEnable",
-        "TSBufDisable",
-        "TSEnable",
-        "TSDisable",
-        "TSModuleInfo",
+        run = ":TSUpdate",
+        cmd = {
+            "TSInstall",
+            "TSBufEnable",
+            "TSBufDisable",
+            "TSEnable",
+            "TSDisable",
+            "TSModuleInfo",
+        },
+    },
+
+    {
+        -- https://github.com/nvim-treesitter/playground
+        "nvim-treesitter/playground",
+
+        cmd = "TSHighlightCapturesUnderCursor"
     }
 }
 
-M.setup = function()
+M[1].setup = function()
     vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" },
         {
             callback = function()
@@ -22,9 +32,14 @@ M.setup = function()
                 end
             end
         })
+
+    local keymaps = {
+        { "n", "H", "<cmd>TSHighlightCapturesUnderCursor<cr>" }
+    }
+    require("core.keymaps").setKeyMap(keymaps)
 end
 
-M.config = function()
+M[1].config = function()
     local status, treesitter = pcall(require, "nvim-treesitter.configs")
     if not status then
         return
