@@ -58,6 +58,7 @@ Packer.plugins = {
     require("plugins.nvim-autopairs"),
     require("plugins.nvim-surround"),
     require("plugins.vim-visual-multi"),
+    require("plugins.leap"),
     require("plugins.nvim-treesitter"),
     require("plugins.coc")
 }
