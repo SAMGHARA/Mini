@@ -4,15 +4,20 @@ local M = {
 }
 
 M.setup = function()
-    vim.g.VM_theme = "ocean"
-    vim.g.VM_highlight_matches = "underline"
-    vim.g.VM_default_mappings = 0
-    vim.g.VM_maps = {
-        ['Find Under']      = '<c-n>',
-        ["Add Cursor Up"]   = "<c-up>",
-        ["Add Cursor Down"] = "<c-down>",
-        ["Remove Region"]   = "q",
+    local options = {
+        g = {
+            VM_theme = "ocean",
+            VM_highlight_matches = "underline",
+            VM_default_mappings = 0,
+            VM_maps = {
+                ['Find Under']      = "<c-n>",
+                ["Add Cursor Up"]   = "<c-up>",
+                ["Add Cursor Down"] = "<c-down>",
+                ["Remove Region"]   = "q",
+            }
+        }
     }
+    require("core").setOptions(options)
 end
 
 M.config = function()

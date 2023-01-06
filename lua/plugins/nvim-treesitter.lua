@@ -36,7 +36,7 @@ M[1].setup = function()
     local keymaps = {
         { "n", "H", "<cmd>TSHighlightCapturesUnderCursor<cr>" }
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M[1].config = function()

@@ -10,7 +10,7 @@ M.setup = function()
         { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
         { "t", "<leader>t", "<cmd>exit<cr>" }
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

@@ -13,7 +13,7 @@ M.setup = function()
         { "n", "<leader>e", ":NvimTreeFocus<cr>" },
         { "n", "<leader>f", ":NvimTreeToggle<cr>" }
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

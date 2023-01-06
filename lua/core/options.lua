@@ -1,3 +1,5 @@
+local Core = require "core"
+
 local options = {
     opt = {
         fileencodings  = "UTF-8,GBK,GB2312", -- file encoding
@@ -32,11 +34,7 @@ local options = {
     }
 }
 
-for type, opts in pairs(options) do
-    for k, v in pairs(opts) do
-        vim[type][k] = v;
-    end
-end
+Core.setOptions(options)
 
 vim.opt.clipboard:prepend { "unnamed,unnamedplus" }
 
@@ -55,7 +53,7 @@ let g:clipboard = {
     \ }
 ]])
 
-vim.filetype.add({
+Core.addFileTypes({
     pattern = {
         ['.*%.snippets'] = 'snippets',
     },

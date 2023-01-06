@@ -1,5 +1,6 @@
+local Core = require "core"
+
 --[[
-others:
     INSERT    <a-o>       insert next line
     INSERT    <a-s-o>     insert prev line
 
@@ -18,17 +19,19 @@ local coreMappings = {
     { { "i", "v" }, "jk", "<esc>" },
 
     { "i", "<s-tab>", "<c-d>" },
+
     { "i", "<a-h>",   "<left>",  { noremap = true, silent = true } },
     { "i", "<a-j>",   "<down>",  { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
     { "i", "<a-k>",   "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
     { "i", "<a-l>",   "<right>", { noremap = true, silent = true } },
 
-    { "n", "<leader>w", "<cmd>w<cr>"  },
-    { "n", "<leader>q", "<cmd>qa<cr>" },
+    { "n", "<leader>w", "<cmd>w<cr>"   },
+    { "n", "<leader>q", "<cmd>qa<cr>"  },
+    { "n", "<leader>h", "<cmd>noh<cr>" },
 
-    { "n", "<c-a>", "gg0vG" },  -- VISUAL mode select all file
-    { "n", "<c-d>",  "viw"  },  -- VISUAL mode select current word
-    { "n", "<c-v>",   "p"   },
+    { "n", "<c-a>", "gg0vG$" },  -- VISUAL mode select all
+    { "n", "<c-d>",  "viw"   },  -- VISUAL mode select current word
+    { "n", "<c-v>",   "p"    },
 
     { "n", "<a-a>", "<c-o>" },
     { "n", "<a-d>", "<c-i>" },
@@ -44,27 +47,14 @@ local coreMappings = {
     { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 
-    { "v", "<c-c>",    "y"  },
+    { "v", "<c-c>",    "y"   },
     { "v", "<c-v>",   "pgvy" },
     { "v",   "p",     "pgvy" },
-    { "v", "<tab>",   ">gv" },
-    { "v", "<s-tab>", "<gv" },
+    { "v", "<tab>",   ">gv"  },
+    { "v", "<s-tab>", "<gv"  },
 
     { "v", "<a-j>", ":move '>+1<cr>gv-gv" }, -- move select block down
     { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
 }
 
-local M = {}
-M.setKeyMap = function(keymaps)
-    for _, maps in pairs(keymaps) do
-        local opts = {}
-        if #maps >= 4 then
-            opts = maps[4]
-        end
-        vim.keymap.set(maps[1], maps[2], maps[3], opts)
-    end
-end
-
-M.setKeyMap(coreMappings)
-
-return M
+Core.setKeyMaps(coreMappings)

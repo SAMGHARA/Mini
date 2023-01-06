@@ -5,11 +5,11 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-            { "n",     "Q",     "<cmd>bdelete<cr>" },
+            { "n",     "Q",           "<cmd>bdelete<cr>"       },
             { "n",   "<tab>",   "<cmd>BufferLineCycleNext<cr>" },
             { "n",  "<s-tab>",  "<cmd>BufferLineCyclePrev<cr>" },
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

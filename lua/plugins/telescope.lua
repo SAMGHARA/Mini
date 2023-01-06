@@ -9,7 +9,7 @@ M.setup = function()
     local keymaps = {
         { "n", "F", "<cmd>Telescope find_files<cr>" }
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

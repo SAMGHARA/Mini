@@ -7,7 +7,7 @@ M.setup = function()
         { "n", "<leader>j", "<Plug>(leap-forward-to)"  },
         { "n", "<leader>k", "<Plug>(leap-backward-to)" },
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 
 end
 

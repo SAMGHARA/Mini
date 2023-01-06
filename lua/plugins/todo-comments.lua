@@ -9,7 +9,7 @@ M.setup = function()
     local keymaps = {
         { "n", "T", "<cmd>TodoTelescope<cr>" }
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

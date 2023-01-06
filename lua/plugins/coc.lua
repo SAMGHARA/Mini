@@ -3,6 +3,7 @@ local M = {
     "neoclide/coc.nvim",
 
     branch = "release",
+    ft = { "c", "cpp", "lua", "go", "sh", "zsh", "json", "snippets", "markdown" }
 }
 
 M.setup = function()
@@ -47,8 +48,7 @@ M.setup = function()
 
         { { "n", "v" }, "<a-s-f>", "<Plug>(coc-format-selected)", { silent = true } },
     }
-
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 

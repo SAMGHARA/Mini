@@ -24,7 +24,7 @@ M.setup = function()
         { "n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>"},
         { "n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>"},
     }
-    require("core.keymaps").setKeyMap(keymaps)
+    require("core").setKeyMaps(keymaps)
 end
 
 M.config = function()

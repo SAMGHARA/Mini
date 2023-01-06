@@ -1,4 +1,4 @@
-snippet plugin "Packer plugin empty configuration template" 
+snippet plugin "Nvim Packer plugin setup Snipper" 
 local M = {
     $1
 }
@@ -18,8 +18,14 @@ end
 
 return M
 
-snippet keymaps "Packer plugin setup keymaps"
+snippet keymaps "Nvim Packer keymaps setup Snipper"
 local keymaps = {
     { "$1", "$2", "$3" }
 }
-require("core.keymaps").setKeyMap(keymaps)
+require("core").setKeyMaps(keymaps)
+
+snippet highlights "Nvim highlights setup Snipper"
+local highlights = {
+    $0
+}
+require("core").setHighlight(highlights)
