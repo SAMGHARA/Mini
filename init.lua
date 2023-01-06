@@ -1,3 +1,4 @@
+require "core.theme"
 require "core.options"
 require "core.keymaps"
 
@@ -43,7 +44,8 @@ Packer.plugins = {
     { "wbthomason/packer.nvim" },
     { "kyazdani42/nvim-web-devicons" },
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
-    require("core.theme"),
+    -- TODO: delete
+    { "joshdick/onedark.vim" },
     require("plugins.lualine"),
     require("plugins.bufferline"),
     require("plugins.nvim-tree"),

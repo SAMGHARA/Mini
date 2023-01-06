@@ -27,7 +27,7 @@ M.config = function()
             show_buffer_close_icons = true,
             show_close_icon = false,
             show_tab_indicators = true,
-            diagnostics = "nvim_lsp",
+            diagnostics = "coc",
             offsets = {
                 {
                     filetype = "NvimTree",
@@ -40,10 +40,11 @@ M.config = function()
                 },
             },
             indicator = {
-                icon = '▎',
-                style = 'icon'
+                icon = "▌",
+                style = "icon"
             },
-            buffer_close_icon = '',
+            separator_style = {"", ""},
+            buffer_close_icon = "",
             modified_icon = "●",
             left_trunc_marker = "",
             right_trunc_marker = "",
