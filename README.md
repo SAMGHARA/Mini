@@ -9,7 +9,9 @@
 
 ## 配置问题记录
 
-### packer.nvim 下载插件速度慢
+### packer.nvim
+
+#### 下载插件速度慢
 
 > <https://www.bilibili.com/read/cv16639595>
 
@@ -25,7 +27,9 @@ require('packer').startup({
 })
 ```
 
-### packer.nvim 特定文件类型加载插件
+### packer.nvim
+
+#### 特定文件类型加载插件
 
 在加载插件时添加 `ft = { "lua", "json"... }` 配置。
 
@@ -39,7 +43,9 @@ vim.filetype.add({
 })
 ```
 
-### nvim-treesitter 配置代理
+### nvim-treesitter
+
+#### 配置代理
 
 使用 `https://ghproxy.com` 代理下载. thanks GitHub Proxy !
 
@@ -72,56 +78,102 @@ end
     set clipboard^=unnamed,unnamedplus
     ```
 
-3. windows wsl 下 nvim 与主机剪贴板互通
+#### windows wsl 下 nvim 与主机剪贴板互通 (**已弃用: 修改为使用 [Tmux Clipboar](#tmux-clipboard)**)
 
-    - 方案一: <https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl>
+- 方案一: <https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl>
 
-    ```sh
-    curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-    unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-    chmod +x /tmp/win32yank.exe
-    sudo mv /tmp/win32yank.exe /usr/local/bin/
-    ```
+```sh
+curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+chmod +x /tmp/win32yank.exe
+sudo mv /tmp/win32yank.exe /usr/local/bin/
+```
 
-    然后执行第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
+然后执行上面第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
 
-    解决配置 `clipboard` 后启动速度慢的问题: <https://github.com/neovim/neovim/issues/9570>. 添加配置:
+解决配置 `clipboard` 后启动速度慢的问题: <https://github.com/neovim/neovim/issues/9570>. 添加配置:
 
-    ```lua
-    vim.cmd([[
-        let g:clipboard = {
-        \ 'name': 'win32yank',
-        \ 'copy': {
-        \    '+': 'win32yank.exe -i --crlf',
-        \    '*': 'win32yank.exe -i --crlf',
-        \  },
-        \ 'paste': {
-        \    '+': 'win32yank.exe -o --lf',
-        \    '*': 'win32yank.exe -o --lf',
-        \ },
-        \ 'cache_enabled': 0,
-        \ }
-    ]])
-    ```
+```lua
+vim.cmd([[
+let g:clipboard = {
+    \ 'name': 'win32yank',
+    \ 'copy': {
+    \    '+': 'win32yank.exe -i --crlf',
+    \    '*': 'win32yank.exe -i --crlf',
+    \  },
+    \ 'paste': {
+    \    '+': 'win32yank.exe -o --lf',
+    \    '*': 'win32yank.exe -o --lf',
+    \ },
+    \ 'cache_enabled': 0,
+    \ }
+]])
+```
 
-    - 方案二: 查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置:
+- 方案二: 查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置:
 
-    ```lua
-    vim.cmd([[
-    let g:clipboard = {
-        \   'name': 'WslClipboard',
-        \   'copy': {
-        \      '+': 'clip.exe',
-        \      '*': 'clip.exe',
-        \    },
-        \   'paste': {
-        \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        \   },
-        \   'cache_enabled': 0,
-        \ }
-    ]])
-    ```
+```lua
+vim.cmd([[
+let g:clipboard = {
+    \   'name': 'WslClipboard',
+    \   'copy': {
+    \      '+': 'clip.exe',
+    \      '*': 'clip.exe',
+    \    },
+    \   'paste': {
+    \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    \   },
+    \   'cache_enabled': 0,
+    \ }
+]])
+```
+
+#### Tmux Clipboard
+
+由于 `win32yank` 和 `WslClipboard` 只能在 Windows 环境下使用, 其他环境下该配置都会报错, 所以替换成了更通用的 `Tmux Clipboard`
+
+```lua
+if vim.env.TMUX then
+vim.g.clipboard = {
+    name = "TmuxClipboard",
+    copy = {
+        ["+"] = "tmux load-buffer -w -",
+        ["*"] = "tmux load-buffer -w -",
+    },
+    paste = {
+        ["+"] = "tmux save-buffer -",
+        ["*"] = "tmux save-buffer -",
+    },
+}
+end
+```
+
+注: 如果按照 `:help clipboard` 帮助文档设置 `g.clipboard.copy` 项:
+
+```lua
+copy = {
+    ["+"] = "tmux load-buffer -",
+    ["*"] = "tmux load-buffer -",
+}
+```
+
+Nvim剪贴板和系统剪贴板是没有互通的, 暂时不知道原因, 后面按照 <https://github.com/aserowy/tmux.nvim/blob/main/lua/tmux/copy.lua> 中的 `sync_clipboard` 设置, 剪贴板就成功互通了.
+
+```lua
+copy = {
+    ["+"] = "tmux load-buffer -w -",
+    ["*"] = "tmux load-buffer -w -",
+},
+```
+
+`checkhealth` 的错误与警告修复方法:
+
+![Nvim-Tmux-CheckHealth](images/nvim-tmux-checkhealth.png)
+
+1. echo "set -g escape-time 10" >> ~/.tmux.conf
+2. echo "set -g focus-events on" >> ~/.tmux.conf
+3. echo "set -g terminal-overrides ',$TERM:RGB'" >> ~/.tmux.conf    **`需要退出Tmux再执行`**
 
 ### coc.nvim 配置
 

@@ -34,24 +34,22 @@ local options = {
     }
 }
 
+if vim.env.TMUX then
+    options.opt.clipboard = vim.opt.clipboard ^ { "unnamed,unnamedplus" }
+    options.g.clipboard = {
+        name = "TmuxClipboard",
+        copy = {
+            ["+"] = "tmux load-buffer -w -",
+            ["*"] = "tmux load-buffer -w -",
+        },
+        paste = {
+            ["+"] = "tmux save-buffer -",
+            ["*"] = "tmux save-buffer -",
+        },
+    }
+end
+
 Core.setOptions(options)
-
-vim.opt.clipboard:prepend { "unnamed,unnamedplus" }
-
-vim.cmd([[
-let g:clipboard = {
-    \   'name': 'WslClipboard',
-    \   'copy': {
-    \      '+': 'clip.exe',
-    \      '*': 'clip.exe',
-    \    },
-    \   'paste': {
-    \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    \   },
-    \   'cache_enabled': 0,
-    \ }
-]])
 
 Core.addFileTypes({
     pattern = {
