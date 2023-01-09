@@ -36,9 +36,8 @@ local highlights = {
 
     -- Plugins
     -- bufferline
-    ["BufferLineBufferSelected"]    = { gui = "bold,italic", guifg = Colors.white_dark },
-    ["BufferLineIndicatorSelected"] = { gui = "bold", guifg = Colors.orange },
-    ["BufferLineDevIconLuaSelected"] = {guifg = Colors.orange},
+    ["BufferLineBufferSelected"]    = { gui = "bold,italic", guifg = Colors.cyan },
+    ["BufferLineIndicatorSelected"] = { gui = "bold", guifg = Colors.cyan },
 
     -- coc
     ["DiagnosticError"]          = { guifg = Colors.red_dark },

@@ -3,9 +3,9 @@
 
 ## reference
 
-> <https://github.com/LunarVim/Neovim-from-scratch>  
-> <https://github.com/NvChad/NvChad>  
-> <https://github.com/yaocccc/nvim>
+> [LunarVim/Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch)  
+> [NvChad/NvChad>](https://github.com/NvChad/NvChad>)  
+> [yaocccc/nvim](https://github.com/yaocccc/nvim)
 
 ## 配置问题记录
 
@@ -13,7 +13,7 @@
 
 #### 下载插件速度慢
 
-> <https://www.bilibili.com/read/cv16639595>
+> [https://www.bilibili.com/read/cv16639595](https://www.bilibili.com/read/cv16639595)
 
 在 `packer` 配置下修改 `default_url_format`，**前提: 本地 git 与 github 已经配置好 ssh 密钥连接**
 
@@ -47,7 +47,7 @@ vim.filetype.add({
 
 #### 配置代理
 
-使用 `https://ghproxy.com` 代理下载. thanks GitHub Proxy !
+使用 [https://ghproxy.com](https://ghproxy.com) 代理下载. thanks GitHub Proxy !
 
 ```lua
 for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
@@ -58,7 +58,7 @@ end
 
 ### nvim 与主机剪贴板互通
 
-> <https://www.cnblogs.com/huahuayu/p/12235242.html>
+> [https://www.cnblogs.com/huahuayu/p/12235242.html](https://www.cnblogs.com/huahuayu/p/12235242.html)
 
 1. 安装 xclip
 
@@ -80,7 +80,7 @@ end
 
 #### windows wsl 下 nvim 与主机剪贴板互通 (**已弃用: 修改为使用 [Tmux Clipboar](#tmux-clipboard)**)
 
-- 方案一: <https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl>
+- 方案一: [how-to-use-the-windows-clipboard-from-wsl](https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl)
 
 ```sh
 curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
@@ -91,7 +91,7 @@ sudo mv /tmp/win32yank.exe /usr/local/bin/
 
 然后执行上面第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
 
-解决配置 `clipboard` 后启动速度慢的问题: <https://github.com/neovim/neovim/issues/9570>. 添加配置:
+解决配置 `clipboard` 后启动速度慢的问题: [neovim/issues/9570](https://github.com/neovim/neovim/issues/9570). 添加配置:
 
 ```lua
 vim.cmd([[
@@ -158,7 +158,7 @@ copy = {
 }
 ```
 
-Nvim剪贴板和系统剪贴板是没有互通的, 暂时不知道原因, 后面按照 <https://github.com/aserowy/tmux.nvim/blob/main/lua/tmux/copy.lua> 中的 `sync_clipboard` 设置, 剪贴板就成功互通了.
+Nvim剪贴板和系统剪贴板是没有互通的, 暂时不知道原因, 后面按照 [aserowy/tmux.nvim](https://github.com/aserowy/tmux.nvim/blob/main/lua/tmux/copy.lua) 中的 `sync_clipboard` 设置, 剪贴板就成功互通了.
 
 ```lua
 copy = {
@@ -195,8 +195,7 @@ copy = {
 
 3. coc-snippets
 
-    - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]`
-       > <https://github.com/neoclide/coc-snippets/issues/280>
+    - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]` [coc-snippets/issues/280](https://github.com/neoclide/coc-snippets/issues/280)
 
 ### todo-comments.nvim
 
@@ -210,3 +209,8 @@ sudo pacman -S ripgrep
 sudo pacman -S ctags
 ```
 
+## 其他问题
+
+### 使用 `lua` 配置和 `Vimscript` 相同的配置
+
+可以在 `:help lua` 帮助文档下查找
