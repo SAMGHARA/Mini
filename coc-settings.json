@@ -5,8 +5,9 @@
     "diagnostic.signPriority": 1,
     "snippets.ultisnips.pythonPrompt": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-    "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
-
+    "snippets.textmateSnippetsRoots": [
+        "~/.config/nvim/snippets"
+    ],
     "coc.preferences.formatOnSave": true,
     "[lua][json]": {
         "coc.preferences.formatOnSave": false
@@ -17,5 +18,9 @@
     "Lua.hint.enable": false,
     "Lua.hint.arrayIndex": "Disable",
 
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd"
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+
+    "markdownlint.config": {
+        "MD013": false
+    }
 }

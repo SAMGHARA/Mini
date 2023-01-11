@@ -33,7 +33,7 @@ require('packer').startup({
 
 在加载插件时添加 `ft = { "lua", "json"... }` 配置。
 
-如果文件没有类型，如 `*.snippets` 文件，可以通过 `vim.filetype.add`进行自定义:
+如果文件没有类型，如 `*.snippets` 文件，可以通过 `vim.filetype.add` 进行自定义:
 
 ```lua
 vim.filetype.add({

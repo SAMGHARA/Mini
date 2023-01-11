@@ -9,6 +9,9 @@ local M = {
 
 -- Change Surround Character
 -- NORMAL:  cs  + <old surround character> <new surround character>
+
+-- Delete Surround Character
+-- NORMAL: ds + <surround character>
 M.setup = function()
 
 end

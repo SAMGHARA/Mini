@@ -3,12 +3,10 @@ local M = {
     "neoclide/coc.nvim",
 
     branch = "release",
-    ft = { "c", "cpp", "lua", "go", "sh", "zsh", "json", "snippets", "markdown" }
 }
 
 M.setup = function()
     vim.g.coc_global_extensions = {
-        "coc-marketplace",
         "coc-snippets",
         "coc-word",
         "coc-json",
@@ -31,9 +29,10 @@ M.setup = function()
         { "n", "<leader>i",  "<Plug>(coc-implementation)",  { silent = true } },
         { "n", "<leader>r",  "<Plug>(coc-references)",      { silent = true } },
 
-        { "n", "<leader>=",  "<Plug>(coc-diagnostic-next)", { silent = true } },
-        { "n", "<leader>-",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
-        { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
+        { "n", "<leader>cn",  "<Plug>(coc-diagnostic-next)", { silent = true } },
+        { "n", "<leader>cp",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
+        { "n", "<leader>rn",  "<Plug>(coc-rename)",          { silent = true } },
+        { "n", "<leader>cmp", "<cmd>CocCommand markdown-preview-enhanced.openPreview<cr>", { silent = true } },
 
         { "n", "K", function()
                         local cw = vim.fn.expand('<cword>')

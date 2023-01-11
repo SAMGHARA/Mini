@@ -29,9 +29,9 @@ local coreMappings = {
     { "n", "<leader>q", "<cmd>qa<cr>"  },
     { "n", "<leader>h", "<cmd>noh<cr>" },
 
-    { "n", "<c-a>", "gg0vG$" },  -- VISUAL mode select all
-    { "n", "<c-d>",  "viw"   },  -- VISUAL mode select current word
-    { "n", "<c-v>",   "p"    },
+    { "n", "<c-a>", "ggVG" },  -- VISUAL mode select all
+    { "n", "<c-d>",  "viw" },  -- VISUAL mode select current word
+    { "n", "<c-v>",   "p"  },
 
     { "n", "<a-a>", "<c-o>" },
     { "n", "<a-d>", "<c-i>" },
@@ -47,6 +47,7 @@ local coreMappings = {
     { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 
+    { "v", "<c-x>",    "d"   },
     { "v", "<c-c>",    "y"   },
     { "v", "<c-v>",   "pgvy" },
     { "v",   "p",     "pgvy" },

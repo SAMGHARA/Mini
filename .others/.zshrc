@@ -30,10 +30,23 @@ typeset -A aliasKeyMap
 aliasKeyMap=(
     ls      'ls --color'
     la      'ls -la --color'
+
+    # vim alias
     vst     'vim +StartupTime'
     vvi     'vim $HOME/.config/nvim/init.lua'
-    vrc     'vim $HOME/.zshrc'
-    src     'source $HOME/.zshrc'
+    vrc     'vim $HOME/.config/nvim/.others/.zshrc'
+    vtm     'vim $HOME/.config/nvim/.others/.tmux.conf'
+    src     'source $HOME/.config/nvim/.others/.zshrc'
+
+    # tmux alias
+    tn      'tmux new -s'
+    ta      'tmux attach -t'
+
+    # tar alias
+    tgz     'tar -zcvf'
+    tugz    'tar -zxvf -C'
+    tbz2    'tar -cjf'
+    tubz2   'tar -xjf -C'
 
     gr      'go run'
 

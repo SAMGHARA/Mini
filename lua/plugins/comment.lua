@@ -5,7 +5,7 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-        { "n", "<c-_>", "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>" },
+        { { "n", "i" }, "<c-_>", "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>" },
         { "v", "<c-_>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>" },
     }
     require("core").setKeyMaps(keymaps)

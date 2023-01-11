@@ -51,7 +51,7 @@ M[1].config = function()
     end
 
     treesitter.setup {
-        ensure_installed = { "c", "cpp", "go", "lua", "markdown" },
+        ensure_installed = { "c", "cpp", "go", "lua", "markdown", "markdown_inline" },
         -- sync_install = true,
 
         -- Automatically install missing parsers when entering buffer
