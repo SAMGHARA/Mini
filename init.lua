@@ -44,8 +44,6 @@ Packer.plugins = {
     { "wbthomason/packer.nvim" },
     { "kyazdani42/nvim-web-devicons" },
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
-    -- TODO: delete
-    { "joshdick/onedark.vim" },
     require("plugins.lualine"),
     require("plugins.bufferline"),
     require("plugins.nvim-tree"),
@@ -62,6 +60,7 @@ Packer.plugins = {
     require("plugins.vim-visual-multi"),
     require("plugins.leap"),
     require("plugins.nvim-treesitter"),
+    require("plugins.autolist"),
     require("plugins.coc")
 }
 
