@@ -17,21 +17,26 @@ M.setup = function()
     local keymaps = {
         { "i", "<a-j>", [[coc#pum#visible() ? coc#pum#next(1) : "<down>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false }, },
-        { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"  ]],
+        { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<tab>\<c-r>=coc#on_enter()\<cr>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
-
-        { "i", "<a-n>", "<Plug>(coc-snippets-expand-jump)" },
+        { "i", "<esc>", [[coc#pum#visible() ? coc#pum#cancel() : "<esc>"]],
+            { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
         { "n", "<leader>d",  "<Plug>(coc-definition)",      { silent = true } },
         { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },
         { "n", "<leader>i",  "<Plug>(coc-implementation)",  { silent = true } },
         { "n", "<leader>r",  "<Plug>(coc-references)",      { silent = true } },
+        { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
+        { "n", "<leader>cn", "<Plug>(coc-diagnostic-next)", { silent = true } },
+        { "n", "<leader>cp", "<Plug>(coc-diagnostic-prev)", { silent = true } },
+        { "v",  "<a-s-f>",   "<Plug>(coc-format-selected)", { silent = true } },
 
-        { "n", "<leader>cn",  "<Plug>(coc-diagnostic-next)", { silent = true } },
-        { "n", "<leader>cp",  "<Plug>(coc-diagnostic-prev)", { silent = true } },
-        { "n", "<leader>rn",  "<Plug>(coc-rename)",          { silent = true } },
+        -- coc-snippets
+        { "i", "<a-n>", "<Plug>(coc-snippets-expand-jump)", { silent = true } },
+
+        -- coc-markdown-preview-enhanced
         { "n", "<leader>cmp", "<cmd>CocCommand markdown-preview-enhanced.openPreview<cr>", { silent = true } },
 
         { "n", "K", function()
@@ -44,8 +49,6 @@ M.setup = function()
                             vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
                         end
                     end, { silent = true } },
-
-        { { "n", "v" }, "<a-s-f>", "<Plug>(coc-format-selected)", { silent = true } },
     }
     require("core").setKeyMaps(keymaps)
 end

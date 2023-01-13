@@ -61,6 +61,7 @@ Packer.plugins = {
     require("plugins.leap"),
     require("plugins.nvim-treesitter"),
     require("plugins.autolist"),
+    require("plugins.nvim-cmp"),
     require("plugins.coc")
 }
 

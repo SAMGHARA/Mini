@@ -23,7 +23,6 @@ local options = {
         signcolumn     = "yes",     -- always show the sign column.
         hlsearch       = true,
         incsearch      = true,
-        textwidth      = 80
     },
 
     g = {

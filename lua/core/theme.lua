@@ -5,19 +5,17 @@ local highlights = {
     -- Core
     ["Normal"]      = { guifg = Colors.white },
     ["Visual"]      = { guibg = Colors.black },
+    ["LineNr"]      = { guifg = Colors.grey },
+    ["NonText"]     = { guifg = Colors.grey_dark },
+    ["CursorLine"]  = { guibg = Colors.black_dark },
     ["Search"]      = { guifg = Colors.black, guibg = Colors.orange },
     ["Title"]       = { guifg = Colors.orange },
     ["Directory"]   = { guifg = Colors.blue },
-    ["LineNr"]      = { guifg = Colors.grey },
     ["MatchParen"]  = { guibg = Colors.grey },
-    ["NonText"]     = { guifg = Colors.grey_dark },
     ["PmenuSbar"]   = { guibg = Colors.grey_dark },
     ["PmenuThumb"]  = { guibg = Colors.white },
     ["Pmenu"]       = { guifg = Colors.white, guibg = Colors.grey_dark },
     ["PmenuSel"]    = { guifg = Colors.white_dark, guibg = Colors.blue },
-    ["CursorLine"]  = { guibg = Colors.black_dark },
-
-    -- TreeSitter
     ["Identifier"]  = { guifg = Colors.red },
     ["Boolean"]     = { guifg = Colors.orange },
     ["Number"]      = { guifg = Colors.orange },
@@ -34,6 +32,8 @@ local highlights = {
     ["Conditional"] = { guifg = Colors.purple },
     ["Comment"]     = { guifg = Colors.grey },
 
+    ["@text.literal"] = { guifg = Colors.cyan },
+
     -- Plugins
     -- bufferline
     ["BufferLineBufferSelected"]    = { gui = "bold,italic", guifg = Colors.cyan },
@@ -46,11 +46,11 @@ local highlights = {
     -- CocErrorHighlight link to this
     ["DiagnosticUnderlineError"] = { gui = "underline", guifg = Colors.red_dark },
 
-    -- gitsigns
     ["DiffAdd"]        = { guifg = Colors.black_dark, guibg = Colors.green },
     ["DiffChange"]     = { guifg = Colors.black_dark, guibg = Colors.yellow },
     ["DiffDelete"]     = { guifg = Colors.black_dark, guibg = Colors.red },
     ["DiffText"]       = { guifg = Colors.black_dark, guibg = Colors.red },
+    -- gitsigns
     ["GitSignsAdd"]    = { guifg = Colors.green_dark },
     ["GitSignsChange"] = { guifg = Colors.orange },
     ["GitSignsDelete"] = { guifg = Colors.red },
@@ -63,6 +63,10 @@ local highlights = {
     ["NvimTreeCursorLine"] = { guifg = Colors.orange },
     ["NvimTreeOpenedFolderName"] = { guifg = Colors.orange },
 
+    -- todo-comments
+    ["Todo"] = { guifg = Colors.black_dark, guibg = Colors.blue },
+    ["TodoFgTODO"] = { guifg = Colors.blue },
+    ["TodoBgTODO"] = { guifg = Colors.black_dark, guibg = Colors.blue },
 }
 
 local highlight_links = {
