@@ -3,6 +3,7 @@
     "inlayHint.display": false,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.signPriority": 1,
+    "coc.source.file.ignoreHidden": false,
     "snippets.ultisnips.pythonPrompt": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "snippets.textmateSnippetsRoots": [

@@ -50,6 +50,7 @@ Packer.plugins = {
     require("plugins.tagbar"),
     require("plugins.toggleterm"),
     require("plugins.gitsigns"),
+    require("plugins.diffview"),
     require("plugins.indent-blankline"),
     require("plugins.which-key"),
     require("plugins.telescope"),

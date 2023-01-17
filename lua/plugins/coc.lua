@@ -16,13 +16,26 @@ M.setup = function()
 
     local keymaps = {
         { "i", "<a-j>", [[coc#pum#visible() ? coc#pum#next(1) : "<down>"]],
-            { silent = true, noremap = true, expr = true, replace_keycodes = false }, },
+            { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<tab>\<c-r>=coc#on_enter()\<cr>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<esc>", [[coc#pum#visible() ? coc#pum#cancel() : "<esc>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
+
+        { "n", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<c-w>j"]],
+            { silent = true, nowait = true, expr = true } },
+        { "n", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<c-w>k"]],
+            { silent = true, nowait = true, expr = true } },
+        { "i", "<c-j>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<c-j>"]],
+            { silent = true, nowait = true, expr = true } },
+        { "i", "<c-k>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<c-k>"]],
+            { silent = true, nowait = true, expr = true } },
+        { "v", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<c-j>"]],
+            { silent = true, nowait = true, expr = true } },
+        { "v", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<c-k>"]],
+            { silent = true, nowait = true, expr = true } },
 
         { "n", "<leader>d",  "<Plug>(coc-definition)",      { silent = true } },
         { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },

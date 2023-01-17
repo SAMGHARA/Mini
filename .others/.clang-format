@@ -3,6 +3,9 @@
 BasedOnStyle: Microsoft
 IndentWidth: 4
 
+SeparateDefinitionBlocks: Always
+AllowShortEnumsOnASingleLine: false
+
 NamespaceIndentation: All
 ShortNamespaceLines: 0
 FixNamespaceComments: true
