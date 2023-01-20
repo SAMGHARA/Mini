@@ -10,7 +10,7 @@
         "~/.config/nvim/snippets"
     ],
     "coc.preferences.formatOnSave": true,
-    "[lua][json]": {
+    "[lua][json][cpp]": {
         "coc.preferences.formatOnSave": false
     },
 

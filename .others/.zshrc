@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+XDG_LOCAL_HOME=$HOME/.local
 XDG_CACHE_HOME=$HOME/.cache
 XDG_CONFIG_HOME=$HOME/.config
 
@@ -9,23 +10,24 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Environment Variable
-export PATH=$PATH\
-:$HOME/.local/bin\
-:$HOME/.local/go/bin\
-:$HOME/.local/redis/bin\
+function addPATH() {
+    [[ ${(P)1} != *$2* ]] && export $1=${(P)1}:$2
+}
 
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH\
-:$HOME/.local/include\
+addPATH PATH $XDG_LOCAL_HOME/bin\
+:$XDG_LOCAL_HOME/go/bin\
+:$XDG_LOCAL_HOME/redis/bin\
+:$XDG_LOCAL_HOME/node/node_modules/.bin
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\
-:$HOME/.local/lib\
-:$HOME/.local/boost/lib\
-:$HOME/.local/hiredis/lib\
+addPATH CPLUS_INCLUDE_PATH $XDG_LOCAL_HOME/include
 
-export LIBRARY_PATH=$LIBRARY_PATH\
-:$HOME/.local/lib\
-:$HOME/.local/boost/lib\
-:$HOME/.local/hiredis/lib\
+addPATH LIBRARY_PATH $XDG_LOCAL_HOME/lib\
+:$XDG_LOCAL_HOME/boost/lib\
+:$XDG_LOCAL_HOME/hiredis/lib
+
+addPATH LD_LIBRARY_PATH $LIBRARY_PATH
+
+unfunction addPATH
 ########################################################################################
 
 # zinit
@@ -35,7 +37,6 @@ fi
 
 source $XDG_CONFIG_HOME/zinit/zinit.zsh
 zinit ice proto "ssh" depth "1" && zinit light romkatv/powerlevel10k
-zinit ice proto "ssh" && zinit light mfaerevaag/wd
 zinit ice proto "ssh" && zinit light zsh-users/zsh-completions
 zinit ice proto "ssh" && zinit light zsh-users/zsh-autosuggestions
 zinit ice proto "ssh" && zinit light zsh-users/zsh-syntax-highlighting
@@ -49,7 +50,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 ########################################################################################
 
 # fzf
@@ -59,18 +60,16 @@ if [[ ! -d "$XDG_CONFIG_HOME/fzf" ]]; then
     $XDG_CONFIG_HOME/fzf/install
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-export FZF_COMPLETION_TRIGGER='-'
+export FZF_COMPLETION_TRIGGER='\'
 export FZF_DEFAULT_OPTS="--bind 'alt-j:down,alt-k:up,tab:accept'"
 ########################################################################################
 
 # zoxide
 # sudo pacman -S zoxide
 which "zoxide" >/dev/null 2>&1
-if [[ $? -eq 0 ]]; then
-    eval "$(zoxide init zsh)"
-fi
+[[ $? == 0 ]] && eval "$(zoxide init zsh)"
 ########################################################################################
 
 # alias setting
@@ -78,7 +77,8 @@ typeset -A aliasKeyMap
 aliasKeyMap=(
     ls      'ls --color'
     la      'ls -la --color'
-    rar     'rm * -r'
+    cd      'z'
+    rr      'rm -r'
 
     # vim alias
     vst     'vim +StartupTime'
@@ -129,6 +129,7 @@ done
 ########################################################################################
 
 setopt no_nomatch
+setopt rmstarsilent
 
 # ignore <tab> completion case
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
