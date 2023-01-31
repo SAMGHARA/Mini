@@ -82,52 +82,52 @@ end
 
 - 方案一: [how-to-use-the-windows-clipboard-from-wsl](https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl)
 
-```sh
-curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-chmod +x /tmp/win32yank.exe
-sudo mv /tmp/win32yank.exe /usr/local/bin/
-```
+    ```sh
+    curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+    unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+    chmod +x /tmp/win32yank.exe
+    sudo mv /tmp/win32yank.exe /usr/local/bin/
+    ```
 
-然后执行上面第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
+    然后执行上面第2步的修改，如果安装了 `xclip` 需要先卸载，可以执行 `checkhealth` 查看 `Clipboard (optional)` 状态
 
-解决配置 `clipboard` 后启动速度慢的问题: [neovim/issues/9570](https://github.com/neovim/neovim/issues/9570). 添加配置:
+    解决配置 `clipboard` 后启动速度慢的问题: [neovim/issues/9570](https://github.com/neovim/neovim/issues/9570). 添加配置:
 
-```lua
-vim.cmd([[
-let g:clipboard = {
-    \ 'name': 'win32yank',
-    \ 'copy': {
-    \    '+': 'win32yank.exe -i --crlf',
-    \    '*': 'win32yank.exe -i --crlf',
-    \  },
-    \ 'paste': {
-    \    '+': 'win32yank.exe -o --lf',
-    \    '*': 'win32yank.exe -o --lf',
-    \ },
-    \ 'cache_enabled': 0,
-    \ }
-]])
-```
+    ```lua
+    vim.cmd([[
+    let g:clipboard = {
+        \ 'name': 'win32yank',
+        \ 'copy': {
+        \    '+': 'win32yank.exe -i --crlf',
+        \    '*': 'win32yank.exe -i --crlf',
+        \  },
+        \ 'paste': {
+        \    '+': 'win32yank.exe -o --lf',
+        \    '*': 'win32yank.exe -o --lf',
+        \ },
+        \ 'cache_enabled': 0,
+        \ }
+    ]])
+    ```
 
 - 方案二: 查看nvim帮助文档 `:help clipboard-wsl`. 不需要额外安装软件，只需要添加配置:
 
-```lua
-vim.cmd([[
-let g:clipboard = {
-    \   'name': 'WslClipboard',
-    \   'copy': {
-    \      '+': 'clip.exe',
-    \      '*': 'clip.exe',
-    \    },
-    \   'paste': {
-    \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    \   },
-    \   'cache_enabled': 0,
-    \ }
-]])
-```
+    ```lua
+    vim.cmd([[
+    let g:clipboard = {
+        \   'name': 'WslClipboard',
+        \   'copy': {
+        \      '+': 'clip.exe',
+        \      '*': 'clip.exe',
+        \    },
+        \   'paste': {
+        \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
+    ]])
+    ```
 
 #### Tmux Clipboard
 
@@ -195,7 +195,7 @@ copy = {
 
 3. coc-snippets
 
-    - 使用 `vscode` 的 `.json` 代码块配置: `snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]` [coc-snippets/issues/280](https://github.com/neoclide/coc-snippets/issues/280)
+    - 使用 `vscode` 的 `.json` 代码块配置: `"snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]` [coc-snippets/issues/280](https://github.com/neoclide/coc-snippets/issues/280)
 
 ### todo-comments.nvim
 

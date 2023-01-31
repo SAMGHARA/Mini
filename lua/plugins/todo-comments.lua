@@ -6,10 +6,7 @@ local M = {
 }
 
 M.setup = function()
-    local keymaps = {
-        { "n", "T", "<cmd>TodoTelescope<cr>" }
-    }
-    require("core").setKeyMaps(keymaps)
+
 end
 
 M.config = function()

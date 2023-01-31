@@ -56,7 +56,7 @@ Packer.plugins = {
     require("plugins.telescope"),
     require("plugins.comment"),
     require("plugins.todo-comments"),
-    require("plugins.nvim-autopairs"),
+    require("plugins.smart-pairs"),
     require("plugins.nvim-surround"),
     require("plugins.vim-visual-multi"),
     require("plugins.leap"),

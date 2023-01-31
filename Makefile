@@ -1,4 +1,4 @@
-FILES  = .zshrc .tmux.conf .clang-format
+FILES = .zshrc .tmux.conf .clang-format
 ORIGIN_PATH = ${HOME}/.config/nvim/.others
 
 default: install

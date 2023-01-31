@@ -2,12 +2,7 @@ local M = {
     -- https://github.com/gaoDean/autolist.nvim
     "gaoDean/autolist.nvim",
 
-    ft = {
-        "tex",
-        "text",
-        "plaintex",
-        "markdown",
-    }
+    after = "smart-pairs"
 }
 
 M.setup = function()
@@ -65,9 +60,10 @@ M.config = function()
         },
     }
 
-    autolist.create_mapping_hook("i", "<cr>", autolist.new)
-    autolist.create_mapping_hook("n",   "o",  autolist.new)
-    autolist.create_mapping_hook("n",   "O",  autolist.new_before)
+    -- TODO: error with nvim-autopairs/smart-pairs
+    -- autolist.create_mapping_hook("i", "<CR>", autolist.new)
+    autolist.create_mapping_hook("n",  "o",   autolist.new)
+    autolist.create_mapping_hook("n",  "O",   autolist.new_before)
 end
 
 return M
