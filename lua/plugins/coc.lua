@@ -51,6 +51,7 @@ M.setup = function()
 
         -- coc-markdown-preview-enhanced
         { "n", "<leader>cmp", "<cmd>CocCommand markdown-preview-enhanced.openPreview<cr>", { silent = true } },
+        { "n", "<leader>cmt", "<cmd>CocCommand markdown-preview-enhanced.createTOC<cr>",   { silent = true } },
 
         { "n", "K", function()
                         local cw = vim.fn.expand('<cword>')
