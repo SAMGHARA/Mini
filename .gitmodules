@@ -1,0 +1,15 @@
+[submodule "mz/themes/powerlevel10k"]
+	path = mz/themes/powerlevel10k
+	url = https://gitee.com/romkatv/powerlevel10k.git
+[submodule "mz/plugins/zsh-autosuggestions"]
+	path = mz/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "mz/plugins/zsh-syntax-highlighting"]
+	path = mz/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "mz/plugins/zsh-completions"]
+	path = mz/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "mz/plugins/z.lua"]
+	path = mz/plugins/z.lua
+	url = https://github.com/skywind3000/z.lua
