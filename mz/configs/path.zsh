@@ -1,0 +1,22 @@
+# Environment PATH
+PATH_NEW=(
+    "$XDG_LOCAL_HOME/bin"
+    "$XDG_LOCAL_HOME/redis/bin"
+    "$XDG_LOCAL_HOME/node/node_modules/.bin"
+)
+LIBRARY_PATH_NEW=(
+    "$XDG_LOCAL_HOME/lib"
+    "$XDG_LOCAL_HOME/hiredis/lib"
+)
+LD_LIBRARY_PATH_NEW=(
+    "$LIBRARY_PATH_NEW"
+)
+CPLUS_INCLUDE_PATH_NEW=(
+    "$XDG_LOCAL_HOME/include"
+)
+
+addENV PATH               PATH_NEW
+addENV LIBRARY_PATH       LIBRARY_PATH_NEW
+addENV LD_LIBRARY_PATH    LD_LIBRARY_PATH_NEW
+addENV CPLUS_INCLUDE_PATH CPLUS_INCLUDE_PATH_NEW
+

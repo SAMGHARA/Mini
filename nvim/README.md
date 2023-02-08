@@ -169,7 +169,7 @@ copy = {
 
 `checkhealth` 的错误与警告修复方法:
 
-![Nvim-Tmux-CheckHealth](images/nvim-tmux-checkhealth.png)
+![Nvim-Tmux-CheckHealth](../images/nvim-tmux-checkhealth.png)
 
 1. echo "set -g escape-time 10" >> ~/.tmux.conf
 2. echo "set -g focus-events on" >> ~/.tmux.conf
