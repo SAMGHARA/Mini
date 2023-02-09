@@ -41,10 +41,10 @@ local coreMappings = {
     { "n", "<a-j>", "5j" },
     { "n", "<a-k>", "5k" },
 
-    { "n", "<c-h>", "<c-w>h", { noremap = true, silent = true } },
-    { "n", "<c-j>", "<c-w>j", { noremap = true, silent = true } },
-    { "n", "<c-k>", "<c-w>k", { noremap = true, silent = true } },
-    { "n", "<c-l>", "<c-w>l", { noremap = true, silent = true } },
+    { "n", "<leader><left>",  "<c-w>h", { noremap = true, silent = true } },
+    { "n", "<leader><down>",  "<c-w>j", { noremap = true, silent = true } },
+    { "n", "<leader><up>",    "<c-w>k", { noremap = true, silent = true } },
+    { "n", "<leader><right>", "<c-w>l", { noremap = true, silent = true } },
 
     { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up

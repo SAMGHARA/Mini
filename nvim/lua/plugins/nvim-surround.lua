@@ -3,15 +3,8 @@ local M = {
     "kylechui/nvim-surround"
 }
 
--- Add Surround Character
--- NORMAL: ysiw + <surround character>
--- VISUAL:  S   + <surround character>
-
--- Change Surround Character
--- NORMAL:  cs  + <old surround character> <new surround character>
-
--- Delete Surround Character
--- NORMAL: ds + <surround character>
+-- ( [ {    ===>    (  ) [  ] {  }
+-- ) ] }    ===>    () [] {}
 M.setup = function()
 
 end
@@ -22,7 +15,18 @@ M.config = function()
         return
     end
 
-    surround.setup {}
+    surround.setup {
+        keymaps = {
+            normal = "ys",
+            normal_cur = "yss",
+            normal_line = "yS",
+            normal_cur_line = "ySS",
+            visual = "S",
+            visual_line = "gS",
+            delete = "ds",
+            change = "cs"
+        }
+    }
 end
 
 return M

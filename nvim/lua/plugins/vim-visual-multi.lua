@@ -10,9 +10,9 @@ M.setup = function()
             VM_highlight_matches = "underline",
             VM_default_mappings = 0,
             VM_maps = {
-                ['Find Under']      = "<c-n>",
-                ["Add Cursor Up"]   = "<c-up>",
-                ["Add Cursor Down"] = "<c-down>",
+                ["Find Under"]      = "<c-n>",
+                ["Add Cursor Up"]   = "<c-k>",
+                ["Add Cursor Down"] = "<c-j>",
                 ["Remove Region"]   = "q",
             }
         }
