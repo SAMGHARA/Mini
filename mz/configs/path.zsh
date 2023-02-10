@@ -1,6 +1,7 @@
 # Environment PATH
 PATH_NEW=(
     "$XDG_LOCAL_HOME/bin"
+    "$XDG_LOCAL_HOME/go/bin"
     "$XDG_LOCAL_HOME/redis/bin"
     "$XDG_LOCAL_HOME/node/node_modules/.bin"
 )

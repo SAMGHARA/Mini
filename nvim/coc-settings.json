@@ -5,10 +5,12 @@
     "diagnostic.signPriority": 1,
     "coc.source.file.ignoreHidden": false,
     "snippets.ultisnips.pythonPrompt": false,
+    "snippets.snipmate.enable": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-    "snippets.textmateSnippetsRoots": [
-        "~/.config/nvim/snippets"
-    ],
+    "snippets.extends": {
+        "cpp": ["c"],
+        "zsh": ["sh"]
+    },
     "coc.preferences.formatOnSave": true,
     "[lua][json][cpp]": {
         "coc.preferences.formatOnSave": false

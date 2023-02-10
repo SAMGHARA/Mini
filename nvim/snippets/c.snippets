@@ -1,5 +1,21 @@
-snippet main "c/cpp main Snippet"
+snippet mycout "Cpp std::cout Snippet"
+std::cout << "${0:hello world}" << std::endl;
+endsnippet
+
+snippet main "C/Cpp main Snippet"
 int main(int argc, char *argv[]) {
-    $0
-    return 0;
+	$0
+	return 0;
 }
+endsnippet
+
+snippet class "Cpp class Snippet"
+class ${1:Class} {
+	public:
+		${2:Class}()
+		~${3:Class}()
+
+	private:
+		$4
+}
+endsnippet

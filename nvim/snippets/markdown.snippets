@@ -11,11 +11,20 @@ image: $5
 ---
 
 $0
+endsnippet
 
 snippet link "Markdown Link Snippet"
 [$1]($2)
+endsnippet
 
 snippet table "Markdown Table Snippet"
 | $1 | $2 |
 |:----:|:----:|
 | $3 | $4 |
+endsnippet
+
+snippet code "Markdown CodeBlock Snippet"
+\`\`\`${1:code}
+$2
+\`\`\`
+endsnippet
