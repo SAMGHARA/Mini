@@ -52,6 +52,6 @@ Core.setOptions(options)
 
 Core.addFileTypes({
     pattern = {
-        ['.*%.snippets'] = 'snippets',
+        [".*%.snippets"] = "snippets",
     },
 })

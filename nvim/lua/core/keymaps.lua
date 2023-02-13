@@ -20,32 +20,31 @@ local coreMappings = {
 
     { "i", "<s-tab>", "<c-d>" },
 
-    { "i", "<a-h>",   "<left>",  { noremap = true, silent = true } },
-    { "i", "<a-j>",   "<down>",  { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
-    { "i", "<a-k>",   "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
-    { "i", "<a-l>",   "<right>", { noremap = true, silent = true } },
+    { "i", "<a-h>", "<left>",  { noremap = true, silent = true } },
+    { "i", "<a-j>", "<down>",  { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
+    { "i", "<a-k>", "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
+    { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
 
-    { "n", "<leader>w",  "<cmd>w<cr>"   },
-    { "n", "<leader>q",  "<cmd>qa<cr>"  },
+    { "n", "<leader>w", "<cmd>w<cr>"  },
+    { "n", "<leader>q", "<cmd>qa<cr>" },
 
     { "n", "<leader>h",       "gd"      },
     { "n", "<leader>nh", "<cmd>noh<cr>" },
 
     { "n", "<c-a>", "ggVG" },  -- VISUAL mode select all
-    { "n", "<c-d>",  "viw" },  -- VISUAL mode select current word
-    { "n", "<c-v>",   "p"  },
+    { "n", "<c-d>", "viw"  },  -- VISUAL mode select current word
+    { "n", "<c-v>", "p"    },
 
     { "n", "<a-a>", "<c-o>" },
     { "n", "<a-d>", "<c-i>" },
-
-    { "n", "<a-j>", "5j" },
-    { "n", "<a-k>", "5k" },
 
     { "n", "<leader><left>",  "<c-w>h", { noremap = true, silent = true } },
     { "n", "<leader><down>",  "<c-w>j", { noremap = true, silent = true } },
     { "n", "<leader><up>",    "<c-w>k", { noremap = true, silent = true } },
     { "n", "<leader><right>", "<c-w>l", { noremap = true, silent = true } },
 
+    { "n", "<a-j>",   "<cmd>move .+1<cr>" },
+    { "n", "<a-k>",   "<cmd>move .-2<cr>" },
     { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
     { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
 

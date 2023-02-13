@@ -4,7 +4,7 @@ require "core.keymaps"
 
 local packer_bootstrap = false
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local compiled_lua = vim.fn.stdpath("config") .. '/plugin/packer_compiled.lua'
+local compiled_lua = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     print("Installing Packer ...")
