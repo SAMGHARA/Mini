@@ -17,7 +17,6 @@
     },
 
     "sumneko-lua.locale": "zh-cn",
-    "Lua.telemetry.enable": true,
     "Lua.hint.enable": false,
     "Lua.hint.arrayIndex": "Disable",
 

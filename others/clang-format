@@ -1,6 +1,7 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ---
-# BasedOnStyle: Microsoft
+BasedOnStyle: Microsoft
+BreakBeforeBraces: Mozilla
 IndentWidth: 4
 ColumnLimit: 120
 
@@ -11,7 +12,8 @@ NamespaceIndentation: All
 ShortNamespaceLines: 0
 FixNamespaceComments: true
 
-AccessModifierOffset: -4
+AccessModifierOffset: 0
+IndentAccessModifiers: true
 
 AlignEscapedNewlines: Left
 ---

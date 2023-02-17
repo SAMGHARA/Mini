@@ -14,24 +14,34 @@ M.setup = function()
         "coc-webview", "coc-markdownlint", "coc-markdown-preview-enhanced"
     }
 
+    vim.api.nvim_create_augroup("CocGroup", {})
+    vim.api.nvim_create_autocmd("User", {
+        group = "CocGroup",
+        pattern = "CocJumpPlaceholder",
+        command = "call CocActionAsync('showSignatureHelp')",
+        desc = "Update signature help on jump placeholder"
+    })
+
     local keymaps = {
         { "i", "<a-j>", [[coc#pum#visible() ? coc#pum#next(1) : "<down>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
-        { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<tab>\<c-r>=coc#on_enter()\<cr>"]],
+        { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "<tab>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
         { "i", "<esc>", [[coc#pum#visible() ? coc#pum#cancel() : "<esc>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
-        { "n", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<c-w>j"]],
-            { silent = true, nowait = true, expr = true } },
-        { "n", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<c-w>k"]],
-            { silent = true, nowait = true, expr = true } },
+        { "n", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<Plug>(VM-Add-Cursor-Down)"]],
+            { silent = true, nowait = true, expr = true, noremap = true, replace_keycodes = false } },
+        { "n", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<Plug>(VM-Add-Cursor-Up)"]],
+            { silent = true, nowait = true, expr = true, noremap = true, replace_keycodes = false } },
+
         { "i", "<c-j>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<c-j>"]],
             { silent = true, nowait = true, expr = true } },
         { "i", "<c-k>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<c-k>"]],
             { silent = true, nowait = true, expr = true } },
+
         { "v", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<c-j>"]],
             { silent = true, nowait = true, expr = true } },
         { "v", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<c-k>"]],
@@ -44,6 +54,7 @@ M.setup = function()
         { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
         { "n", "<leader>cn", "<Plug>(coc-diagnostic-next)", { silent = true } },
         { "n", "<leader>cp", "<Plug>(coc-diagnostic-prev)", { silent = true } },
+
         { "v",  "<a-s-f>",   "<Plug>(coc-format-selected)", { silent = true } },
 
         -- coc-snippets
