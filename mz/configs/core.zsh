@@ -13,7 +13,7 @@ setopt no_nomatch
 setopt rmstarsilent
 
 # ignore <tab> completion case
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 function addAlias() {
     for k v (${(kv)${(P)1}}) {

@@ -13,3 +13,6 @@
 [submodule "mz/plugins/z.lua"]
 	path = mz/plugins/z.lua
 	url = https://github.com/skywind3000/z.lua
+[submodule "mz/plugins/fzf"]
+	path = mz/plugins/fzf
+	url = https://github.com/junegunn/fzf

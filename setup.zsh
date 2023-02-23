@@ -4,11 +4,10 @@ ZSHRC="${HOME}/.zshrc"
 XDG_CONFIG_HOME="${HOME}/.config"
 NVIM_HOME="$XDG_CONFIG_HOME/nvim"
 
-CURRENT_PATH="$(cd $(dirname $0);pwd)"
 typeset -A MINI=(
-    MZ     "${CURRENT_PATH}/mz"
-    NVIM   "${CURRENT_PATH}/nvim"
-    OTHERS "${CURRENT_PATH}/others"
+    MZ     "${0:A:h}/mz"
+    NVIM   "${0:A:h}/nvim"
+    OTHERS "${0:A:h}/others"
 )
 
 OTHER_LINKS=(

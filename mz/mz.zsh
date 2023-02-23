@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export MZ="$(cd $(dirname $0);pwd)"
+export MZ="${0:A:h}"
 export MINI="$MZ/.."
 
 source "$MZ/configs/core.zsh"
