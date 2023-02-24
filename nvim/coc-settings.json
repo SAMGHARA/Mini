@@ -8,8 +8,7 @@
     "snippets.snipmate.enable": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "snippets.extends": {
-        "cpp": ["c"],
-        "zsh": ["sh"]
+        "cpp": ["c"]
     },
     "coc.preferences.formatOnSave": true,
     "[lua][json][cpp]": {
