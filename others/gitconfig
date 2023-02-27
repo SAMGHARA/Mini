@@ -1,0 +1,11 @@
+[user]
+	email = samgharama@outlook.com
+	name = samgh
+[alias]
+	cl = clone
+	cl-all = clone --recursive
+	ta = stash
+	tu = status
+	ck = checkout
+	cm = commit
+	reword = commit --amend --edit

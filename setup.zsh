@@ -13,6 +13,7 @@ typeset -A MINI=(
 OTHER_LINKS=(
     "clang-format"
     "tmux.conf"
+    "gitconfig"
 )
 
 function install() {

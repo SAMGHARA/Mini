@@ -27,16 +27,6 @@ source "${MZ_PLUGINS[fzf]}/shell/key-bindings.zsh"
 # Useful function
 # https://github.com/junegunn/fzf/wiki/Examples
 # -------------------------------------------------------------
-_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
-
-# git commit browser with previews
-function fl() {
-    gl | fzf --no-sort --reverse --tiebreak=index --no-multi \
-        --ansi --preview="$_viewGitLogLine" \
-        --bind "enter:execute:$_viewGitLogLine | less -R"
-}
-
 # Select a docker container to start and attach to
 function d-attach() {
     local cid

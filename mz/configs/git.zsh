@@ -8,29 +8,16 @@ COMMIT="%C(white)%s"
 DateFormat="%Y-%m-%d %H:%M"
 PrettyFormat="${HASH} ${DATE} ${AUTHOR}: ${COMMIT} ${RESET}"
 
-typeset -A gitAlias=(
-    gtu    "git status"
-    gta    "git stash"
-    gl     "git log --graph --color=always --date=format:'${DateFormat}' --pretty=format:'${PrettyFormat}'"
-)
-addAlias gitAlias
+alias g=git
 
-# --------------- TODO: robust -----------------
-# git clone
-function gc() {
-    case $1 {
-        (-r) git clone --recursive $2 ;;
-        (*)  git clone $1 ;;
-    }
-}
+# fzf - git commit browser with previews
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
 
-# git commit
-function gm() {
-    case $1 {
-        (-m) git commit -m $2 ;;
-        (-a) git commit --amend ;;
-        (-e) git commit --amend --edit ;;
-        (*)  git commit ;;
-    }
+function gl() {
+    git log --graph --color=always --date=format:"${DateFormat}" --pretty=format:"${PrettyFormat}" | \
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+        --ansi --preview="$_viewGitLogLine" \
+        --bind "enter:execute:$_viewGitLogLine | less -R"
 }
 
