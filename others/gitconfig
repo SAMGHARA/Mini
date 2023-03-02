@@ -9,3 +9,7 @@
 	ck = checkout
 	cm = commit
 	reword = commit --amend --edit
+[pager]
+	diff = diff-so-fancy
+[diff-so-fancy]
+	markEmptyLines = false
