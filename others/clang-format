@@ -1,19 +1,21 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ---
-BasedOnStyle: Microsoft
-BreakBeforeBraces: Mozilla
+BasedOnStyle: LLVM
+# BreakBeforeBraces: Linux
 IndentWidth: 4
-ColumnLimit: 120
+ColumnLimit: 80
 
 SeparateDefinitionBlocks: Always
-AllowShortEnumsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: WithoutElse
 
 NamespaceIndentation: All
 ShortNamespaceLines: 0
 FixNamespaceComments: true
 
-AccessModifierOffset: 0
-IndentAccessModifiers: true
-
+IndentCaseLabels: true
+AccessModifierOffset: -4
 AlignEscapedNewlines: Left
 ---

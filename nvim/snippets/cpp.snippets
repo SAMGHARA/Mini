@@ -1,5 +1,5 @@
 snippet mycout "Cpp std::cout Snippet"
-std::cout << "${0:hello world}" << std::endl;
+std::cout << $0 << std::endl;
 endsnippet
 
 snippet main "C/Cpp main Snippet"
@@ -11,11 +11,17 @@ endsnippet
 
 snippet class "Cpp class Snippet"
 class ${1:Class} {
-	public:
-		${2:Class}()
-		~${3:Class}()
+  public:
+	${1:Class}($2);
+	~${1:Class}();
 
-	private:
-		$4
-}
+	$3
+};
+endsnippet
+
+snippet ifndef "C/Cpp #ifndef ... #define ... endif"
+#ifndef $1
+#define $1
+
+#endif
 endsnippet

@@ -71,6 +71,8 @@ local highlights = {
 
 local highlight_links = {
     ["@conceal"] = "Comment",
+    ["@storageclass"] = "Keyword",
+    ["@type.qualifier"] = "Keyword",
 
     -- bufferline
     ["BufferLineBufferVisible"]      = "BufferLineBufferSelected",
