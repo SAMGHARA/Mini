@@ -33,6 +33,11 @@ function addENV() {
     }
 }
 
+function duh() {
+    local depth=$1
+    du -h --max-depth=${depth:-1}
+}
+
 # System
 typeset -A systemAlias=( 
     ls      "ls --color"
