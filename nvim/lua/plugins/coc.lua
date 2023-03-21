@@ -23,27 +23,39 @@ M.setup = function()
     })
 
     local keymaps = {
+        -- Select the next completion item
         { "i", "<a-j>", [[coc#pum#visible() ? coc#pum#next(1) : "<down>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
+
+        -- Select the previous completion item
         { "i", "<a-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<up>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
+
+        -- Select and confirm completion
         { "i", "<tab>", [[coc#pum#visible() ? coc#_select_confirm() : "<tab>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
-        { "i", "<esc>", [[coc#pum#visible() ? coc#pum#cancel() : "<esc>"]],
+
+        -- 1. Close popupmenu. 2. Close floatwindow.
+        { "i", "<esc>", [[coc#pum#visible() ? coc#pum#cancel() : coc#float#has_float() ? "<c-o>coc#float#close(vim.g.coc_last_float_win)" : "<esc>"]],
             { silent = true, noremap = true, expr = true, replace_keycodes = false } },
 
+        -- 1. Scroll float window down. 2. Plugin: vim-visual-multi VM-Add-Cursor-Down
         { "n", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<Plug>(VM-Add-Cursor-Down)"]],
             { silent = true, nowait = true, expr = true, noremap = true, replace_keycodes = false } },
+
+        -- 1. Scroll float window up.   2. Plugin: vim-visual-multi VM-Add-Cursor-Up
         { "n", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<Plug>(VM-Add-Cursor-Up)"]],
             { silent = true, nowait = true, expr = true, noremap = true, replace_keycodes = false } },
 
         { "i", "<c-j>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<c-j>"]],
             { silent = true, nowait = true, expr = true } },
+
         { "i", "<c-k>", [[coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<c-k>"]],
             { silent = true, nowait = true, expr = true } },
 
         { "v", "<c-j>", [[coc#float#has_scroll() ? coc#float#scroll(1) : "<c-j>"]],
             { silent = true, nowait = true, expr = true } },
+
         { "v", "<c-k>", [[coc#float#has_scroll() ? coc#float#scroll(0) : "<c-k>"]],
             { silent = true, nowait = true, expr = true } },
 
@@ -51,10 +63,16 @@ M.setup = function()
         { "n", "<leader>s",  "<Plug>(coc-type-definition)", { silent = true } },
         { "n", "<leader>i",  "<Plug>(coc-implementation)",  { silent = true } },
         { "n", "<leader>r",  "<Plug>(coc-references)",      { silent = true } },
+        -- Rename symbol under cursor to a new word by invoke
         { "n", "<leader>rn", "<Plug>(coc-rename)",          { silent = true } },
+        -- Jump to next diagnostic position after current cursor position.
         { "n", "<leader>cn", "<Plug>(coc-diagnostic-next)", { silent = true } },
+        -- Jump to previous diagnostic position before current cursor position.
         { "n", "<leader>cp", "<Plug>(coc-diagnostic-prev)", { silent = true } },
+        -- Jump to the float window
+        { "n", "<leader>cj", "<Plug>(coc-float-jump)",      { silent = true } },
 
+        -- Format selected range
         { "v",  "<a-s-f>",   "<Plug>(coc-format-selected)", { silent = true } },
 
         -- coc-snippets

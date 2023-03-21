@@ -45,6 +45,7 @@ typeset -A systemAlias=(
     rr      "rm -r"
     src     "source $HOME/.zshrc"
 
+    v       "vim"
     vst     "vim +StartupTime"
     vvi     "vim $MINI/nvim/init.lua"
 
