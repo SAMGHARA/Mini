@@ -33,10 +33,14 @@ M[1].setup = function()
             end
         })
 
+--[[
     local keymaps = {
         { "n", "H", "<cmd>TSHighlightCapturesUnderCursor<cr>" }
     }
     require("core").setKeyMaps(keymaps)
+]]
+    require("core").setCommand("Hl", "TSHighlightCapturesUnderCursor",
+        { bang = true, desc = "Show nvim-treesitter Highlight" })
 end
 
 M[1].config = function()

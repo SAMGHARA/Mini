@@ -22,12 +22,23 @@ M.config = function()
     local actions = require("telescope.actions")
     telescope.setup {
         defaults = {
-            mappings = {
+            default_mappings = {
                 n = {
-                    ["Q"] = actions.close
+                    ["Q"]          = actions.close,
+                    ["<Esc>"]      = actions.close,
+                    ["<CR>"]       = actions.select_default,
+                    ["j"]          = actions.move_selection_next,
+                    ["k"]          = actions.move_selection_previous,
+                    ["<PageUp>"]   = actions.preview_scrolling_up,
+                    ["<PageDown>"] = actions.preview_scrolling_down,
                 },
                 i = {
-                    ["Q"] = actions.close,
+                    ["Q"]          = actions.close,
+                    ["<CR>"]       = actions.select_default,
+                    ["<a-j>"]      = actions.move_selection_next,
+                    ["<a-k>"]      = actions.move_selection_previous,
+                    ["<PageUp>"]   = actions.preview_scrolling_up,
+                    ["<PageDown>"] = actions.preview_scrolling_down,
                 }
             }
         }

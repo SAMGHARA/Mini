@@ -8,6 +8,7 @@ local compiled_lua = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     print("Installing Packer ...")
+    -- Github SSH
     vim.fn.system({ "git", "clone", "--depth", "1", "git@github.com:wbthomason/packer.nvim", install_path })
     vim.fn.system({ "rm", "-rf", compiled_lua })
 
@@ -25,6 +26,7 @@ local Packer = {}
 Packer.config = {
     git = {
         clone_timeout = 6000,
+        -- Github SSH
         default_url_format = "git@github.com:%s"
     },
     display = {
