@@ -20,8 +20,11 @@ function fzf_forgit_inside_work_tree() { git rev-parse --is-inside-work-tree > /
 function fzf_forgit_log() {
     fzf_forgit_inside_work_tree || return
 
-    FZF_FORGIT_LOG_COMMAND="git log --graph --color=always --date=format:'%Y-%m-%d %H:%M' \
-        --pretty=format:'%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'"
+    # local data_format='%Y-%m-%d %H:%M'
+    local data_format='%m-%d'
+    local pretty_format='%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'
+
+    FZF_FORGIT_LOG_COMMAND="git log --graph --color=always --date=format:'$data_format' --pretty=format:'$pretty_format'"
 
     eval $FZF_FORGIT_LOG_COMMAND | \
         FZF_DEFAULT_OPTS="$FZF_FORGIT_DEFAULT_OPTS
@@ -57,6 +60,8 @@ function fzf_forgit_add() {
 }
 
 function git_commit_archive() {
+    fzf_forgit_inside_work_tree || return
+
     local function error_hash() {
         [[ $1 =~ "^HEAD\^*$" || $1 =~ "^[a-f0-9]+$" ]] && return 1
         return 0
@@ -84,9 +89,9 @@ function git_commit_archive() {
 
 typeset -A gitAlias=(
     g       git
-    garch   git_commit_archive
     gl      fzf_forgit_log
     ga      fzf_forgit_add
+    garch   git_commit_archive
 )
 addAlias gitAlias
 
