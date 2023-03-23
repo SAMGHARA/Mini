@@ -29,6 +29,8 @@ M.config = function()
                     ["<CR>"]       = actions.select_default,
                     ["j"]          = actions.move_selection_next,
                     ["k"]          = actions.move_selection_previous,
+                    ["<Up>"]       = actions.move_selection_previous,
+                    ["<Down>"]     = actions.move_selection_next,
                     ["<PageUp>"]   = actions.preview_scrolling_up,
                     ["<PageDown>"] = actions.preview_scrolling_down,
                 },
@@ -37,6 +39,8 @@ M.config = function()
                     ["<CR>"]       = actions.select_default,
                     ["<a-j>"]      = actions.move_selection_next,
                     ["<a-k>"]      = actions.move_selection_previous,
+                    ["<Up>"]       = actions.move_selection_previous,
+                    ["<Down>"]     = actions.move_selection_next,
                     ["<PageUp>"]   = actions.preview_scrolling_up,
                     ["<PageDown>"] = actions.preview_scrolling_down,
                 }
