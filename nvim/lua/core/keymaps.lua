@@ -9,8 +9,8 @@ local Core = require "core"
 ]]
 
 local coreMappings = {
-    { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } },
-    { { "n", "i", "v" }, "<a-e>", "<end>",  { noremap = true, silent = true } },
+    -- { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } },
+    -- { { "n", "i", "v" }, "<a-e>", "<end>",  { noremap = true, silent = true } },
 
     { { "n", "i" }, "<c-s>",   "<cmd>w<cr>"  },
     { { "n", "i" }, "<c-z>", "<cmd>undo<cr>" },
@@ -59,6 +59,9 @@ local coreMappings = {
 
     { "v", "<a-j>", ":move '>+1<cr>gv-gv" }, -- move select block down
     { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
+
+    { "v", "<a-s-j>", "y<esc>`><end>p"  }, -- copy select block down
+    { "v", "<a-s-k>", "y<esc>`<<home>P" }, -- copy select block up
 }
 
 Core.setKeyMaps(coreMappings)

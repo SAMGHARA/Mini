@@ -2,20 +2,20 @@ local Core = {}
 
 Core.colors = {
     red        = "#E06C75",
-    red_dark   = "#BD3D37",
+    red2       = "#BD3D37",
     orange     = "#D19A66",
     yellow     = "#E5C07B",
     green      = "#98C379",
-    green_dark = "#109868",
+    green2     = "#109868",
     cyan       = "#56B6C2",
     blue       = "#61AFEF",
     purple     = "#C678DD",
     black      = "#3e4452",
-    black_dark = "#2c313c",
+    black2     = "#2c313c",
     white      = "#ABB2BF",
-    white_dark = "#FFFFFF",
+    white2     = "#FFFFFF",
     grey       = "#5C6370",
-    grey_dark  = "#3B4048",
+    grey2      = "#3B4048",
 }
 
 Core.setHighlight = function(Highlights)
