@@ -16,7 +16,7 @@ local highlights = {
     ["Pmenu"]       = { guifg = Colors.white,  guibg = Colors.grey2  },
     ["PmenuSel"]    = { guifg = Colors.white2, guibg = Colors.blue   },
     ["Search"]      = { guifg = Colors.black,  guibg = Colors.orange },
-    ["Identifier"]  = { guifg = Colors.red    },
+    ["Identifier"]  = { guifg = Colors.white  },
     ["Boolean"]     = { guifg = Colors.orange },
     ["Number"]      = { guifg = Colors.orange },
     ["PreProc"]     = { guifg = Colors.yellow },
@@ -32,8 +32,16 @@ local highlights = {
     ["Conditional"] = { guifg = Colors.purple },
     ["Comment"]     = { guifg = Colors.grey   },
 
+    ["@field"]            = { guifg = Colors.red    },
+    ["@variable"]         = { guifg = Colors.red    },
+    ["@namespace"]        = { guifg = Colors.yellow },
+    ["@parameter"]        = { guifg = Colors.red    },
     ["@text.literal"]     = { guifg = Colors.cyan   },
     ["@constant.builtin"] = { guifg = Colors.orange },
+
+    ["@constructor"]           = { guifg = Colors.orange },
+    ["@punctuation.bracket"]   = { guifg = Colors.orange },
+    ["@punctuation.delimiter"] = { guifg = Colors.white  },
 
     -- Plugins
     -- bufferline
@@ -51,6 +59,7 @@ local highlights = {
     ["DiffChange"]     = { guifg = Colors.black2, guibg = Colors.yellow },
     ["DiffDelete"]     = { guifg = Colors.black2, guibg = Colors.red    },
     ["DiffText"]       = { guifg = Colors.black2, guibg = Colors.red    },
+
     -- gitsigns
     ["GitSignsAdd"]    = { guifg = Colors.green2 },
     ["GitSignsChange"] = { guifg = Colors.orange },
