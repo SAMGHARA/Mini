@@ -64,7 +64,7 @@ end
 
     ```sh
     sudo pacman -S xclip
-    ````
+    ```
 
 2. 修改 nvim 配置
 

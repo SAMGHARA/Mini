@@ -1,6 +1,7 @@
-require "core.theme"
 require "core.options"
 require "core.keymaps"
+
+vim.cmd [[colorscheme onedark]]
 
 local packer_bootstrap = false
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
