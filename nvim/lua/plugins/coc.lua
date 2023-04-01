@@ -2,6 +2,7 @@ local M = {
     -- https://github.com/neoclide/coc.nvim
     "neoclide/coc.nvim",
 
+    event  = "BufRead",
     branch = "release",
 }
 

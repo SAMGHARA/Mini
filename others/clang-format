@@ -1,9 +1,9 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ---
 BasedOnStyle: LLVM
-# BreakBeforeBraces: Linux
+BreakBeforeBraces: Linux
 IndentWidth: 4
-ColumnLimit: 80
+ColumnLimit: 100
 
 SeparateDefinitionBlocks: Always
 AllowShortEnumsOnASingleLine: true

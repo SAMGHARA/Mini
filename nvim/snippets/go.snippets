@@ -6,10 +6,16 @@ func main() {
 }
 endsnippet
 
-snippet pln "fmt.Println(...)"
+snippet prl "fmt.Println(...)"
 fmt.Println($0)
 endsnippet
 
-snippet pf "fmt.Printf(...)"
+snippet prf "fmt.Printf(...)"
 fmt.Printf($0)
+endsnippet
+
+snippet func "func ...() { ... }"
+func $1($2) {
+	$0
+}
 endsnippet

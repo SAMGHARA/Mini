@@ -38,6 +38,10 @@ function duh() {
     du -h --max-depth=${depth:-1}
 }
 
+function frm() {
+    find -name $1 | xargs -tpI % rm %
+}
+
 # System
 typeset -A systemAlias=( 
     ls      "ls --color"
