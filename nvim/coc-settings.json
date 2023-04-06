@@ -11,9 +11,9 @@
     "snippets.extends": {
         "c": ["cpp"]
     },
-    "coc.preferences.formatOnSave": true,
-    "[lua][json][cpp][c]": {
-        "coc.preferences.formatOnSave": false
+    "coc.preferences.formatOnSave": false,
+    "[go]": {
+        "coc.preferences.formatOnSave": true
     },
 
     "sumneko-lua.locale": "zh-cn",

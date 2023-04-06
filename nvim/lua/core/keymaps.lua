@@ -25,7 +25,7 @@ local coreMappings = {
     { "i", "<a-k>", "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
     { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
 
-    { "n", ";", ":"},
+    { "n", "C", ":"},
 
     { "n", "<leader>w", "<cmd>w<cr>"  },
     { "n", "<leader>q", "<cmd>qa<cr>" },
