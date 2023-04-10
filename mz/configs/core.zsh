@@ -33,6 +33,18 @@ function addENV() {
     }
 }
 
+function cecho() {
+    (( $# != 2 )) && echo $1 && return
+    case $1 {
+        (Red)    echo -e "\e[31m$2\e[0m" ;;
+        (Green)  echo -e "\e[32m$2\e[0m" ;;
+        (Yellow) echo -e "\e[33m$2\e[0m" ;;
+        (Blue)   echo -e "\e[34m$2\e[0m" ;;
+        (Cyan)   echo -e "\e[36m$2\e[0m" ;;
+        (*)      echo $2 ;;
+    }
+}
+
 function duh() {
     local depth=$1
     du -h --max-depth=${depth:-1}
@@ -40,6 +52,19 @@ function duh() {
 
 function frm() {
     find -name $1 | xargs -tpI % rm %
+}
+
+function cmk() {
+    local opts=()
+    while {getopts D:i:c arg} {
+       case $arg {
+            (D) opts+=("-D$OPTARG")                          ;;
+            (i) opts+=("-DCMAKE_INSTALL_PREFIX=$OPTARG")     ;;
+            (c) opts+=("-DCMAKE_EXPORT_COMPILE_COMMANDS=on") ;;
+       }
+    }
+    opts+=($*[$OPTIND,-1])
+    cecho Yellow "❯❯❯ cmake $opts" && cmake $opts
 }
 
 # System
