@@ -2,6 +2,7 @@ local M = {
     -- https://github.com/nvim-tree/nvim-tree.lua
     "kyazdani42/nvim-tree.lua",
 
+    commit = "e322fbb",
     cmd = {
         "NvimTreeToggle",
         "NvimTreeFocus"
@@ -25,7 +26,7 @@ M.config = function()
     nvim_tree.setup {
         update_focused_file = {
             enable = true,
-            -- update_cwd = true,
+            update_cwd = true,
         },
         git = {
             enable = true,
