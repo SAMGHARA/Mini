@@ -86,6 +86,8 @@ M.setup = function()
         { "n", "<leader>cmp", "<cmd>CocCommand markdown-preview-enhanced.openPreview<cr>", { silent = true } },
         { "n", "<leader>cmt", "<cmd>CocCommand markdown-preview-enhanced.createTOC<cr>",   { silent = true } },
 
+        { "n", "<leader>cc", "<cmd>CocConfig<cr>", { silent = true } },
+
         { "n", "K", function()
                         local cw = vim.fn.expand('<cword>')
                         if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then

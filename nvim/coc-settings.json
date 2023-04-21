@@ -23,7 +23,10 @@
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
 
     "markdownlint.config": {
+        "MD007": false,
+        "MD040": false,
         "MD013": false
     },
+    "markdown-preview-enhanced.previewTheme": "atom-light.css",
     "markdown-preview-enhanced.imageFolderPath": "/images"
 }

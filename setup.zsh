@@ -16,6 +16,12 @@ OTHER_LINKS=(
     "gitconfig"
 )
 
+OTHER_PROGRAMS=(
+    "fd"
+    "bat"
+    "diff-so-fancy"
+)
+
 function install() {
     # Add "source Mini/mz/mz.zsh" to ~/.zshrc
     if [[ ! -e ${ZSHRC} || `grep -c "source ${MINI[MZ]}/mz.zsh" ${ZSHRC}` == 0 ]] {
@@ -39,6 +45,14 @@ function install() {
         }
     }
 
+    # Install Other Programs
+    for program (${OTHER_PROGRAMS}) {
+        which ${program} > /dev/null
+        if (( $? != 0 )) {
+            echo "install ${program} ..."
+            sudo pacman -S ${program}
+        }
+    }
     echo "Install Finished"
 }
 
@@ -64,10 +78,10 @@ function uninstall() {
 }
 
 case $1 {
-    (install)
+    (install || -i)
         install
         ;;
-    (uninstall)
+    (uninstall || -u)
         uninstall
         ;;
     (*)

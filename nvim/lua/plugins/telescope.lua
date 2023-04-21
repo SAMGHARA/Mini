@@ -7,8 +7,10 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-        { "n", "T",      "<cmd>Telescope<cr>"       },
-        { "n", "F", "<cmd>Telescope find_files<cr>" }
+        { "n", "T",             "<cmd>Telescope<cr>"            },
+        { "n", "F",             "<cmd>Telescope find_files<cr>" },
+        { "n", "<leader><c-f>", "<cmd>Telescope live_grep<cr>"  },
+        { "n", "<c-f>",         "<cmd>Telescope current_buffer_fuzzy_find<cr>" },
     }
     require("core").setKeyMaps(keymaps)
 end
