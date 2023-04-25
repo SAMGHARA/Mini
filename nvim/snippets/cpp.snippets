@@ -1,3 +1,9 @@
+snippet dox "Doxygen Comment"
+/// @brief $1
+/// @param $2
+/// @return $3
+endsnippet
+
 snippet mycout "Cpp std::cout Snippet"
 std::cout << $0 << std::endl;
 endsnippet
@@ -24,4 +30,10 @@ snippet ifndef "C/Cpp #ifndef ... #define ... endif"
 #define $1
 
 #endif
+endsnippet
+
+snippet func "C/Cpp function Snippet"
+$1 ${2:func}($3) {
+	$0
+}
 endsnippet

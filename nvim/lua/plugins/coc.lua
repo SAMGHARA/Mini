@@ -77,7 +77,7 @@ M.setup = function()
         { "n", "<leader>cj", "<Plug>(coc-float-jump)",      { silent = true } },
 
         -- Format selected range
-        { "v",  "<a-s-f>",   "<Plug>(coc-format-selected)", { silent = true } },
+        { "v", "<a-s-f>", "<Plug>(coc-format-selected)",    { silent = true } },
 
         -- coc-snippets
         { "i", "<a-n>", "<Plug>(coc-snippets-expand-jump)", { silent = true } },

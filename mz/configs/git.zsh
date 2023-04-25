@@ -76,7 +76,7 @@ function git_commit_archive() {
     local EndCommit=$2
     local Output=${3:-"Output.zip"}
 
-    [[ $Output =~ ".zip$" ]] || Output="$Output.zip"
+    [[ $Output =~ "\.zip$" ]] || Output="$Output.zip"
 
     local ArchiveFiles=$(git diff --name-only $BeginCommit $EndCommit)
 

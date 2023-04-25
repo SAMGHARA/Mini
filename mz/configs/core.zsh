@@ -67,6 +67,18 @@ function cmk() {
     cecho Yellow "❯❯❯ cmake $opts" && cmake $opts
 }
 
+function gr() {
+    (( $# < 1 )) && return
+
+    local cfile=$1
+    local output=${2:-"main"}
+    local cxx="g++"
+    [[ $cfile =~ "\.c$" ]] && cxx="gcc"
+
+    echo "$cxx $cfile -o $output && ./$output && rm $output"
+    $cxx $cfile -o $output && ./$output && rm $output
+}
+
 # System
 typeset -A systemAlias=( 
     ls      "ls --color"
