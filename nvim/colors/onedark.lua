@@ -58,9 +58,6 @@ local highlights = {
     ["@text.literal"]               = { fg = C.Green, ui = "italic" },
     ["@constant.builtin"]           = { fg = C.Orange },
     ["@punctuation.delimiter"]      = { fg = C.LGray  },
-    -- bufferline
-    ["BufferLineBufferSelected"]    = { fg = C.Cyan, ui = "bold,italic" },
-    ["BufferLineIndicatorSelected"] = { fg = C.Cyan, ui = "bold"        },
     -- coc
     ["DiagnosticError"]             = { fg = C.DRed   },
     ["DiagnosticUnderlineWarn"]     = { fg = C.Yellow, ui = "underline" }, -- CocWarningHighlight link to this
@@ -93,9 +90,6 @@ local highlights_link = {
     ["zshVariable"]                  = "Identifier",
     ["zshOperator"]                  = "Operator",
     ["zshKSHFunction"]               = "Function",
-    -- bufferline
-    ["BufferLineBufferVisible"]      = "BufferLineBufferSelected",
-    ["BufferLineDevIconLuaInactive"] = "BufferLineDevIconLuaSelected",
     -- coc
     ["CocFadeOut"]                   = "Comment",
     ["CocFloating"]                  = "Pmenu",
@@ -111,9 +105,8 @@ local highlights_link = {
 local highlights_clear = {
     "SignColumn",
     "CursorLineNr",
-
-    -- bufferline
-    "BufferlineFill",
+    "StatusLine",
+    "TabLineFill"
 }
 
 -- highlight

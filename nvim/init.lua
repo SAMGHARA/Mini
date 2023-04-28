@@ -48,7 +48,6 @@ Packer.plugins = {
     { "kyazdani42/nvim-web-devicons" },
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
     require("plugins.lualine"),
-    require("plugins.bufferline"),
     require("plugins.nvim-tree"),
     require("plugins.tagbar"),
     require("plugins.toggleterm"),

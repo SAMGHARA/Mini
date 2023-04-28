@@ -11,7 +11,8 @@ local options = {
         list           = true,
         listchars      = { space = '·', tab = '> ' },
         colorcolumn    = "120",     -- column wrap
-        showtabline    = 4,
+        showtabline    = 0,
+        laststatus     = 0,
         timeoutlen     = 200,       -- <leader> timeout
         tabstop        = 4,         -- insert 4 spaces for a tab.
         shiftwidth     = 4,         -- the number of spaces insertede for each indentation.
