@@ -30,7 +30,10 @@ local options = {
         encodings      = "UTF-8,GBK,GB2312",
         mapleader      = " ",
         maplocalleader = " ",
-        completeopt    = "menu,menuone,noselect,noinsert"
+        completeopt    = "menu,menuone,noselect,noinsert",
+        -- diable netrw
+        loaded_netrw       = 1,
+        loaded_netrwPlugin = 1
     }
 }
 

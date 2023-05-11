@@ -2,7 +2,6 @@ local M = {
     -- https://github.com/nvim-tree/nvim-tree.lua
     "kyazdani42/nvim-tree.lua",
 
-    commit = "e322fbb",
     cmd = {
         "NvimTreeToggle",
         "NvimTreeFocus"
@@ -11,7 +10,7 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-        { "n", "<leader>e", "<cmd>NvimTreeFocus<cr>" },
+        { "n", "<leader>e", "<cmd>NvimTreeFocus<cr>"  },
         { "n", "<leader>f", "<cmd>NvimTreeToggle<cr>" }
     }
     require("core").setKeyMaps(keymaps)
@@ -24,97 +23,73 @@ M.config = function()
     end
 
     nvim_tree.setup {
-        update_focused_file = {
-            enable = true,
-            update_cwd = true,
-        },
-        git = {
-            enable = true,
-            ignore = true,
-        },
-        view = {
-            adaptive_size = true,
-            width = 30,
-            side = "left",
-            hide_root_folder = true,
-            mappings = {
-                list = {
-                    { key = "D",        action = ""                   },
-                    { key = "f",        action = ""                   },
-                    -- cd in the directory under the cursor
-                    { key = "O",        action = "cd"                 },
-                    -- navigate up to the parent directory of the current file/directory
-                    { key = "B",        action = "dir_up"             },
-                    -- close tree window
-                    { key = "q",        action = "close"              },
-                    -- collapse the whole tree
-                    { key = "W",        action = "collapse_all"       },
-                    -- expand the whole tree
-                    { key = "E",        action = "expand_all"         },
-                    -- open the file as a preview (keeps the cursor in the tree)
-                    { key = "<tab>",    action = "preview"            },
+        on_attach = function(bufnr)
+            local api = require("nvim-tree.api")
+            local function opts(desc)
+                return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            end
 
-                    -- add a file; leaving a trailing `/` will add a directory
-                    { key = "a",        action = "create"             },
-                    -- delete a file (will prompt for confirmation)
-                    { key = "d",        action = "remove"             },
-                    -- rename a file
-                    { key = "r",        action = "rename"             },
-                    -- add/remove file/directory to cut clipboard
-                    { key = "x",        action = "cut"                },
-                    -- add/remove file/directory to copy clipboard
-                    { key = "c",        action = "copy"               },
-                    -- paste from clipboard
-                    { key = "p",        action = "paste"              },
-                    -- copy name to system clipboard
-                    { key = "y",        action = "copy_name"          },
-                    -- copy relative path to system clipboard
-                    { key = "Y",        action = "copy_path"          },
-                    -- copy absolute path to system clipboard
-                    { key = "gy",       action = "copy_absolute_path" },
-                }
-            }
-        },
-        diagnostics = {
-            enable = true,
-            show_on_dirs = true,
-            icons = {
-                hint = "",
-                info = "",
-                warning = "",
-                error = "",
-            },
-        },
+            local keymaps = {
+                { "n", "o",             api.node.open.edit,               opts("Open")         },
+                { "n", "<cr>",          api.node.open.edit,               opts("Open")         },
+                { "n", "<2-LeftMouse>", api.node.open.edit,               opts("Open")         },
+                { "n", "q",             api.tree.close,                   opts("Close")        },
+                { "n", "<tab>",         api.node.open.preview,            opts("Open Preview") },
+                { "n", "a",             api.fs.create,                    opts("Create")       },
+                { "n", "d",             api.fs.remove,                    opts("Delete")       },
+                { "n", "D",             api.fs.trash,                     opts("Trash")        },
+                { "n", "r",             api.fs.rename,                    opts("Rename")       },
+                { "n", "x",             api.fs.cut,                       opts("Cut")          },
+                { "n", "y",             api.fs.copy.node,                 opts("Copy")         },
+                { "n", "p",             api.fs.paste,                     opts("Paste")        },
+                { "n", "O",             api.tree.change_root_to_node,     opts("CD")           },
+                { "n", "P",             api.tree.change_root_to_parent,   opts("Up")           },
+                { "n", "R",             api.tree.reload,                  opts("Refresh")      },
+                { "n", "F",             api.live_filter.start,            opts("Filter")       },
+                { "n", "E",             api.tree.expand_all,              opts("Expand All")   },
+                { "n", "W",             api.tree.collapse_all,            opts("Collapse")     },
+                { "n", "H",             api.tree.toggle_help,             opts("Help")         },
+                { "n", "K",             api.node.show_info_popup,         opts("Info")         },
+                { "n", "I",             api.tree.toggle_gitignore_filter, opts("Toggle Git Ignore") },
+            };
+            require("core").setKeyMaps(keymaps)
+        end,
+        disable_netrw = true,
+        reload_on_bufenter = true,
         renderer = {
-            icons = {
-                glyphs = {
-                    default = "",
-                    symlink = "",
-                    folder = {
-                        arrow_open = "",
-                        arrow_closed = "",
-                        default = "",
-                        open = "",
-                        empty = "",
-                        empty_open = "",
-                        symlink = "",
-                        symlink_open = "",
-                    },
-                    git = {
-                        unstaged = "",
-                        staged = "✓",
-                        unmerged = "",
-                        renamed = "➜",
-                        untracked = "★",
-                        deleted = "",
-                        ignored = "◌",
-                    },
-                },
+            group_empty = true,
+            highlight_git = true,
+            highlight_opened_files = "icon",
+            root_folder_label = false,
+            indent_markers = {
+                enable = true,
+                inline_arrows = true,
+                icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " ", },
             },
-        }
+            icons = {
+                show = { modified = false },
+                glyphs = {
+                    git = {
+                        unstaged = "●",
+                        staged = "A",
+                        unmerged = "!",
+                        renamed = "R",
+                        untracked = "?",
+                        deleted = "-",
+                        ignored = "◌",
+                    }
+                }
+            },
+            special_files = { "README.md", "readme.md", "Makefile", "CMakeList.txt" },
+        },
+        update_focused_file = { enable = true, update_root = true },
+        diagnostics = { enable = true, icons = { hint = "", info = "", warning = "", error = "", }, },
+        actions = { expand_all = { exclude = { ".git", "build" } } },
+        trash = { cmd = "gio trash" },
     }
 
-    require("nvim-tree.events").on_file_created(function(file) vim.cmd("edit " .. file.fname) end)
+    local api = require("nvim-tree.api")
+    api.events.subscribe(api.events.Event.FileCreated, function(file) vim.cmd("edit " .. file.fname) end)
 end
 
 return M

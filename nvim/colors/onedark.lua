@@ -73,9 +73,6 @@ local highlights = {
     -- indent-blankline
     ["IndentBlanklineChar"]         = { fg = C.DGray, ui = "nocombine" },
     ["IndentBlanklineContextChar"]  = { fg = C.Gray,  ui = "nocombine" },
-    -- nvim-tree
-    ["NvimTreeCursorLine"]          = { fg = C.Orange },
-    ["NvimTreeOpenedFolderName"]    = { fg = C.Orange },
     -- todo-comments
     ["Todo"]                        = { fg = C.Black, bg = C.Blue },
     ["TodoFgTODO"]                  = { fg = C.Blue   },
@@ -99,7 +96,9 @@ local highlights_link = {
     -- nvim-tree
     ["NvimTreeGitNew"]               = "GitSignsAdd",
     ["NvimTreeGitDirty"]             = "GitSignsChange",
+    ["NvimTreeCursorLine"]           = "CursorLine",
     ["NvimTreeOpenedFolderIcon"]     = "NvimTreeOpenedFolderName",
+    ["NvimTreeIndentMarker"]         = "IndentBlanklineContextChar",
 }
 
 local highlights_clear = {
