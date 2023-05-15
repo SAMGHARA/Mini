@@ -55,7 +55,7 @@ Packer.plugins = {
     require("plugins.diffview"),
     require("plugins.indent-blankline"),
     require("plugins.which-key"),
-    require("plugins.telescope"),
+    require("plugins.fzf"),
     require("plugins.comment"),
     require("plugins.todo-comments"),
     require("plugins.smart-pairs"),
