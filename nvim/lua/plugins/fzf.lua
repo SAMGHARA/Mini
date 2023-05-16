@@ -17,8 +17,6 @@ M.config = function()
     local fzf     = require("fzf-lua")
     local actions = require("fzf-lua.actions")
 
-    table.insert(fzf._excluded_meta, "files")
-
     fzf.setup {
         winopts = {
             height = 0.95, width = 0.85, border = "single",

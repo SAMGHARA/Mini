@@ -1,20 +1,23 @@
 {
     "suggest.noselect": true,
     "inlayHint.display": false,
+
     "diagnostic.checkCurrentLine": true,
     "diagnostic.signPriority": 1,
+    "diagnostic.hintSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.errorSign": "",
+
     "coc.source.file.ignoreHidden": false,
     "snippets.ultisnips.pythonPrompt": false,
     "snippets.loadFromExtensions": false,
     "snippets.snipmate.enable": false,
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-    "snippets.extends": {
-        "c": ["cpp"]
-    },
+    "snippets.extends": { "c": ["cpp"] },
+
     "coc.preferences.formatOnSave": false,
-    "[go]": {
-        "coc.preferences.formatOnSave": true
-    },
+    "[go]": { "coc.preferences.formatOnSave": true },
 
     "sumneko-lua.locale": "zh-cn",
     "Lua.hint.enable": false,

@@ -80,7 +80,7 @@ M.config = function()
                     }
                 }
             },
-            special_files = { "README.md", "readme.md", "Makefile", "CMakeList.txt" },
+            special_files = { "README.md", "readme.md", "Makefile", "CMakeLists.txt" },
         },
         update_focused_file = { enable = true, update_root = true },
         diagnostics = { enable = true, icons = { hint = "", info = "", warning = "", error = "", }, },

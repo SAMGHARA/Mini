@@ -5,8 +5,8 @@ local M = {
 
 M.setup = function()
     local keymaps = {
-        { "n",   "Q",     "<cmd>bdelete<cr>"   },
-        { "n", "<tab>",   "<cmd>bnext<cr>"     },
+        { "n",    "Q",    "<cmd>bdelete<cr>"   },
+        { "n",  "<tab>",  "<cmd>bnext<cr>"     },
         { "n", "<s-tab>", "<cmd>bprevious<cr>" },
     }
     require("core").setKeyMaps(keymaps)
@@ -27,9 +27,8 @@ M.config = function()
             always_divide_middle = true,
             globalstatus = true,
             refresh = {
-                statusline = 1000,
-                tabline = 1000,
-                winbar = 1000,
+                statusline = 500,
+                tabline = 500,
             }
         },
         sections = {
@@ -37,7 +36,7 @@ M.config = function()
             lualine_b = {
                 { 'branch',      color = { fg = '#56B6C2' } },
                 { 'diff',        symbols = { added = '+', modified = '~', removed = '-' } },
-                { 'diagnostics', symbols = { error = 'Err.', warn = 'War.' } }
+                { 'diagnostics', symbols = { error = 'Err.', warn = 'War.', info = "Tips." } }
             },
             lualine_c = { 'filesize', 'searchcount' },
             lualine_x = { 'encoding', { 'fileformat', icons_enabled = false }, 'filetype' },
