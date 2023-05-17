@@ -1,6 +1,4 @@
 # Core
-MZ_CONFIGS="$MZ/configs"
-
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000
 SAVEHIST=1000
@@ -33,6 +31,7 @@ function addENV() {
     }
 }
 
+# Useful function
 function cecho() {
     (( $# != 2 )) && echo $1 && return
     case $1 {
@@ -90,15 +89,12 @@ typeset -A systemAlias=(
     vst     "vim +StartupTime"
     vvi     "vim $MINI/nvim/init.lua"
 
-    vcore   "vim $MZ_CONFIGS/core.zsh"
-    vgit    "vim $MZ_CONFIGS/git.zsh"
-    vpath   "vim $MZ_CONFIGS/path.zsh"
+    vcore   "vim $MZ/core.zsh"
+    vgit    "vim $MZ/plugins/git.zsh"
 
     syyu    "sudo pacman -Syyu"
     qdtq    "sudo pacman -Rn \$(sudo pacman -Qdtq)"
  )
-addAlias systemAlias
-
 typeset -A systemBindKey=( 
     "\e[1~" beginning-of-line       # <home>
     "^[[H"  beginning-of-line       # <home>
@@ -115,8 +111,31 @@ typeset -A systemBindKey=(
     "\ek" up-line-or-history       # <Alt-k> <up>
     "\el" forward-char             # <Alt-l> <right>
  )
+
+addAlias systemAlias
 addBindKey systemBindKey
 
-source "$MZ_CONFIGS/git.zsh"
-source "$MZ_CONFIGS/path.zsh"
-source "$MZ_CONFIGS/tmux.zsh"
+# Environment PATH
+PATH_NEW=(
+    "$XDG_LOCAL_HOME/bin"
+    "$XDG_LOCAL_HOME/go/bin"
+    "$XDG_LOCAL_HOME/redis/bin"
+    "$XDG_LOCAL_HOME/node/node_modules/.bin"
+)
+CPATH_NEW=(
+    "$XDG_LOCAL_HOME/include"
+    "$XDG_LOCAL_HOME/include/nginx"
+)
+LIBRARY_PATH_NEW=(
+    "$XDG_LOCAL_HOME/lib"
+    "$XDG_LOCAL_HOME/hiredis/lib"
+)
+LD_LIBRARY_PATH_NEW=(
+    "$LIBRARY_PATH_NEW"
+)
+
+addENV PATH               PATH_NEW
+addENV CPATH              CPATH_NEW
+addENV LIBRARY_PATH       LIBRARY_PATH_NEW
+addENV LD_LIBRARY_PATH    LD_LIBRARY_PATH_NEW
+

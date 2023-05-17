@@ -8,8 +8,14 @@ if [[ ! -f "${MZ_PLUGINS[fzf]}/bin/fzf" ]] {
 
 export FZF_COMPLETION_TRIGGER="\\"
 export FZF_DEFAULT_OPTS="
---bind 'alt-j:down,alt-k:up,tab:accept'
---bind 'ctrl-j:preview-down,ctrl-k:preview-up'
+--color bg+:#3E4452,border:#3E4452
+--bind 'alt-j:down'
+--bind 'alt-k:up'
+--bind 'tab:accept'
+--bind 'ctrl-j:preview-down'
+--bind 'ctrl-k:preview-up'
+--bind 'alt--:change-preview-window()'
+--bind 'alt-=:change-preview-window(right,99%)'
 "
 
 # Setup fzf

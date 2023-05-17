@@ -48,3 +48,10 @@ if [[ -f "${MZ_PLUGINS[z_lua]}/z.lua.plugin.zsh" ]] {
 # ----------------------------------
 [[ -f "${MZ_PLUGINS[fzf]}/install" ]] && source "${0:A:h}/fzf.zsh"
 
+# git
+[[ -f "${0:A:h}/git.zsh" ]] && source "${0:A:h}/git.zsh"
+
+# tmux
+[[ -f "${0:A:h}/tmux.zsh" ]] && source "${0:A:h}/tmux.zsh"
+
+

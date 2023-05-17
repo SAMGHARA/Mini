@@ -10,6 +10,6 @@
 	cm = commit
 	reword = commit --amend --edit
 [pager]
-	diff = diff-so-fancy | less
+	diff = diff-so-fancy | less -RFX
 [diff-so-fancy]
 	markEmptyLines = false
