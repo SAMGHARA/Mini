@@ -18,6 +18,7 @@ local options = {
         shiftwidth     = 4,         -- the number of spaces insertede for each indentation.
         expandtab      = true,      -- convert tabs to spaces.
         smartindent    = true,      -- smarter indenting.
+        cinkeys        = ":,0#,!<Tab>",
         termguicolors  = true,      -- set term gui colors.
         cursorline     = true,      -- highlight the current line.
         writebackup    = false,

@@ -18,4 +18,6 @@ FixNamespaceComments: true
 IndentCaseLabels: true
 AccessModifierOffset: -4
 AlignEscapedNewlines: Left
+
+AlwaysBreakTemplateDeclarations: true
 ---

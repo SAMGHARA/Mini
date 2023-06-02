@@ -11,8 +11,4 @@ M.setup = function()
 
 end
 
-M.sonfig = function()
-
-end
-
 return M
