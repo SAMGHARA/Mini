@@ -1,25 +1,13 @@
-local M = {
-    -- https://github.com/akinsho/toggleterm.nvim
+-- https://github.com/akinsho/toggleterm.nvim
+return {
     "akinsho/toggleterm.nvim",
 
-    cmd = "ToggleTerm"
-}
-
-M.setup = function()
-    local keymaps = {
-        { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
-        { "t", "<leader>t", "<cmd>exit<cr>" }
-    }
-    require("core").setKeyMaps(keymaps)
-end
-
-M.config = function()
-    local status, toggleterm = pcall(require, "toggleterm")
-    if not status then
-        return
-    end
-
-    toggleterm.setup({
+    cmd = "ToggleTerm",
+    keys = {
+        { mode = "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
+        { mode = "t", "<leader>t", "<cmd>exit<cr>", }
+    },
+    opts = {
         open_mapping = [[<c-\>]],
         start_in_insert = true,
         insert_mappings = true,
@@ -30,7 +18,5 @@ M.config = function()
                 return vim.o.columns * 0.3
             end
         end,
-    })
-end
-
-return M
+    }
+}

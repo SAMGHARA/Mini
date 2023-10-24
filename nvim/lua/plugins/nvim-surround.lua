@@ -1,21 +1,10 @@
-local M = {
-    -- https://github.com/kylechui/nvim-surround
-    "kylechui/nvim-surround"
-}
+-- https://github.com/kylechui/nvim-surround
+return {
+    "kylechui/nvim-surround",
 
--- ( [ {    ===>    (  ) [  ] {  }
--- ) ] }    ===>    () [] {}
-M.setup = function()
-
-end
-
-M.config = function()
-    local status, surround = pcall(require, "nvim-surround")
-    if not status then
-        return
-    end
-
-    surround.setup {
+    -- ( [ {    ===>    (  ) [  ] {  }
+    -- ) ] }    ===>    () [] {}
+    opts = {
         keymaps = {
             normal = "ys",
             normal_cur = "yss",
@@ -27,6 +16,4 @@ M.config = function()
             change = "cs"
         }
     }
-end
-
-return M
+}

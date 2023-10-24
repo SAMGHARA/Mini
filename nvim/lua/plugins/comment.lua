@@ -1,24 +1,26 @@
-local M = {
-    -- https://github.com/numToStr/Comment.nvim
+-- https://github.com/numToStr/Comment.nvim
+return {
     "numToStr/Comment.nvim",
-}
 
-M.setup = function()
-    local keymaps = {
-        { { "n", "i" }, "<c-_>", "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>" },
-        { "v", "<c-_>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>" },
-        { "i", "<a-s-a>", "<cmd>lua require('Comment.api').toggle.blockwise.current()<cr>" },
-    }
-    require("core").setKeyMaps(keymaps)
-end
-
-M.config = function()
-    local status, Comment = pcall(require, "Comment")
-    if not status then
-        return
-    end
-
-    Comment.setup {
+    lazy = false,
+    keys = {
+        {
+            mode = { "n", "i" },
+            "<c-_>",
+            "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>"
+        },
+        {
+            mode = "v",
+            "<c-_>",
+            "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>"
+        },
+        {
+            mode = "i",
+            "<a-s-a>",
+            "<cmd>lua require('Comment.api').toggle.blockwise.current()<cr>"
+        },
+    },
+    opts = {
         ---Add a space b/w comment and the line
         padding = true,
         ---Whether the cursor should stay at its position
@@ -39,9 +41,9 @@ M.config = function()
             ---Block-comment keymap
             block = "<a-s-a>",
         }
-    }
-    require("Comment.ft")
-        .set("tmux", "#%s")
-end
-
-return M
+    },
+    config = function(_, opts)
+        require("Comment").setup(opts)
+        require("Comment.ft").set("tmux", "#%s")
+    end
+}

@@ -1,8 +1,8 @@
-local M = {
-    -- https://github.com/sindrets/diffview.nvim
+-- https://github.com/sindrets/diffview.nvim
+return {
     "sindrets/diffview.nvim",
 
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     cmd = {
         "DiffviewLog",
         "DiffviewOpen",
@@ -11,29 +11,15 @@ local M = {
         "DiffviewFocusFiles",
         "DiffviewFileHistory",
         "DiffviewToggleFiles"
+    },
+    keys = {
+        { mode = "n", "<leader>gl", "<cmd>DiffviewLog<cr>" },
+        { mode = "n", "<leader>go", "<cmd>DiffviewOpen<cr>" },
+        { mode = "n", "<leader>gc", "<cmd>DiffviewClose<cr>" },
+        { mode = "n", "<leader>gf", "<cmd>DiffviewFocusFiles<cr>" },
+        { mode = "n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>" },
+    },
+    opts = {
+
     }
 }
-
-M.setup = function()
-    local keymaps = {
-        { "n", "<leader>gl",   "<cmd>DiffviewLog<cr>"       },
-        { "n", "<leader>go",   "<cmd>DiffviewOpen<cr>"      },
-        { "n", "<leader>gc",   "<cmd>DiffviewClose<cr>"     },
-        { "n", "<leader>gf", "<cmd>DiffviewFocusFiles<cr>"  },
-        { "n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>" },
-    }
-    require("core").setKeyMaps(keymaps)
-end
-
-M.config = function()
-    local status, diffview = pcall(require, "diffview")
-    if not status then
-        return
-    end
-
-    diffview.setup {
-
-    }
-end
-
-return M

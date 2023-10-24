@@ -1,14 +1,8 @@
-local M = {
-    "ggandor/leap.nvim"
-}
+return {
+    "ggandor/leap.nvim",
 
-M.setup = function()
-    local keymaps = {
-        { "n", "<leader>j", "<Plug>(leap-forward-to)"  },
-        { "n", "<leader>k", "<Plug>(leap-backward-to)" },
+    keys = {
+        { mode = "n", "<leader>j", "<Plug>(leap-forward-to)" },
+        { mode = "n", "<leader>k", "<Plug>(leap-backward-to)" },
     }
-    require("core").setKeyMaps(keymaps)
-
-end
-
-return M
+}

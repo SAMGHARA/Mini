@@ -1,82 +1,46 @@
-require "core.options"
-require "core.keymaps"
+require("core.options")
+require("core.keymaps")
 
 vim.cmd [[colorscheme onedark]]
 
-local packer_bootstrap = false
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local compiled_lua = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    print("Installing Packer ...")
-    -- Github SSH
-    vim.fn.system({ "git", "clone", "--depth", "1", "git@github.com:wbthomason/packer.nvim", install_path })
-    vim.fn.system({ "rm", "-rf", compiled_lua })
-
-    if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-        print("Packer.nvim install failed. Please try again!")
-    else
-        print("Packer.nvim install successed")
-    end
-
-    packer_bootstrap = true
-    vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+        lazypath
+    })
 end
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-local Packer = {}
-Packer.config = {
+require("lazy").setup {
+    spec = {
+        { import = "plugins" }
+    },
+    defaults = { lazy = false, version = false, },
+    checker = { enabled = false },
+    change_detection = { enabled = true, notify = false, },
     git = {
-        clone_timeout = 6000,
-        -- Github SSH
-        default_url_format = "git@github.com:%s"
+        log = { "-8" },
+        timeout = 120,
+        url_format = "https://ghproxy.com/https://github.com/%s.git",
+        filter = true,
     },
-    display = {
-        working_sym = "ﲊ",
-        error_sym = "✗ ",
-        done_sym = " ",
-        removed_sym = " ",
-        moved_sym = "",
-        open_fn = function()
-            return require("packer.util").float { border = "single" }
-        end,
+    ui = {
+        wrap = true,
+        border = "single"
+    },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                -- "gzip",
+                -- "matchit",
+                -- "matchparen",
+                -- "netrwPlugin",
+                -- "tarPlugin",
+                -- "tohtml",
+                -- "tutor",
+                -- "zipPlugin",
+            },
+        },
     },
 }
-
-Packer.plugins = {
-    { "nvim-lua/plenary.nvim", module = "plenary" },
-    { "wbthomason/packer.nvim" },
-    { "kyazdani42/nvim-web-devicons" },
-    { "dstein64/vim-startuptime", cmd = "StartupTime" },
-    require("plugins.lualine"),
-    require("plugins.nvim-tree"),
-    require("plugins.tagbar"),
-    require("plugins.toggleterm"),
-    require("plugins.gitsigns"),
-    require("plugins.diffview"),
-    require("plugins.indent-blankline"),
-    require("plugins.which-key"),
-    require("plugins.fzf"),
-    require("plugins.comment"),
-    require("plugins.todo-comments"),
-    require("plugins.smart-pairs"),
-    require("plugins.nvim-surround"),
-    require("plugins.vim-visual-multi"),
-    require("plugins.leap"),
-    require("plugins.nvim-treesitter"),
-    require("plugins.autolist"),
-    require("plugins.nvim-cmp"),
-    require("plugins.coc")
-}
-
-require("packer").startup({
-    config = Packer.config,
-    function(use)
-        for _, i in pairs(Packer.plugins) do
-            use(i)
-        end
-    end
-})
-
-if packer_bootstrap then
-    require("packer").sync()
-end

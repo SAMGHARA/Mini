@@ -1,21 +1,10 @@
-local M = {
-    -- https://github.com/gaoDean/autolist.nvim
+-- https://github.com/gaoDean/autolist.nvim
+return {
     "gaoDean/autolist.nvim",
 
-    after = "smart-pairs"
-}
-
-M.setup = function()
-
-end
-
-M.config = function()
-    local status, autolist = pcall(require, "autolist")
-    if not status then
-        return
-    end
-
-    autolist.setup {
+    dependencies = "smart-pairs",
+    event = "VeryLazy",
+    opts = {
         enabled = true,
         list_cap = 50,
         colon = {
@@ -48,9 +37,9 @@ M.config = function()
         },
         list_patterns = {
             unordered = "[-+*]", -- - + *
-            digit = "%d+[.)]", -- 1. 2. 3.
-            ascii = "%a[.)]", -- a) b) c)
-            roman = "%u*[.)]", -- I. II. III.
+            digit = "%d+[.)]",   -- 1. 2. 3.
+            ascii = "%a[.)]",    -- a) b) c)
+            roman = "%u*[.)]",   -- I. II. III.
             latex_item = "\\item",
         },
         checkbox = {
@@ -58,12 +47,15 @@ M.config = function()
             right = "%]",
             fill = "x",
         },
-    }
+    },
 
-    -- TODO: error with nvim-autopairs/smart-pairs
-    -- autolist.create_mapping_hook("i", "<CR>", autolist.new)
-    autolist.create_mapping_hook("n",  "o",   autolist.new)
-    autolist.create_mapping_hook("n",  "O",   autolist.new_before)
-end
+    config = function(_, opts)
+        local autolist = require("autolist")
+        autolist.setup(opts)
 
-return M
+        -- TODO: error with nvim-autopairs/smart-pairs
+        -- autolist.create_mapping_hook("i", "<CR>", autolist.new)
+        autolist.create_mapping_hook("n", "o", autolist.new)
+        autolist.create_mapping_hook("n", "O", autolist.new_before)
+    end
+}

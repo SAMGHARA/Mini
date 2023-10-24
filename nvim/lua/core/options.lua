@@ -1,5 +1,3 @@
-local Core = require "core"
-
 local options = {
     opt = {
         fileencodings  = "UTF-8,GBK,GB2312", -- file encoding
@@ -53,9 +51,9 @@ if vim.env.TMUX then
     }
 end
 
-Core.setOptions(options)
+require("core").setOptions(options)
 
-Core.addFileTypes({
+require("core").addFileTypes({
     pattern = {
         [".*%.snippets"] = "snippets",
     },

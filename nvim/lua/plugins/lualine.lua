@@ -1,24 +1,14 @@
-local M = {
-    -- https://github.com/nvim-lualine/lualine.nvim
-    "nvim-lualine/lualine.nvim"
-}
+-- https://github.com/nvim-lualine/lualine.nvim
+return {
+    "nvim-lualine/lualine.nvim",
 
-M.setup = function()
-    local keymaps = {
-        { "n",    "Q",    "<cmd>bdelete<cr>"   },
-        { "n",  "<tab>",  "<cmd>bnext<cr>"     },
-        { "n", "<s-tab>", "<cmd>bprevious<cr>" },
-    }
-    require("core").setKeyMaps(keymaps)
-end
-
-M.config = function()
-    local status, lualine = pcall(require, "lualine")
-    if not status then
-        return
-    end
-
-    lualine.setup {
+    event = "VeryLazy",
+    keys = {
+        { mode = "n", "Q",       "<cmd>bdelete<cr>",   desc = "Close buffer" },
+        { mode = "n", "<tab>",   "<cmd>bnext<cr>",     desc = "Next buffer" },
+        { mode = "n", "<s-tab>", "<cmd>bprevious<cr>", desc = "Prev buffer" },
+    },
+    opts = {
         options = {
             icons_enabled = true,
             theme = "onedark",
@@ -48,7 +38,6 @@ M.config = function()
                 { 'buffers', filetype_names = { NvimTree = "NvimTree" }, symbols = { alternate_file = '' } }
             },
             lualine_y = { 'tabs' },
-        },
+        }
     }
-end
-return M
+}

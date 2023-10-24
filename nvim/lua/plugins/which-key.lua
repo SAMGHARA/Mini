@@ -1,23 +1,7 @@
-local M = {
-    -- https://github.com/folke/which-key.nvim
+-- https://github.com/folke/which-key.nvim
+return {
     "folke/which-key.nvim",
 
-    keys = "<leader>"
+    event = "VeryLazy",
+    opts = {}
 }
-
-M.setup = function()
-
-end
-
-M.config = function()
-    local status, whichkey = pcall(require, "which-key")
-    if not status then
-        return
-    end
-
-    whichkey.setup {
-
-    }
-end
-
-return M
