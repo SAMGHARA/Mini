@@ -5,7 +5,6 @@ return {
     commit = "4541d69",
     event = "VeryLazy",
     dependencies = "nvim-treesitter",
-    -- main = "indent_blankline",
     opts = {
         space_char_blankline = " ",
         show_current_context = true,

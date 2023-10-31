@@ -20,7 +20,7 @@ return {
         git          = {
             commits = {
                 cmd = "git log --graph --color=always --date=format:'%m-%d'" ..
-                    " --pretty=format:'%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'",
+                " --pretty=format:'%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'",
                 preview = "git show --color=always {2} | $(git config pager.diff || echo 'cat')",
                 -- actions = { ["default"] = require("fzf-lua.actions").dummy_abort }
             }

@@ -1,6 +1,5 @@
 -- https://github.com/ZhiyuanLck/smart-pairs
 return {
-
     "ZhiyuanLck/smart-pairs",
 
     event = "InsertEnter",

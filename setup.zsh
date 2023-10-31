@@ -50,7 +50,7 @@ function install() {
         which ${program} > /dev/null
         if (( $? != 0 )) {
             echo "install ${program} ..."
-            sudo pacman -S ${program}
+            sudo pacman -S --nedded ${program}
         }
     }
     echo "Install Finished"

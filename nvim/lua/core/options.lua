@@ -8,7 +8,7 @@ local options = {
         sidescrolloff  = 8,
         list           = true,
         listchars      = { space = '·', tab = '> ' },
-        colorcolumn    = "120",     -- column wrap
+        textwidth      = 120,
         showtabline    = 0,
         laststatus     = 0,
         timeoutlen     = 200,       -- <leader> timeout

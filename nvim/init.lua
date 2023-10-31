@@ -22,7 +22,6 @@ require("lazy").setup {
     git = {
         log = { "-8" },
         timeout = 120,
-        url_format = "https://ghproxy.com/https://github.com/%s.git",
         filter = true,
     },
     ui = {

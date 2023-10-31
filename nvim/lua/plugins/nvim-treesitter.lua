@@ -37,7 +37,6 @@ return {
         end
     },
     {
-
         -- https://github.com/nvim-treesitter/playground
         "nvim-treesitter/playground",
 
