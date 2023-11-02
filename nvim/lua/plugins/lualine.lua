@@ -10,26 +10,24 @@ return {
     },
     opts = {
         options = {
-            icons_enabled = true,
-            theme = "onedark",
-            component_separators = { left = '', right = '' },
-            section_separators = { left = '', right = '' },
+            icons_enabled = false,
+            -- theme = "codedark",
+            component_separators = '|';
+            section_separators = { left = '', right = '' },
             always_divide_middle = true,
             globalstatus = true,
-            refresh = {
-                statusline = 500,
-                tabline = 500,
+            refresh = { statusline = 500, tabline = 500,
             }
         },
         sections = {
             lualine_a = { 'mode' },
             lualine_b = {
                 { 'branch',      color = { fg = '#56B6C2' } },
-                { 'diff',        symbols = { added = '+', modified = '~', removed = '-' } },
+                { 'diff',        symbols = { added = '+', modified = '*', removed = '-' } },
                 { 'diagnostics', symbols = { error = 'Err.', warn = 'War.', info = "Tips." } }
             },
             lualine_c = { 'filesize', 'searchcount' },
-            lualine_x = { 'encoding', { 'fileformat', icons_enabled = false }, 'filetype' },
+            lualine_x = { 'encoding', 'fileformat', 'filetype' },
             lualine_y = { 'progress' },
             lualine_z = { 'location' }
         },

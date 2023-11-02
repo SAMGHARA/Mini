@@ -3,9 +3,10 @@ return {
 
     cmd = "FzfLua",
     keys = {
-        { "\\",    "<cmd>FzfLua builtin<cr>",      mode = "n" },
-        { "F",     "<cmd>FzfLua files<cr>",        mode = "n" },
-        { "<c-f>", "<cmd>FzfLua lgrep_curbuf<cr>", mode = "n" },
+        { "\\",            "<cmd>FzfLua builtin<cr>",      mode = "n", desc = "FZF" },
+        { "F",             "<cmd>FzfLua files<cr>",        mode = "n", desc = "Find files" },
+        { "<c-f>",         "<cmd>FzfLua lgrep_curbuf<cr>", mode = "n", desc = "Curbuf search" },
+        { "<leader><c-f>", "<cmd>FzfLua live_grep<cr>",    mode = "n", desc = "Global search" },
     },
     opts = {
         winopts      = {

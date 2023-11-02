@@ -5,6 +5,7 @@ vim.cmd [[colorscheme onedark]]
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
+    print("Installing Lazy.nvim ....")
     vim.fn.system({
         "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
         lazypath
@@ -14,7 +15,23 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup {
     spec = {
-        { import = "plugins" }
+        require("plugins.autolist"),
+        require("plugins.coc"),
+        require("plugins.comment"),
+        require("plugins.diffview"),
+        require("plugins.flash"),
+        require("plugins.fzf"),
+        require("plugins.gitsigns"),
+        require("plugins.indent-blankline"),
+        require("plugins.lualine"),
+        require("plugins.nvim-surround"),
+        require("plugins.nvim-tree"),
+        require("plugins.nvim-treesitter"),
+        require("plugins.smart-pairs"),
+        require("plugins.todo-comments"),
+        require("plugins.toggleterm"),
+        require("plugins.vim-visual-multi"),
+        require("plugins.which-key"),
     },
     defaults = { lazy = false, version = false, },
     checker = { enabled = false },
@@ -27,19 +44,5 @@ require("lazy").setup {
     ui = {
         wrap = true,
         border = "single"
-    },
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                -- "gzip",
-                -- "matchit",
-                -- "matchparen",
-                -- "netrwPlugin",
-                -- "tarPlugin",
-                -- "tohtml",
-                -- "tutor",
-                -- "zipPlugin",
-            },
-        },
-    },
+    }
 }

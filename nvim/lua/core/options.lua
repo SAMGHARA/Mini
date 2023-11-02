@@ -7,7 +7,7 @@ local options = {
         showmode       = false,     -- show model
         sidescrolloff  = 8,
         list           = true,
-        listchars      = { space = '·', tab = '> ' },
+        listchars      = { space = ' ', tab = '> ' },
         textwidth      = 120,
         showtabline    = 0,
         laststatus     = 0,

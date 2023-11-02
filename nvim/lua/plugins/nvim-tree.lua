@@ -47,9 +47,9 @@ return {
             highlight_opened_files = "icon",
             root_folder_label = false,
             indent_markers = {
-                enable = false,
+                enable = true,
                 inline_arrows = true,
-                icons = { corner = "��", edge = "��", item = "��", bottom = "��", none = " ", },
+                icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " ", },
             },
             icons = {
                 show = { modified = false },

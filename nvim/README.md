@@ -9,26 +9,6 @@
 
 ## 配置问题记录
 
-### packer.nvim
-
-#### 下载插件速度慢
-
-> [https://www.bilibili.com/read/cv16639595](https://www.bilibili.com/read/cv16639595)
-
-在 `packer` 配置下修改 `default_url_format`，**前提: 本地 git 与 github 已经配置好 ssh 密钥连接**
-
-```lua
-require('packer').startup({
-    config = {
-        git = {
-            default_url_format = "git@github.com:%s"
-        }
-    }
-})
-```
-
-### packer.nvim
-
 #### 特定文件类型加载插件
 
 在加载插件时添加 `ft = { "lua", "json"... }` 配置。
@@ -177,13 +157,14 @@ copy = {
 
 ### coc.nvim 配置
 
-- 无特殊说明所有配置项均添加在 `nvim/coc-settings.json` 文件中，可以使用
-  `:CocConfig` 来进行配置
+- 无特殊说明所有配置项均添加在 `nvim/coc-settings.json` 文件中，可以使用 `:CocConfig` 来进行配置
 
 1. coc.nvim
 
     - 补全配置默认不选中第一个补全提示参数: `"suggest.noselect": true`
-    - 指定文件类型保存时自动格式化/不格式化: `"[json]": { "coc.preferences.formatonsave": true }`
+    - ~~指定文件类型保存时自动格式化/不格式化: `"[json]": { "coc.preferences.formatonsave": true }`~~
+    - 关闭文件保存自动格式化: `"coc.preferences.formatOnSave": false`
+    - 开启指定文件类型保存自动格式化: `"[go]": { "coc.preferences.formatOnSave": true }`
     - 自动显示当前行的所有诊断信息: `"diagnostic.checkCurrentLine": true`
     - 诊断信息显示优先等级: `"diagnostic.signPriority": 1`
 
@@ -223,3 +204,19 @@ sudo pacman -S ctags
 ### 使用 `lua` 配置和 `Vimscript` 相同的配置
 
 可以在 `:help lua` 帮助文档下查找
+
+### 去掉 `nvim` 启动时显示的欢迎界面
+
+1. 下载源码: `git clone https://github.com/neovim/neovim`
+2. 修改源码:
+
+    ```c
+    // neovim/src/nvim/drawscreen.c
+    int update_screen(void)
+    {
+        static bool did_intro = false; // true -> false
+    ...
+    ```
+
+3. 重新编译安装: `sudo make install CMAKE_BUILD_TYPE=Release -j8`
+

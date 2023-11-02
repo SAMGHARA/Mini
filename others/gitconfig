@@ -13,3 +13,5 @@
 	diff = diff-so-fancy | less -RFX
 [diff-so-fancy]
 	markEmptyLines = false
+[core]
+	editor = vim
