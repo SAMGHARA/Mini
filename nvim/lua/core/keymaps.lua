@@ -25,6 +25,22 @@ local coreMappings = {
     { "i", "<a-k>", "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
     { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
 
+    {
+        "i", "<home>",
+        function()
+            local feedkeys
+            local col = vim.fn.col('.') - 1
+            if col == 0 or vim.fn.getline('.'):sub(col, col):match('^[ \t]+$') then
+                -- move cursor to the real beginning of the line
+                feedkeys = vim.api.nvim_replace_termcodes("<Home>", true, false, true)
+            else
+                -- move cursor to beginning of non-whitespace characters of the line
+                feedkeys = vim.api.nvim_replace_termcodes("<c-o>^", true, false, true)
+            end
+            vim.api.nvim_feedkeys(feedkeys, "n", false)
+        end
+    },
+
     { "n", "C", ":"},
 
     { "n", "<leader>w", "<cmd>w<cr>"  },
