@@ -1,9 +1,6 @@
 # FZF
 if [[ ! -f "${MZ_PLUGINS[fzf]}/bin/fzf" ]] {
-    # https://ghproxy.com
-    sed -i 's/url=/url=https:\/\/ghproxy.com\//g' "${MZ_PLUGINS[fzf]}/install"
     ${MZ_PLUGINS[fzf]}/install --bin
-    sed -i 's/https:\/\/ghproxy.com\///g' "${MZ_PLUGINS[fzf]}/install"
 }
 
 export FZF_COMPLETION_TRIGGER="\\"

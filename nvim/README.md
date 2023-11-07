@@ -23,19 +23,6 @@ vim.filetype.add({
 })
 ```
 
-### nvim-treesitter
-
-#### 配置代理
-
-使用 [https://ghproxy.com](https://ghproxy.com) 代理下载. thanks GitHub Proxy !
-
-```lua
-for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-    config.install_info.url = config.install_info.url:gsub("https://github.com/",
-        "https://ghproxy.com/https://github.com/")
-end
-```
-
 ### nvim 与主机剪贴板互通
 
 > [https://www.cnblogs.com/huahuayu/p/12235242.html](https://www.cnblogs.com/huahuayu/p/12235242.html)
