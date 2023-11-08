@@ -207,3 +207,11 @@ sudo pacman -S ctags
 
 3. 重新编译安装: `sudo make install CMAKE_BUILD_TYPE=Release -j8`
 
+### treesitter checkhealth WARNING
+
+> WARNING `tree-sitter` executable not found (parser generator, only needed for :TSInstallFromGrammar, not required for :TSInstall)
+
+```sh
+sudo pacman -S tree-sitter tree-sitter-cli
+```
+

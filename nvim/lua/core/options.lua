@@ -7,8 +7,8 @@ local options = {
         showmode       = false,     -- show model
         sidescrolloff  = 8,
         list           = true,
-        listchars      = { space = ' ', tab = '> ' },
-        textwidth      = 120,
+        listchars      = { space = ' ', tab = '  >' },
+        textwidth      = 160,
         showtabline    = 0,
         laststatus     = 0,
         timeoutlen     = 200,       -- <leader> timeout
@@ -32,7 +32,9 @@ local options = {
         completeopt    = "menu,menuone,noselect,noinsert",
         -- diable netrw
         loaded_netrw       = 1,
-        loaded_netrwPlugin = 1
+        loaded_netrwPlugin = 1,
+        loaded_perl_provider = 0,
+        loaded_ruby_provider = 0,
     }
 }
 

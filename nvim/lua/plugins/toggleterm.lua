@@ -3,10 +3,13 @@ return {
     "akinsho/toggleterm.nvim",
 
     cmd = "ToggleTerm",
-    keys = {
-        { mode = "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
-        { mode = "t", "<leader>t", "<cmd>exit<cr>", }
-    },
+    init = function()
+        local keymaps = {
+            { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
+            { "t", "<leader>t", "<cmd>exit<cr>", }
+        }
+        require("core").setKeyMaps(keymaps)
+    end,
     opts = {
         open_mapping = [[<c-\>]],
         start_in_insert = true,
@@ -17,6 +20,6 @@ return {
             elseif term.direction == "vertical" then
                 return vim.o.columns * 0.3
             end
-        end,
+        end
     }
 }

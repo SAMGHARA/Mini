@@ -42,13 +42,16 @@ return {
                 }
             },
             enter = {
-                enable_mapping  = true,
-                enable_cond     = true,
+                enable_mapping = true,
+                enable_cond    = true,
                 before_hook    = function()
                     -- https://github.com/gaoDean/autolist.nvim/issues/77
-                    vim.loop.new_timer():start(0, 0, vim.schedule_wrap(function()
-                        require("autolist").new_bullet()
-                    end))
+                    local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+                    if filetype == "txt" or filetype == "markdown" then
+                        vim.loop.new_timer():start(0, 0, vim.schedule_wrap(function()
+                            require("autolist").new_bullet()
+                        end))
+                    end
                 end
             },
         })

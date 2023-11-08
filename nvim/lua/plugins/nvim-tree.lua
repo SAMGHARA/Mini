@@ -2,11 +2,14 @@
 return {
     "kyazdani42/nvim-tree.lua",
 
-    event = "VeryLazy",
-    keys = {
-        { mode = "n", "<leader>e", "<cmd>NvimTreeFocus<cr>" },
-        { mode = "n", "<leader>f", "<cmd>NvimTreeToggle<cr>" }
-    },
+    cmd = { "NvimTreeFocus", "NvimTreeToggle" },
+    init = function()
+        local keymaps = {
+            { "n", "<leader>e", "<cmd>NvimTreeFocus<cr>" },
+            { "n", "<leader>f", "<cmd>NvimTreeToggle<cr>" }
+        }
+        require("core").setKeyMaps(keymaps)
+    end,
     opts = {
         on_attach = function(bufnr)
             local api = require("nvim-tree.api")
@@ -64,7 +67,7 @@ return {
                         ignored = "◌",
                     }
                 }
-            }, 
+            },
             special_files = { "README.md", "readme.md", "Makefile", "CMakeLists.txt" },
         },
         update_focused_file = { enable = true, update_root = true },

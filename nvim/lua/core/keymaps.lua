@@ -26,7 +26,7 @@ local coreMappings = {
     { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
 
     {
-        "i", "<home>",
+        "i", "<Home>",
         function()
             local feedkeys
             local col = vim.fn.col('.') - 1

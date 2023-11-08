@@ -1,7 +1,6 @@
 return {
     "ibhagwan/fzf-lua",
 
-    cmd = "FzfLua",
     keys = {
         { "\\",            "<cmd>FzfLua builtin<cr>",      mode = "n", desc = "FZF" },
         { "F",             "<cmd>FzfLua files<cr>",        mode = "n", desc = "Find files" },
@@ -20,10 +19,9 @@ return {
         colorschemes = { live_preview = false },
         git          = {
             commits = {
-                cmd = "git log --graph --color=always --date=format:'%m-%d'" ..
-                " --pretty=format:'%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'",
+                cmd = "git log --graph --color=always --date=format:'%m-%d' " ..
+                    "--pretty=format:'%C(yellow)%h%d %C(magenta)%cd %C(blue)%cn %C(white)%s %Creset'",
                 preview = "git show --color=always {2} | $(git config pager.diff || echo 'cat')",
-                -- actions = { ["default"] = require("fzf-lua.actions").dummy_abort }
             }
         },
         grep         = { rg_opts = "--column --no-heading --color=always --smart-case --max-columns=4096" }

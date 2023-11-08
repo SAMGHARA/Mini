@@ -3,15 +3,14 @@ require("core.keymaps")
 
 vim.cmd [[colorscheme onedark]]
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+local lazy = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazy) then
     print("Installing Lazy.nvim ....")
-    vim.fn.system({
-        "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
-        lazypath
-    })
+    vim.fn.system({ "git", "clone", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy })
 end
-vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.opt.rtp:prepend(vim.env.LAZY or lazy)
+
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { silent = true, desc = "Lazy" })
 
 require("lazy").setup {
     spec = {
@@ -24,6 +23,7 @@ require("lazy").setup {
         require("plugins.gitsigns"),
         require("plugins.indent-blankline"),
         require("plugins.lualine"),
+        require("plugins.nvim-cmp"),
         require("plugins.nvim-surround"),
         require("plugins.nvim-tree"),
         require("plugins.nvim-treesitter"),
@@ -33,7 +33,7 @@ require("lazy").setup {
         require("plugins.vim-visual-multi"),
         require("plugins.which-key"),
     },
-    defaults = { lazy = false, version = false, },
+    defaults = { lazy = false },
     checker = { enabled = false },
     change_detection = { enabled = true, notify = false, },
     git = {
@@ -43,6 +43,25 @@ require("lazy").setup {
     },
     ui = {
         wrap = true,
-        border = "single"
+        border = "single",
+        icons = {
+            cmd = "",
+            config = "",
+            event = "",
+            ft = "",
+            init = "",
+            import = "",
+            keys = "",
+            lazy = "",
+            loaded = "●",
+            not_loaded = "○",
+            plugin = "",
+            runtime = "",
+            require = "",
+            source = "",
+            start = "",
+            task = "",
+            list = { "", "", "", "", },
+        }
     }
 }
