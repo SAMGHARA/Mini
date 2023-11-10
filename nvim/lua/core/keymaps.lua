@@ -1,83 +1,61 @@
-local Core = require "core"
+local smart_home = function()
+    local feedkeys
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('^[ \t]+$') then
+        -- move cursor to the real beginning of the line
+        feedkeys = "<Home>"
+    else
+        -- move cursor to beginning of non-whitespace characters of the line
+        if vim.api.nvim_get_mode().mode == "i" then feedkeys = "<C-o>^" else feedkeys = "^" end
+    end
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(feedkeys, true, false, true), "n", false)
+end
 
---[[
-    INSERT    <a-o>       insert next line
-    INSERT    <a-s-o>     insert prev line
+local opts = { noremap = true, silent = true }
 
-    VISUAL       u        transform to Lowercase
-    VISUAL       U        transform to Uppercase
-]]
-
-local coreMappings = {
-    -- { { "n", "i", "v" }, "<a-b>", "<home>", { noremap = true, silent = true } },
-    -- { { "n", "i", "v" }, "<a-e>", "<end>",  { noremap = true, silent = true } },
-
-    { { "n", "i" }, "<c-s>",   "<cmd>w<cr>"  },
-    { { "n", "i" }, "<c-z>", "<cmd>undo<cr>" },
-    { { "n", "i" }, "<c-y>", "<cmd>redo<cr>" },
-
-    { { "i", "v" }, "jk", "<esc>" },
-
-    { "i", "<s-tab>", "<c-d>" },
-
-    { "i", "<a-h>", "<left>",  { noremap = true, silent = true } },
-    { "i", "<a-j>", "<down>",  { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
-    { "i", "<a-k>", "<up>",    { noremap = true, silent = true } }, -- lua/plugins/coc.lua set another keymap
-    { "i", "<a-l>", "<right>", { noremap = true, silent = true } },
-
-    {
-        "i", "<Home>",
-        function()
-            local feedkeys
-            local col = vim.fn.col('.') - 1
-            if col == 0 or vim.fn.getline('.'):sub(col, col):match('^[ \t]+$') then
-                -- move cursor to the real beginning of the line
-                feedkeys = vim.api.nvim_replace_termcodes("<Home>", true, false, true)
-            else
-                -- move cursor to beginning of non-whitespace characters of the line
-                feedkeys = vim.api.nvim_replace_termcodes("<c-o>^", true, false, true)
-            end
-            vim.api.nvim_feedkeys(feedkeys, "n", false)
-        end
-    },
-
-    { "n", "C", ":"},
-
-    { "n", "<leader>w", "<cmd>w<cr>"  },
-    { "n", "<leader>q", "<cmd>qa<cr>" },
-
-    { "n", "<leader>h",       "gd"      },
-    { "n", "<leader>nh", "<cmd>noh<cr>" },
-
-    { "n", "<c-a>", "ggVG" },  -- VISUAL mode select all
-    { "n", "<c-d>", "viw"  },  -- VISUAL mode select current word
-    { "n", "<c-v>", "p"    },
-
-    { "n", "<a-a>", "<c-o>" },
-    { "n", "<a-d>", "<c-i>" },
-
-    { "n", "<leader><left>",  "<c-w>h", { noremap = true, silent = true } },
-    { "n", "<leader><down>",  "<c-w>j", { noremap = true, silent = true } },
-    { "n", "<leader><up>",    "<c-w>k", { noremap = true, silent = true } },
-    { "n", "<leader><right>", "<c-w>l", { noremap = true, silent = true } },
-
-    { "n", "<a-j>",   "<cmd>move .+1<cr>" },
-    { "n", "<a-k>",   "<cmd>move .-2<cr>" },
-    { "n", "<a-s-j>", "<cmd>copy .<cr>"   }, -- copy current line down
-    { "n", "<a-s-k>", "<cmd>copy .-1<cr>" }, -- copy current line up
-
-    { "v", "<c-x>",    "d"   },
-    { "v", "<c-c>",    "y"   },
-    { "v", "<c-v>",   "pgvy" },
-    { "v",   "p",     "pgvy" },
-    { "v", "<tab>",   ">gv"  },
-    { "v", "<s-tab>", "<gv"  },
-
-    { "v", "<a-j>", ":move '>+1<cr>gv-gv" }, -- move select block down
-    { "v", "<a-k>", ":move '<-2<cr>gv-gv" }, -- move select block up
-
-    { "v", "<a-s-j>", "y<esc>`><end>p"  }, -- copy select block down
-    { "v", "<a-s-k>", "y<esc>`<<home>P" }, -- copy select block up
+require("core").setKeyMaps {
+    -- "i"                <M-o>             insert next line
+    -- "i"                <M-S-o>           insert prev line
+    -- "v"                u                 transform to Lowercase
+    -- "v"                U                 transform to Uppercase
+    { { "i", "v" },      "jk",              "<ESC>",               opts },
+    { { "n", "i", "v" }, "<Home>",          smart_home,            opts },
+    { { "n", "i", "v" }, "<M-b>",           smart_home,            opts },
+    { { "n", "i", "v" }, "<M-e>",           "<End>",               opts },
+    { { "n", "i" },      "<C-s>",           "<Cmd>w<CR>",          opts },
+    { { "n", "i" },      "<C-z>",           "<Cmd>undo<CR>",       opts },
+    { { "n", "i" },      "<C-y>",           "<Cmd>redo<CR>",       opts },
+    { "v",               "<tab>",           ">gv",                 opts },
+    { "v",               "<S-tab>",         "<gv",                 opts },
+    { "i",               "<S-tab>",         "<C-d>",               opts },
+    { "i",               "<M-h>",           "<left>",              opts },
+    { "i",               "<M-j>",           "<down>",              opts }, -- lua/plugins/coc.lua set another keymap
+    { "i",               "<M-k>",           "<up>",                opts }, -- lua/plugins/coc.lua set another keymap
+    { "i",               "<M-l>",           "<right>",             opts },
+    { "n",               "C",               ":",                   opts },
+    { "n",               "<leader>w",       "<Cmd>w<CR>",          opts },
+    { "n",               "<leader>q",       "<Cmd>qa<CR>",         opts },
+    { "n",               "<leader>h",       "gd",                  opts },
+    { "n",               "<leader>nh",      "<Cmd>noh<CR>",        opts },
+    { "n",               "<C-a>",           "ggVG",                opts }, -- VISUAL mode select all
+    { "n",               "<C-d>",           "viw",                 opts }, -- VISUAL mode select current word
+    { "n",               "<C-v>",           "p",                   opts },
+    { "n",               "<M-a>",           "<C-o>",               opts },
+    { "n",               "<M-d>",           "<C-i>",               opts },
+    { "n",               "<leader><left>",  "<C-w>h",              opts },
+    { "n",               "<leader><down>",  "<C-w>j",              opts },
+    { "n",               "<leader><up>",    "<C-w>k",              opts },
+    { "n",               "<leader><right>", "<C-w>l",              opts },
+    { "n",               "<M-j>",           "<Cmd>move .+1<CR>",   opts },
+    { "n",               "<M-k>",           "<Cmd>move .-2<CR>",   opts },
+    { "n",               "<M-S-j>",         "<Cmd>copy .<CR>",     opts }, -- copy current line down
+    { "n",               "<M-S-k>",         "<Cmd>copy .-1<CR>",   opts }, -- copy current line up
+    { "v",               "<C-x>",           "d",                   opts },
+    { "v",               "<C-c>",           "y",                   opts },
+    { "v",               "<C-v>",           "pgvy",                opts },
+    { "v",               "p",               "pgvy",                opts },
+    { "v",               "<M-j>",           ":move '>+1<CR>gv-gv", opts }, -- move select block down
+    { "v",               "<M-k>",           ":move '<-2<CR>gv-gv", opts }, -- move select block up
+    { "v",               "<M-S-j>",         "y<esc>`><end>p",      opts }, -- copy select block down
+    { "v",               "<M-S-k>",         "y<esc>`<<home>P",     opts }, -- copy select block up
 }
-
-Core.setKeyMaps(coreMappings)

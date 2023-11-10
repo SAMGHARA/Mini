@@ -19,86 +19,100 @@ local C = {
 
 local highlights = {
     -- Core
-    ["Normal"]                      = { fg = C.LGray  },
-    ["Visual"]                      = { bg = C.DGray  },
-    ["LineNr"]                      = { fg = C.Gray   },
-    ["NonText"]                     = { fg = C.DGray  },
-    ["CursorLine"]                  = { bg = C.DGray  },
-    ["Title"]                       = { fg = C.Orange },
-    ["Directory"]                   = { fg = C.Blue   },
-    ["MatchParen"]                  = { bg = C.Gray   },
-    ["PmenuSbar"]                   = { bg = C.DGray  },
-    ["PmenuThumb"]                  = { bg = C.LGray  },
-    ["Pmenu"]                       = { fg = C.LGray, bg = C.DGray  },
-    ["PmenuSel"]                    = { fg = C.White, bg = C.Blue   },
-    ["Search"]                      = { fg = C.Black, bg = C.Orange },
-    ["Identifier"]                  = { fg = C.Red    },
-    ["Boolean"]                     = { fg = C.Orange },
-    ["Number"]                      = { fg = C.Orange },
-    ["PreProc"]                     = { fg = C.Yellow },
-    ["Type"]                        = { fg = C.Yellow },
-    ["String"]                      = { fg = C.Green  },
-    ["Character"]                   = { fg = C.Green  },
-    ["Constant"]                    = { fg = C.Cyan   },
-    ["Special"]                     = { fg = C.Blue   },
-    ["Include"]                     = { fg = C.Blue   },
-    ["Function"]                    = { fg = C.Blue   },
-    ["Statement"]                   = { fg = C.Purple },
-    ["Keyword"]                     = { fg = C.Purple },
-    ["Conditional"]                 = { fg = C.Purple },
-    ["Comment"]                     = { fg = C.Gray   },
-    ["@none"]                       = { fg = C.LGray  },
-    ["@namespace"]                  = { fg = C.Yellow },
-    ["@parameter"]                  = { fg = C.Red    },
+    ["Normal"]                     = { guifg = C.LGray },
+    ["Visual"]                     = { guibg = C.DGray },
+    ["LineNr"]                     = { guifg = C.Gray },
+    ["NonText"]                    = { guifg = C.DGray },
+    ["CursorLine"]                 = { guibg = C.DGray },
+    ["Title"]                      = { guifg = C.Orange },
+    ["Directory"]                  = { guifg = C.Blue },
+    ["MatchParen"]                 = { guibg = C.Gray },
+    ["PmenuSbar"]                  = { guibg = C.DGray },
+    ["PmenuThumb"]                 = { guibg = C.LGray },
+    ["Pmenu"]                      = { guifg = C.LGray, guibg = C.DGray },
+    ["PmenuSel"]                   = { guifg = C.White, guibg = C.Blue },
+    ["Search"]                     = { guifg = C.Black, guibg = C.Orange },
+    ["Identifier"]                 = { guifg = C.Red },
+    ["Boolean"]                    = { guifg = C.Orange },
+    ["Number"]                     = { guifg = C.Orange },
+    ["PreProc"]                    = { guifg = C.Yellow },
+    ["Type"]                       = { guifg = C.Purple },
+    ["String"]                     = { guifg = C.Green },
+    ["Character"]                  = { guifg = C.Green },
+    ["Constant"]                   = { guifg = C.Cyan },
+    ["Special"]                    = { guifg = C.Blue },
+    ["Include"]                    = { guifg = C.Blue },
+    ["Function"]                   = { guifg = C.Blue },
+    ["Statement"]                  = { guifg = C.Purple },
+    ["Keyword"]                    = { guifg = C.Purple },
+    ["Conditional"]                = { guifg = C.Purple },
+    ["Comment"]                    = { guifg = C.Gray },
+
+    -- lsp
+    ["@lsp.type.namespace"]        = { guifg = C.Yellow },
+    ["@lsp.type.class"]            = { guifg = C.Yellow },
+
+    ["@none"]                      = { guifg = C.LGray },
+    ["@namespace"]                 = { guifg = C.Yellow },
+    ["@parameter"]                 = { guifg = C.Red },
+
     -- Markdown
-    ["@text.reference"]             = { fg = C.Blue   },
-    ["@text.uri"]                   = { fg = C.Purple },
-    ["@text.title"]                 = { fg = C.Red,   ui = "bold"   },
-    ["@text.strong"]                = { fg = C.White, ui = "bold"   },
-    ["@text.literal"]               = { fg = C.Green, ui = "italic" },
-    ["@constant.builtin"]           = { fg = C.Orange },
-    ["@punctuation.delimiter"]      = { fg = C.LGray  },
+    ["@text.reference"]            = { guifg = C.Blue },
+    ["@text.uri"]                  = { guifg = C.Purple },
+    ["@text.title"]                = { guifg = C.Red,   gui = "bold" },
+    ["@text.strong"]               = { guifg = C.White, gui = "bold" },
+    ["@text.literal"]              = { guifg = C.Green, gui = "italic" },
+    ["@constant.builtin"]          = { guifg = C.Orange },
+    ["@punctuation.delimiter"]     = { guifg = C.LGray },
+
     -- coc
-    ["DiagnosticError"]             = { fg = C.DRed   },
-    ["DiagnosticUnderlineWarn"]     = { fg = C.Yellow, ui = "underline" }, -- CocWarningHighlight link to this
-    ["DiagnosticUnderlineError"]    = { fg = C.DRed,   ui = "underline" }, -- CocErrorHighlight link to this
-    ["DiffAdd"]                     = { fg = C.Black,  bg = C.Green     },
-    ["DiffChange"]                  = { fg = C.Black,  bg = C.Yellow    },
-    ["DiffDelete"]                  = { fg = C.Black,  bg = C.Red       },
-    ["DiffText"]                    = { fg = C.Black,  bg = C.Red       },
+    -- ["DiagnosticError"]             = { guifg = C.DRed   },
+    -- ["DiagnosticUnderlineWarn"]     = { guifg = C.Yellow, ui = "underline" }, -- CocWarningHighlight link to this
+    -- ["DiagnosticUnderlineError"]    = { guifg = C.DRed,   ui = "underline" }, -- CocErrorHighlight link to this
+    -- ["DiffAdd"]                     = { guifg = C.Black,  guibg = C.Green     },
+    -- ["DiffChange"]                  = { guifg = C.Black,  guibg = C.Yellow    },
+    -- ["DiffDelete"]                  = { guifg = C.Black,  guibg = C.Red       },
+    -- ["DiffText"]                    = { guifg = C.Black,  guibg = C.Red       },
+
     -- gitsigns
-    ["GitSignsAdd"]                 = { fg = C.DGreen },
-    ["GitSignsChange"]              = { fg = C.Orange },
-    ["GitSignsDelete"]              = { fg = C.Red    },
+    ["GitSignsAdd"]                = { guifg = C.DGreen },
+    ["GitSignsChange"]             = { guifg = C.Orange },
+    ["GitSignsDelete"]             = { guifg = C.Red },
+
     -- indent-blankline
-    ["IndentBlanklineChar"]         = { fg = C.DGray, ui = "nocombine" },
-    ["IndentBlanklineContextChar"]  = { fg = C.Gray,  ui = "nocombine" },
+    ["IndentBlanklineChar"]        = { guifg = C.DGray, gui = "nocombine" },
+    ["IndentBlanklineContextChar"] = { guifg = C.Gray, gui = "nocombine" },
+
     -- todo-comments
-    ["Todo"]                        = { fg = C.Black, bg = C.Blue },
-    ["TodoFgTODO"]                  = { fg = C.Blue   },
-    ["TodoBgTODO"]                  = { fg = C.Black, bg = C.Blue },
+    ["Todo"]                       = { guifg = C.Black, guibg = C.Blue },
+    ["TodoFgTODO"]                 = { guifg = C.Blue },
+    ["TodoBgTODO"]                 = { guifg = C.Black, guibg = C.Blue },
 }
 
 local highlights_link = {
-    ["@variable"]                    = "Identifier",
-    ["@storageclass"]                = "Keyword",
-    ["@type.qualifier"]              = "Keyword",
+    -- ["@variable"]                    = "Identifier",
+    -- ["@storageclass"]                = "Keyword",
+    -- ["@type.qualifier"]              = "Keyword",
+
     -- zsh
-    ["zshVariable"]                  = "Identifier",
-    ["zshOperator"]                  = "Operator",
-    ["zshKSHFunction"]               = "Function",
+    ["zshVariable"]              = "Identifier",
+    ["zshOperator"]              = "Operator",
+    ["zshKSHFunction"]           = "Function",
+
     -- coc
-    ["CocFadeOut"]                   = "Comment",
-    ["CocFloating"]                  = "Pmenu",
-    ["CocMenuSel"]                   = "PmenuSel",
+    -- ["CocFadeOut"]                   = "Comment",
+    -- ["CocFloating"]                  = "Pmenu",
+    -- ["CocMenuSel"]                   = "PmenuSel",
+
     -- gitsigns
-    ["GitSignsCurrentLineBlame"]     = "Comment",
+    ["GitSignsCurrentLineBlame"] = "Comment",
+
     -- nvim-tree
-    ["NvimTreeGitNew"]               = "GitSignsAdd",
-    ["NvimTreeGitDirty"]             = "GitSignsChange",
-    ["NvimTreeCursorLine"]           = "CursorLine",
-    ["NvimTreeOpenedFolderIcon"]     = "NvimTreeOpenedFolderName",
-    ["NvimTreeIndentMarker"]         = "IndentBlanklineContextChar",
+    ["NvimTreeGitNew"]           = "GitSignsAdd",
+    ["NvimTreeGitDirty"]         = "GitSignsChange",
+    ["NvimTreeCursorLine"]       = "CursorLine",
+    ["NvimTreeOpenedFolderIcon"] = "NvimTreeOpenedFolderName",
+    ["NvimTreeIndentMarker"]     = "IndentBlanklineContextChar",
 }
 
 local highlights_clear = {
@@ -109,13 +123,10 @@ local highlights_clear = {
 }
 
 -- highlight
-C.ui = "gui"
-C.fg = "guifg"
-C.bg = "guibg"
 for group, args in pairs(highlights) do
     local command = string.format("highlight %s ", group)
     for arg, value in pairs(args) do
-        command = command .. (C[arg] or arg) .. "=" .. value .. " "
+        command = command .. arg .. "=" .. value .. " "
     end
     vim.api.nvim_command(command)
 end
