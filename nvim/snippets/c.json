@@ -1,0 +1,29 @@
+{
+    "mycout": {
+        "prefix": "mycout",
+        "body": [
+            "std::cout << $1 << std::endl;"
+        ],
+        "description": "cpp std::cout Snippet"
+    },
+    "main": {
+        "prefix": "main",
+        "body": [
+            "int main(int argc, char *argv[]) {",
+            "\t$1",
+            "\treturn 0;",
+            "}"
+        ],
+        "description": "c/cpp main Snippet"
+    },
+    "ifndef": {
+        "prefix": "ifndef",
+        "body": [
+            "#ifndef $1",
+            "#define $2",
+            "$3",
+            "#endif"
+        ],
+        "description": "c/cpp ifndef Snippet"
+    }
+}
