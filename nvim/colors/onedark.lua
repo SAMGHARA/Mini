@@ -19,51 +19,51 @@ local C = {
 
 local highlights = {
     -- Core
-    ["Normal"]                     = { guifg = C.LGray },
-    ["Visual"]                     = { guibg = C.DGray },
-    ["LineNr"]                     = { guifg = C.Gray },
-    ["NonText"]                    = { guifg = C.DGray },
-    ["CursorLine"]                 = { guibg = C.DGray },
+    ["Normal"]                     = { guifg = C.LGray  },
+    ["Visual"]                     = { guibg = C.DGray  },
+    ["LineNr"]                     = { guifg = C.Gray   },
+    ["NonText"]                    = { guifg = C.DGray  },
+    ["CursorLine"]                 = { guibg = C.DGray  },
     ["Title"]                      = { guifg = C.Orange },
-    ["Directory"]                  = { guifg = C.Blue },
-    ["MatchParen"]                 = { guibg = C.Gray },
-    ["PmenuSbar"]                  = { guibg = C.DGray },
-    ["PmenuThumb"]                 = { guibg = C.LGray },
-    ["Pmenu"]                      = { guifg = C.LGray, guibg = C.DGray },
-    ["PmenuSel"]                   = { guifg = C.White, guibg = C.Blue },
+    ["Directory"]                  = { guifg = C.Blue   },
+    ["MatchParen"]                 = { guibg = C.Gray   },
+    ["PmenuSbar"]                  = { guibg = C.DGray  },
+    ["PmenuThumb"]                 = { guibg = C.LGray  },
+    ["Pmenu"]                      = { guifg = C.LGray, guibg = C.DGray  },
+    ["PmenuSel"]                   = { guifg = C.White, guibg = C.Blue   },
     ["Search"]                     = { guifg = C.Black, guibg = C.Orange },
-    ["Identifier"]                 = { guifg = C.Red },
+    ["Identifier"]                 = { guifg = C.Red    },
     ["Boolean"]                    = { guifg = C.Orange },
     ["Number"]                     = { guifg = C.Orange },
     ["PreProc"]                    = { guifg = C.Yellow },
     ["Type"]                       = { guifg = C.Purple },
-    ["String"]                     = { guifg = C.Green },
-    ["Character"]                  = { guifg = C.Green },
-    ["Constant"]                   = { guifg = C.Cyan },
-    ["Special"]                    = { guifg = C.Blue },
-    ["Include"]                    = { guifg = C.Blue },
-    ["Function"]                   = { guifg = C.Blue },
+    ["String"]                     = { guifg = C.Green  },
+    ["Character"]                  = { guifg = C.Green  },
+    ["Constant"]                   = { guifg = C.Cyan   },
+    ["Special"]                    = { guifg = C.Blue   },
+    ["Include"]                    = { guifg = C.Blue   },
+    ["Function"]                   = { guifg = C.Blue   },
     ["Statement"]                  = { guifg = C.Purple },
     ["Keyword"]                    = { guifg = C.Purple },
     ["Conditional"]                = { guifg = C.Purple },
-    ["Comment"]                    = { guifg = C.Gray },
+    ["Comment"]                    = { guifg = C.Gray   },
 
     -- lsp
     ["@lsp.type.namespace"]        = { guifg = C.Yellow },
     ["@lsp.type.class"]            = { guifg = C.Yellow },
 
-    ["@none"]                      = { guifg = C.LGray },
+    ["@none"]                      = { guifg = C.LGray  },
     ["@namespace"]                 = { guifg = C.Yellow },
-    ["@parameter"]                 = { guifg = C.Red },
+    ["@parameter"]                 = { guifg = C.Red    },
 
     -- Markdown
-    ["@text.reference"]            = { guifg = C.Blue },
+    ["@text.reference"]            = { guifg = C.Blue   },
     ["@text.uri"]                  = { guifg = C.Purple },
-    ["@text.title"]                = { guifg = C.Red,   gui = "bold" },
-    ["@text.strong"]               = { guifg = C.White, gui = "bold" },
+    ["@text.title"]                = { guifg = C.Red,   gui = "bold"   },
+    ["@text.strong"]               = { guifg = C.White, gui = "bold"   },
     ["@text.literal"]              = { guifg = C.Green, gui = "italic" },
     ["@constant.builtin"]          = { guifg = C.Orange },
-    ["@punctuation.delimiter"]     = { guifg = C.LGray },
+    ["@punctuation.delimiter"]     = { guifg = C.LGray  },
 
     -- coc
     -- ["DiagnosticError"]             = { guifg = C.DRed   },
@@ -87,6 +87,26 @@ local highlights = {
     ["Todo"]                       = { guifg = C.Black, guibg = C.Blue },
     ["TodoFgTODO"]                 = { guifg = C.Blue },
     ["TodoBgTODO"]                 = { guifg = C.Black, guibg = C.Blue },
+
+    --[[
+        c/cpp Doxygen comments highlight
+
+        ///[1] @[2]brief[3] this is a doxygen comment[4]
+        ///
+        /// @tparam[5] T template T
+        /// @param[6] x[7] param x[8]
+        /// @param y param y
+        ///
+        /// @return[9] int
+        template<typename T>
+        int func(T x, int y);
+    --]]
+    ["doxygenComment"]            = { guifg = C.Gray,   gui = "italic" }, -- [1]doxygenStartL  /**/ -> doxygenStart
+    ["doxygenSpecial"]            = { guifg = C.Purple, gui = "italic" }, -- [2]
+    ["doxygenParam"]              = { guifg = C.Purple, gui = "italic" }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
+    ["doxygenBrief"]              = { guifg = C.LGray,  gui = "italic" }, -- [4]
+    ["doxygenParamName"]          = { guifg = C.Red,    gui = "italic" }, -- [7]
+    ["doxygenSpecialOnelineDesc"] = { guifg = C.Gray,   gui = "italic" }, -- [8]
 }
 
 local highlights_link = {

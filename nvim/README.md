@@ -215,3 +215,12 @@ sudo pacman -S ctags
 sudo pacman -S tree-sitter tree-sitter-cli
 ```
 
+### C/CPP 的 `Doxygen` 注释支持
+
+1. 帮助文档: `:h doxygen.vim`
+2. 在 `c/cpp` 文件中手动执行 `:set syntax=c.doxgen` 可以看到 `Doxygen` 注释的高亮
+3. 添加配置 `vim.g.load_doxygen_syntax = 1` 可以自动实现高亮 `Doxygen`
+4. `Doxygen` 注释各部分的高亮设置见 `./colors/onedark.lua` 中 `doxygen` 部分
+5. **如果开启了 `nvim-treesitter` 插件的高亮支持，`Doxygen` 注释无法显示高亮，暂未解决，只能关闭除 `markdown` 之外的高亮**
+6. [danymat/neogen](https://github.com/danymat/neogen) 插件实现自动生成 `Doxygen` 注释
+
