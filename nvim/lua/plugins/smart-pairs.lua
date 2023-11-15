@@ -4,7 +4,7 @@ return {
 
     event = "InsertEnter",
     config = function()
-        require("pairs"):setup({
+        require("pairs"):setup {
             pairs = {
                 ['*'] = {
                     { '(', ')' },
@@ -54,6 +54,6 @@ return {
                     end
                 end
             },
-        })
+        }
     end
 }

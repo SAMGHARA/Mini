@@ -133,13 +133,21 @@ local highlights_link = {
     ["NvimTreeCursorLine"]       = "CursorLine",
     ["NvimTreeOpenedFolderIcon"] = "NvimTreeOpenedFolderName",
     ["NvimTreeIndentMarker"]     = "IndentBlanklineContextChar",
+
+    -- lsp
+    ["luaFunc"] = "Function",
+
+    -- gitcommit
+    ["gitcommitBlank"] = "Normal",
+    ["gitcommitSummary"] = "Normal",
+    ["gitcommitOverflow"] = "Normal",
 }
 
 local highlights_clear = {
     "SignColumn",
     "CursorLineNr",
     "StatusLine",
-    "TabLineFill"
+    "TabLineFill",
 }
 
 -- highlight

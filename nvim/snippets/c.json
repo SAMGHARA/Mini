@@ -25,5 +25,23 @@
             "#endif"
         ],
         "description": "c/cpp ifndef Snippet"
+    },
+    "for": {
+        "prefix": "for",
+        "body": [
+            "for (int i = ${1:0}; i < $2; i ++) {",
+            "\t$3",
+            "}"
+        ],
+        "description": ""
+    },
+    "for-range": {
+        "prefix": "for",
+        "body": [
+            "for (${1:const} auto ${2:i} : $3) {",
+            "\t$4",
+            "}"
+        ],
+        "description": ""
     }
 }

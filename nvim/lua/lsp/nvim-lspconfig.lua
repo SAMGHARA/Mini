@@ -22,6 +22,7 @@ local lspconfig = {
     -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
 
+    dependencies = "williamboman/mason-lspconfig.nvim",
     init = function()
         require("core").setKeyMaps {
             {
