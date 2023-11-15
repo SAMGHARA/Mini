@@ -56,7 +56,7 @@ if vim.env.TMUX then
             ["*"] = "tmux save-buffer -",
         },
     }
-else -- TODO: How to determine current is WSL
+elseif require("core").is_wsl() then
     options.opt.clipboard = vim.opt.clipboard ^ { "unnamed,unnamedplus" }
     options.g.clipboard = {
         name = "WslClipboard",

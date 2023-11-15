@@ -20,4 +20,16 @@ Core.setCommand = function(name, command, opts)
     vim.api.nvim_create_user_command(name, command, opts)
 end
 
+Core.is_wsl = function()
+    if vim.fn.has("unix") then
+        local version = vim.fn.readfile("/proc/version")
+        for _, v in ipairs(version) do
+            if vim.fn.match(v, "WSL") >= 0 then
+                return true
+            end
+        end
+    end
+    return false
+end
+
 return Core
