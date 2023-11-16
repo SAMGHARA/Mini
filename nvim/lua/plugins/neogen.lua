@@ -9,6 +9,7 @@ return {
     config = function()
         local i = require("neogen.types.template").item
         require("neogen").setup {
+            placeholders_hl = "none",
             snippet_engine = "luasnip",
             languages = {
                 cpp = {

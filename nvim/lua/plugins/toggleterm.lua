@@ -5,13 +5,13 @@ return {
     cmd = "ToggleTerm",
     init = function()
         local keymaps = {
-            { "n", "<leader>t", "<cmd>ToggleTerm size=40 direction=float<cr>" },
-            { "t", "<leader>t", "<cmd>exit<cr>", }
+            -- { "n", "<leader>t", "<Cmd>ToggleTerm size=40 direction=float<CR>" },
+            { "n", "<leader>t", "<Cmd>ToggleTerm size=10 direction=horizontal<CR>" },
         }
         require("core").setKeyMaps(keymaps)
     end,
     opts = {
-        open_mapping = [[<c-\>]],
+        open_mapping = [[<leader>t]],
         start_in_insert = true,
         insert_mappings = true,
         size = function(term)
