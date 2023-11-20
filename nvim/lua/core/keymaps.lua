@@ -20,7 +20,6 @@ require("core").setKeyMaps {
     -- "v"                U            transform to Uppercase
     { { "i", "v" },      "jk",         "<ESC>",             opts },
     { "t",               "jk",         "<C-\\><C-n>",       opts }, -- in terminal switch TERMINAL mode to NORMAL mode
-    { "t",               "<ESC>",      "<C-\\><C-n>",       opts }, -- in terminal switch TERMINAL mode to NORMAL mode
     { { "n", "i", "v" }, "<Home>",     smart_home,          opts },
     { { "n", "i", "v" }, "<M-b>",      smart_home,          opts },
     { { "n", "i", "v" }, "<M-e>",      "<End>",             opts },

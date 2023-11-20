@@ -1,8 +1,16 @@
--- https://github.com/folke/todo-comments.nvim
 return {
+    -- https://github.com/folke/todo-comments.nvim
     "folke/todo-comments.nvim",
 
     cmd = "TodoTelescope",
+    init = function()
+        local C = require("core.theme")
+        require("core").setHighlights {
+            ["Todo"]       = { guifg = C.Black, guibg = C.Blue },
+            ["TodoFgTODO"] = { guifg = C.Blue },
+            ["TodoBgTODO"] = { guifg = C.Black, guibg = C.Blue },
+        }
+    end,
     opts = {
         highlight = {
             multiline = true,                -- enable multine todo comments

@@ -1,0 +1,9 @@
+{
+    "sh": {
+        "prefix": "sh",
+        "body": [
+            "#!/bin/${1:bash}"
+        ],
+        "description": "#!/bin/sh"
+    }
+}

@@ -1,7 +1,6 @@
+require("core.theme")
 require("core.options")
 require("core.keymaps")
-
-vim.cmd [[colorscheme onedark]]
 
 local lazy = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy) then
@@ -44,10 +43,10 @@ require("lazy").setup {
         rtp = {
             disabled_plugins = {
                 "gzip",
+                "tutor",
+                "tohtml",
                 "rplugin",
                 "tarPlugin",
-                "tohtml",
-                "tutor",
                 "zipPlugin"
             }
         }

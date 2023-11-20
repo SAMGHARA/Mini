@@ -1,5 +1,5 @@
--- https://github.com/akinsho/toggleterm.nvim
 return {
+    -- https://github.com/akinsho/toggleterm.nvim
     "akinsho/toggleterm.nvim",
 
     cmd = "ToggleTerm",

@@ -1,14 +1,19 @@
--- https://github.com/nvim-tree/nvim-tree.lua
 return {
+    -- https://github.com/nvim-tree/nvim-tree.lua
     "kyazdani42/nvim-tree.lua",
 
-    cmd = { "NvimTreeFocus", "NvimTreeToggle" },
+    keys = {
+        { mode = "n", "<leader>e", "<cmd>NvimTreeFocus<cr>",  desc = "NvimTree: NvimTree Focus" },
+        { mode = "n", "<leader>f", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree: NvimTree Toggle" }
+    },
     init = function()
-        local keymaps = {
-            { "n", "<leader>e", "<cmd>NvimTreeFocus<cr>" },
-            { "n", "<leader>f", "<cmd>NvimTreeToggle<cr>" }
+        require("core").linkHighlights {
+            ["NvimTreeGitNew"]           = "GitSignsAdd",
+            ["NvimTreeGitDirty"]         = "GitSignsChange",
+            ["NvimTreeCursorLine"]       = "CursorLine",
+            ["NvimTreeOpenedFolderIcon"] = "NvimTreeOpenedFolderName",
+            ["NvimTreeIndentMarker"]     = "IndentBlanklineContextChar",
         }
-        require("core").setKeyMaps(keymaps)
     end,
     opts = {
         on_attach = function(bufnr)

@@ -1,5 +1,5 @@
--- https://github.com/gaoDean/autolist.nvim
 return {
+    -- https://github.com/gaoDean/autolist.nvim
     "gaoDean/autolist.nvim",
 
     ft = { "txt", "markdown" },

@@ -1,5 +1,5 @@
--- https://github.com/nvim-lualine/lualine.nvim
 return {
+    -- https://github.com/nvim-lualine/lualine.nvim
     "nvim-lualine/lualine.nvim",
 
     event = "VeryLazy",
@@ -12,7 +12,7 @@ return {
         options = {
             icons_enabled = false,
             -- theme = "codedark",
-            component_separators = '|';
+            component_separators = '|',
             section_separators = { left = '', right = '' },
             always_divide_middle = true,
             globalstatus = true,

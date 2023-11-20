@@ -15,12 +15,14 @@
                 "path": "./markdown.json"
             },
             {
-                "language": [
-                    "c",
-                    "cpp"
-                ],
+                "language": [ "c", "cpp" ],
                 "path": "./c.json"
+            },
+            {
+                "language": [ "sh", "zsh" ],
+                "path": "./sh.json"
             }
+
         ]
     }
 }

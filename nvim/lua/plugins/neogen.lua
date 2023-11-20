@@ -6,6 +6,30 @@ return {
     keys = {
         { mode = "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>", { noremap = true, silent = true, desc = "Neogen: generate annotations" } }
     },
+    init = function ()
+        --[[
+            c/cpp Doxygen comments highlight
+
+            ///[1] @[2]brief[3] this is a doxygen comment[4]
+            ///
+            /// @tparam[5] T template T
+            /// @param[6] x[7] param x[8]
+            /// @param y param y
+            ///
+            /// @return[9] int
+            template<typename T>
+            int func(T x, int y);
+        --]]
+        local C = require("core.theme")
+        require("core").setHighlights {
+            ["doxygenComment"]            = { guifg = C.Gray,   gui = "italic" }, -- [1]doxygenStartL  /**/ -> doxygenStart
+            ["doxygenSpecial"]            = { guifg = C.Purple, gui = "italic" }, -- [2]
+            ["doxygenParam"]              = { guifg = C.Purple, gui = "italic" }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
+            ["doxygenBrief"]              = { guifg = C.LGray,  gui = "italic" }, -- [4]
+            ["doxygenParamName"]          = { guifg = C.Red,    gui = "italic" }, -- [7]
+            ["doxygenSpecialOnelineDesc"] = { guifg = C.Gray,   gui = "italic" }, -- [8]
+        }
+    end,
     config = function()
         local i = require("neogen.types.template").item
         require("neogen").setup {

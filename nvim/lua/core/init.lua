@@ -20,6 +20,29 @@ Core.setCommand = function(name, command, opts)
     vim.api.nvim_create_user_command(name, command, opts)
 end
 
+Core.setHighlights = function(highlights)
+    for group, args in pairs(highlights) do
+        local command = string.format("highlight %s ", group)
+        for arg, value in pairs(args) do
+            command = command .. arg .. "=" .. value .. " "
+        end
+        vim.api.nvim_command(command)
+    end
+end
+
+Core.linkHighlights = function(highlights)
+    for group, link in pairs(highlights) do
+        local command = string.format("highlight link %s %s", group, link)
+        vim.api.nvim_command(command)
+    end
+end
+
+Core.clearHighlights = function(highlights)
+    for _, group in pairs(highlights) do
+        vim.api.nvim_command("highlight clear " .. group)
+    end
+end
+
 Core.is_wsl = function()
     if vim.fn.has("unix") then
         local version = vim.fn.readfile("/proc/version")

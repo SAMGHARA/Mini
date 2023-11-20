@@ -8,19 +8,63 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        'saadparwaiz1/cmp_luasnip',
+        "saadparwaiz1/cmp_luasnip",
     },
 
+    init = function()
+        local C = require("core.theme")
+
+        require("core").setHighlights {
+            ["CmpItemAbbrMatch"]      = { guifg = C.Blue },
+            ["cmpitemkindkeyword"]    = { guifg = C.Orange },
+            ["CmpItemKindVariable"]   = { guifg = C.White },
+            ["CmpItemKindFunction"]   = { guifg = C.Purple },
+            ["CmpItemAbbrDeprecated"] = { guifg = C.Gray },
+        }
+        require("core").linkHighlights {
+            ["CmpItemKindText"]       = "CmpItemKindVariable",
+            ["CmpItemKindUnit"]       = "CmpItemKindKeyword",
+            ["CmpItemKindMethod"]     = "CmpItemKindFunction",
+            ["CmpItemKindProperty"]   = "CmpItemKindKeyword",
+            ["CmpItemKindInterface"]  = "CmpItemKindVariable",
+            ["CmpItemAbbrMatchFuzzy"] = "CmpItemAbbrMatch",
+        }
+    end,
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
+        local cmp_kinds = {
+            Text = "",
+            Method = "",
+            Function = "",
+            Constructor = "",
+            Field = "",
+            Variable = "",
+            Class = "",
+            Interface = "",
+            Module = "",
+            Property = "",
+            Unit = "",
+            Value = "",
+            Enum = "",
+            Keyword = "",
+            Snippet = "",
+            Color = "",
+            File = "",
+            Reference = "",
+            Folder = "",
+            EnumMember = "",
+            Constant = "",
+            Struct = "",
+            Event = "",
+            Operator = "",
+            TypeParameter = "",
+        }
 
         cmp.setup {
             sorting = { priority_weight = 1 },
             view = { docs = { auto_open = true } },
-            window = {
-                completion = { col_offset = 1, scrollbar = true, },
-            },
+            window = { completion = { col_offset = 1, scrollbar = true, }, },
             snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
             sources = cmp.config.sources {
                 { name = "nvim_lsp" },
@@ -43,34 +87,28 @@ return {
                 ),
             },
             formatting = {
+                fields = { "kind", "abbr" },
                 format = function(_, item)
-                    -- Set the fixed width of the completion menu to 60 characters.
-                    local fixed_width = 60
+                    item.kind = string.format("%s %s", cmp_kinds[item.kind], item.kind)
 
-                    -- Set the fixed completion window width.
-                    vim.o.pumwidth = fixed_width
-
-                    -- Get the width of the current window.
-                    local win_width = vim.api.nvim_win_get_width(0)
-
-                    local max_content_width = fixed_width and fixed_width - 10 or math.floor(win_width * 0.2)
-
-                    if #item.abbr > max_content_width then
-                        item.abbr = vim.fn.strcharpart(item.abbr, 0, max_content_width - 3) .. "..."
+                    local content_width = math.floor(vim.api.nvim_win_get_width(0) * 0.3)
+                    if #item.abbr > content_width then
+                        item.abbr = vim.fn.strcharpart(item.abbr, 0, content_width - 3) .. "..."
                     else
-                        item.abbr = item.abbr .. (" "):rep(max_content_width - #item.abbr)
+                        item.abbr = item.abbr .. (" "):rep(content_width - #item.abbr)
                     end
                     return item
                 end,
             },
         }
 
-        cmp.setup.cmdline(':', {
+        cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources(
-                { { name = 'path' } },
-                { { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } } }
-            )
+                { { name = "path" } },
+                { { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } } }
+            ),
+            formatting = { fields = { "abbr" } }
         })
     end
 }

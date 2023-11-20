@@ -1,10 +1,15 @@
--- https://github.com/neoclide/coc.nvim
 return {
+    -- https://github.com/neoclide/coc.nvim
     "neoclide/coc.nvim",
 
     branch = "release",
     event  = { "BufAdd", "BufRead", "BufNewFile", },
     init   = function()
+        require("core").linkHighlights {
+            ["CocFadeOut"]  = "Comment",
+            ["CocFloating"] = "Pmenu",
+            ["CocMenuSel"]  = "PmenuSel",
+        }
         vim.g.coc_global_extensions = {
             "coc-snippets",
             "coc-word",

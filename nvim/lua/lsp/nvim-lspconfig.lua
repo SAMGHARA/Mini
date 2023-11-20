@@ -24,6 +24,13 @@ local lspconfig = {
 
     dependencies = "williamboman/mason-lspconfig.nvim",
     init = function()
+        local C = require("core.theme")
+        require("core").setHighlights {
+            ["DiagnosticError"]          = { guifg = C.DRed },
+            ["DiagnosticUnderlineWarn"]  = { guifg = C.Yellow, gui = "underline" },
+            ["DiagnosticUnderlineError"] = { guifg = C.DRed,   gui = "underline" },
+        }
+
         require("core").setKeyMaps {
             {
                 "n", "<space>le", vim.diagnostic.open_float,
