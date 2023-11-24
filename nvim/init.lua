@@ -12,7 +12,6 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazy)
 require("lazy").setup {
     spec = {
         require("plugins.autolist"),
-        require("plugins.comment"),
         require("plugins.diffview"),
         require("plugins.flash"),
         require("plugins.fzf"),

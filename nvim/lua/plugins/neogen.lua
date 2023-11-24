@@ -6,7 +6,7 @@ return {
     keys = {
         { mode = "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>", { noremap = true, silent = true, desc = "Neogen: generate annotations" } }
     },
-    init = function ()
+    init = function()
         --[[
             c/cpp Doxygen comments highlight
 
