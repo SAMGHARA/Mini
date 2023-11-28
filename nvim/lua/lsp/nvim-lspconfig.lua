@@ -68,7 +68,7 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: List all the references" }
                     },
                     {
-                        { "n",             "v" }, "<leader>lca", vim.lsp.buf.code_action,
+                        { "n", "v" }, "<leader>lca", vim.lsp.buf.code_action,
                         { buffer = ev.buf, desc = "LSP: Code Action" }
                     },
                     {
@@ -76,7 +76,7 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: Renames all references" }
                     },
                     {
-                        "n", "<a-s-f>", function() vim.lsp.buf.format { async = true } end,
+                        "n", "<M-F>", function() vim.lsp.buf.format { async = true } end,
                         { buffer = ev.buf, desc = "LSP: Formats a buffer" }
                     }
                 }

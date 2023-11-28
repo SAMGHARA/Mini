@@ -4,7 +4,7 @@ require("core.keymaps")
 
 local lazy = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy) then
-    print("Installing Lazy.nvim ....")
+    print("Installing lazy.nvim ....")
     vim.fn.system({ "git", "clone", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy)
@@ -41,12 +41,7 @@ require("lazy").setup {
         border = "single",
         rtp = {
             disabled_plugins = {
-                "gzip",
-                "tutor",
-                "tohtml",
-                "rplugin",
-                "tarPlugin",
-                "zipPlugin"
+                "gzip", "tutor", "tohtml", "rplugin", "tarPlugin", "zipPlugin"
             }
         }
     }

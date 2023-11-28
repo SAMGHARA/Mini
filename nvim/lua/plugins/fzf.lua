@@ -3,10 +3,10 @@ return {
     "ibhagwan/fzf-lua",
 
     keys = {
-        { "\\",            "<cmd>FzfLua builtin<cr>",      mode = "n", desc = "FZF" },
-        { "F",             "<cmd>FzfLua files<cr>",        mode = "n", desc = "Find files" },
-        { "<c-f>",         "<cmd>FzfLua lgrep_curbuf<cr>", mode = "n", desc = "Curbuf search" },
-        { "<leader><c-f>", "<cmd>FzfLua live_grep<cr>",    mode = "n", desc = "Global search" },
+        { mode = "n", "\\",            "<Cmd>FzfLua builtin<CR>",      desc = "FZF"           },
+        { mode = "n", "F",             "<Cmd>FzfLua files<CR>",        desc = "Find files"    },
+        { mode = "n", "<C-f>",         "<Cmd>FzfLua lgrep_curbuf<CR>", desc = "Curbuf search" },
+        { mode = "n", "<leader><C-f>", "<Cmd>FzfLua live_grep<CR>",    desc = "Global search" },
     },
     config = function()
         require("fzf-lua").setup {

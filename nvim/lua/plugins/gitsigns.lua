@@ -8,11 +8,11 @@ return {
         require("core").setHighlights {
             ["GitSignsAdd"]    = { guifg = C.DGreen },
             ["GitSignsChange"] = { guifg = C.Orange },
-            ["GitSignsDelete"] = { guifg = C.Red },
-            ["DiffAdd"]        = { guifg = C.Black, guibg = C.Green },
+            ["GitSignsDelete"] = { guifg = C.Red    },
+            ["DiffAdd"]        = { guifg = C.Black, guibg = C.Green  },
             ["DiffChange"]     = { guifg = C.Black, guibg = C.Yellow },
-            ["DiffDelete"]     = { guifg = C.Black, guibg = C.Red },
-            ["DiffText"]       = { guifg = C.Black, guibg = C.Red },
+            ["DiffDelete"]     = { guifg = C.Black, guibg = C.Red    },
+            ["DiffText"]       = { guifg = C.Black, guibg = C.Red    },
         }
         require("core").linkHighlights {
             ["GitSignsCurrentLineBlame"] = "Comment",
@@ -21,11 +21,11 @@ return {
             ["gitcommitOverflow"]        = "Normal",
         }
         require("core").setKeyMaps {
-            { "n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>",     { desc = "GitSigns: diffthis"     } },
-            { "n", "<leader>gn", "<cmd>Gitsigns next_hunk<cr>",    { desc = "GitSigns: next_hunk"    } },
-            { "n", "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>",    { desc = "GitSigns: prev_hunk"    } },
-            { "n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",   { desc = "GitSigns: reset_hunk"   } },
-            { "n", "<leader>gv", "<cmd>Gitsigns preview_hunk<cr>", { desc = "GitSigns: preview_hunk" } },
+            { "n", "<leader>gd", "<Cmd>Gitsigns diffthis<CR>",     { desc = "GitSigns: diffthis"     } },
+            { "n", "<leader>gn", "<Cmd>Gitsigns next_hunk<CR>",    { desc = "GitSigns: next_hunk"    } },
+            { "n", "<leader>gp", "<Cmd>Gitsigns prev_hunk<CR>",    { desc = "GitSigns: prev_hunk"    } },
+            { "n", "<leader>gr", "<Cmd>Gitsigns reset_hunk<CR>",   { desc = "GitSigns: reset_hunk"   } },
+            { "n", "<leader>gv", "<Cmd>Gitsigns preview_hunk<CR>", { desc = "GitSigns: preview_hunk" } },
 
         }
     end,

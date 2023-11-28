@@ -9,7 +9,7 @@ return {
         local C = require("core.theme")
         require("core").setHighlights {
             ["IndentBlanklineChar"]        = { guifg = C.DGray, gui = "nocombine" },
-            ["IndentBlanklineContextChar"] = { guifg = C.Gray, gui = "nocombine" },
+            ["IndentBlanklineContextChar"] = { guifg = C.Gray,  gui = "nocombine" },
         }
     end,
     opts = {

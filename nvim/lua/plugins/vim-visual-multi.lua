@@ -10,9 +10,9 @@ return {
                 VM_highlight_matches = "underline",
                 VM_default_mappings = 0,
                 VM_maps = {
-                    ["Find Under"]      = "<c-n>",
-                    ["Add Cursor Up"]   = "<c-k>", -- lua/plugins/coc.lua  { "n", <c-k>, ... }
-                    ["Add Cursor Down"] = "<c-j>", -- lua/plugins/coc.lua  { "n", <c-j>, ... }
+                    ["Find Under"]      = "<C-n>",
+                    ["Add Cursor Up"]   = "<C-k>", -- lua/plugins/coc.lua  { "n", <c-k>, ... }
+                    ["Add Cursor Down"] = "<C-j>", -- lua/plugins/coc.lua  { "n", <c-j>, ... }
                     ["Remove Region"]   = "q",
                 }
             }

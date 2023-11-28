@@ -4,9 +4,9 @@ return {
 
     event = "VeryLazy",
     keys = {
-        { mode = "n", "Q",       "<cmd>bdelete<cr>",   desc = "Close buffer" },
-        { mode = "n", "<tab>",   "<cmd>bnext<cr>",     desc = "Next buffer" },
-        { mode = "n", "<s-tab>", "<cmd>bprevious<cr>", desc = "Prev buffer" },
+        { mode = "n", "Q",       "<Cmd>bdelete<CR>",   desc = "Close buffer" },
+        { mode = "n", "<Tab>",   "<Cmd>bnext<CR>",     desc = "Next buffer"  },
+        { mode = "n", "<S-Tab>", "<Cmd>bprevious<CR>", desc = "Prev buffer"  },
     },
     opts = {
         options = {

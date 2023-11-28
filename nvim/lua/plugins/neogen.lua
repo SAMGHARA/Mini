@@ -4,7 +4,10 @@ return {
 
     dependencies = "nvim-treesitter/nvim-treesitter",
     keys = {
-        { mode = "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>", { noremap = true, silent = true, desc = "Neogen: generate annotations" } }
+        {
+            mode = "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>",
+            noremap = true, silent = true, desc = "Neogen: generate annotations"
+        }
     },
     init = function()
         --[[

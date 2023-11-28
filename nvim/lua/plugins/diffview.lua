@@ -3,10 +3,10 @@ return {
     "sindrets/diffview.nvim",
 
     keys = {
-        { mode = "n", "<leader>gl", "<cmd>DiffviewLog<cr>" },
-        { mode = "n", "<leader>go", "<cmd>DiffviewOpen<cr>" },
-        { mode = "n", "<leader>gc", "<cmd>DiffviewClose<cr>" },
-        { mode = "n", "<leader>gf", "<cmd>DiffviewFocusFiles<cr>" },
-        { mode = "n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>" },
+        { mode = "n", "<leader>gl", "<Cmd>DiffviewLog<CR>"         },
+        { mode = "n", "<leader>go", "<Cmd>DiffviewOpen<CR>"        },
+        { mode = "n", "<leader>gc", "<Cmd>DiffviewClose<CR>"       },
+        { mode = "n", "<leader>gf", "<Cmd>DiffviewFocusFiles<CR>"  },
+        { mode = "n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>" },
     }
 }

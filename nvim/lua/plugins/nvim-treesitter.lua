@@ -31,7 +31,7 @@ local playground = {
     -- https://github.com/nvim-treesitter/nvim-treesitter
     dependencies = "nvim-treesitter/nvim-treesitter",
     keys = {
-        { mode = "n", "<F2>", "<cmd>TSHighlightCapturesUnderCursor<cr>" }
+        { mode = "n", "<F2>", "<Cmd>TSHighlightCapturesUnderCursor<CR>" }
     }
 }
 

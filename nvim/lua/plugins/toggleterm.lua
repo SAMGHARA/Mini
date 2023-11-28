@@ -2,14 +2,10 @@ return {
     -- https://github.com/akinsho/toggleterm.nvim
     "akinsho/toggleterm.nvim",
 
-    cmd = "ToggleTerm",
-    init = function()
-        local keymaps = {
-            -- { "n", "<leader>t", "<Cmd>ToggleTerm size=40 direction=float<CR>" },
-            { "n", "<leader>t", "<Cmd>ToggleTerm size=10 direction=horizontal<CR>" },
-        }
-        require("core").setKeyMaps(keymaps)
-    end,
+    keys = {
+        -- { "n", "<leader>t", "<Cmd>ToggleTerm size=40 direction=float<CR>" },
+        { mode = "n", "<leader>t", "<Cmd>ToggleTerm size=10 direction=horizontal<CR>", desc = "ToggleTerm" },
+    },
     opts = {
         open_mapping = [[<leader>t]],
         start_in_insert = true,

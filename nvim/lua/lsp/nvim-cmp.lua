@@ -15,11 +15,11 @@ return {
         local C = require("core.theme")
 
         require("core").setHighlights {
-            ["CmpItemAbbrMatch"]      = { guifg = C.Blue },
+            ["CmpItemAbbrMatch"]      = { guifg = C.Blue   },
             ["cmpitemkindkeyword"]    = { guifg = C.Orange },
-            ["CmpItemKindVariable"]   = { guifg = C.White },
+            ["CmpItemKindVariable"]   = { guifg = C.White  },
             ["CmpItemKindFunction"]   = { guifg = C.Purple },
-            ["CmpItemAbbrDeprecated"] = { guifg = C.Gray },
+            ["CmpItemAbbrDeprecated"] = { guifg = C.Gray   },
         }
         require("core").linkHighlights {
             ["CmpItemKindText"]       = "CmpItemKindVariable",

@@ -3,8 +3,8 @@ return {
     "kyazdani42/nvim-tree.lua",
 
     keys = {
-        { mode = "n", "<leader>e", "<cmd>NvimTreeFocus<cr>",  desc = "NvimTree: NvimTree Focus" },
-        { mode = "n", "<leader>f", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree: NvimTree Toggle" }
+        { mode = "n", "<leader>e", "<Cmd>NvimTreeFocus<CR>",  desc = "NvimTree: NvimTree Focus"  },
+        { mode = "n", "<leader>f", "<Cmd>NvimTreeToggle<CR>", desc = "NvimTree: NvimTree Toggle" }
     },
     init = function()
         require("core").linkHighlights {
@@ -24,10 +24,10 @@ return {
 
             local keymaps = {
                 { "n", "o",             api.node.open.edit,               opts("Open") },
-                { "n", "<cr>",          api.node.open.edit,               opts("Open") },
+                { "n", "<CR>",          api.node.open.edit,               opts("Open") },
                 { "n", "<2-LeftMouse>", api.node.open.edit,               opts("Open") },
                 { "n", "q",             api.tree.close,                   opts("Close") },
-                { "n", "<tab>",         api.node.open.preview,            opts("Open Preview") },
+                { "n", "<Tab>",         api.node.open.preview,            opts("Open Preview") },
                 { "n", "a",             api.fs.create,                    opts("Create") },
                 { "n", "d",             api.fs.remove,                    opts("Delete") },
                 { "n", "D",             api.fs.trash,                     opts("Trash") },

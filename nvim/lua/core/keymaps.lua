@@ -14,9 +14,9 @@ require("core").setKeyMaps {
     { { "n", "i" },      "<C-s>",      "<Cmd>w<CR>",              opts },
     { { "n", "i" },      "<C-z>",      "<Cmd>undo<CR>",           opts },
     { { "n", "i" },      "<C-y>",      "<Cmd>redo<CR>",           opts },
-    { "v",               "<tab>",      ">gv",                     opts },
-    { "v",               "<S-tab>",    "<gv",                     opts },
-    { "i",               "<S-tab>",    "<C-d>",                   opts },
+    { "v",               "<Tab>",      ">gv",                     opts },
+    { "v",               "<S-Tab>",    "<gv",                     opts },
+    { "i",               "<S-Tab>",    "<C-d>",                   opts },
     { "i",               "<M-h>",      "<left>",                  opts },
     { "i",               "<M-j>",      "<down>",                  opts }, -- lua/plugins/coc.lua set another keymap
     { "i",               "<M-k>",      "<up>",                    opts }, -- lua/plugins/coc.lua set another keymap
