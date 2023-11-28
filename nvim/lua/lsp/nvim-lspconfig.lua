@@ -31,6 +31,17 @@ local lspconfig = {
             ["DiagnosticUnderlineError"] = { guifg = C.DRed,   gui = "underline" },
         }
 
+        require("core").setFileTypeCallBack("qf", function()
+            local bn = vim.fn.bufnr('%')
+            local OpenAndCloseQF = string.format("<CR><Cmd>%dbdelete<CR>", bn)
+            require("core").setKeyMaps {
+                { "n", "<CR>", OpenAndCloseQF, { buffer = bn } },
+                { "n", "o",    OpenAndCloseQF, { buffer = bn } },
+                { "n", "j",    "j<CR><C-w>j",  { buffer = bn } },
+                { "n", "k",    "k<CR><C-w>j",  { buffer = bn } },
+            }
+        end)
+
         require("core").setKeyMaps {
             {
                 "n", "<space>le", vim.diagnostic.open_float,
