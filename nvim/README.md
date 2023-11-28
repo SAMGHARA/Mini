@@ -224,3 +224,7 @@ sudo pacman -S tree-sitter tree-sitter-cli
 5. **如果开启了 `nvim-treesitter` 插件的高亮支持，`Doxygen` 注释无法显示高亮，暂未解决，只能关闭除 `markdown` 之外的高亮**
 6. [danymat/neogen](https://github.com/danymat/neogen) 插件实现自动生成 `Doxygen` 注释
 
+### markdown-preview 配置
+
+- 插件: [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+- 通过插件管理器安装后需要到插件目录下手动执行 `yarn install` 或 `npm install` 命令
