@@ -21,8 +21,11 @@
             {
                 "language": [ "sh", "zsh" ],
                 "path": "./sh.json"
+            },
+            {
+                "language": "go",
+                "path": "./go.json"
             }
-
         ]
     }
 }

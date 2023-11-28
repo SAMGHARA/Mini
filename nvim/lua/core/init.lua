@@ -18,8 +18,6 @@ Core.setFileTypeCallBack = function(ft, callback)
     vim.api.nvim_create_autocmd("FileType", { pattern = ft, callback = callback })
 end
 
-Core.addFileTypes = vim.filetype.add
-
 Core.setCommand = function(name, command, opts)
     vim.api.nvim_create_user_command(name, command, opts)
 end

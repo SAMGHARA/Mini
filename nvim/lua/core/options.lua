@@ -74,8 +74,4 @@ end
 
 require("core").setOptions(options)
 
-require("core").addFileTypes {
-    pattern = {
-        [".*%.snippets"] = "snippets",
-    },
-}
+require("core").setFileTypeCallBack("go", function() vim.opt.formatoptions:prepend("or") end)

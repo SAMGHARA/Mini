@@ -1,0 +1,12 @@
+{
+    "main": {
+        "prefix": "main",
+        "body": [
+            "package main\n",
+            "func main() {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Go: main"
+    }
+}

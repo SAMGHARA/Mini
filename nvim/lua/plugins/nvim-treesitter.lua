@@ -14,11 +14,14 @@ local treesitter = {
     },
     config = function()
         require("nvim-treesitter.configs").setup {
-            ensure_installed = { "c", "cpp", "go", "lua", "markdown", "markdown_inline" },
+            ensure_installed = {
+                "lua", "cpp", "go",
+                "markdown", "markdown_inline",
+            },
             sync_install = false,
             highlight = {
                 enable = true,
-                disable = { "c", "cpp", "go", "lua" },
+                disable = { "lua", "cpp" }, -- treesitter doesn't support cpp doxygen comment highlight
             }
         }
     end

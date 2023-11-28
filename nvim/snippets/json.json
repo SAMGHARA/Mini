@@ -9,5 +9,14 @@
             "}"
         ],
         "description": "VSCode Snippet"
+    },
+    "language": {
+        "prefix": "language",
+        "body": [
+            "{",
+            "\t\"language\": \"${1:language}\",",
+            "\t\"path\": \"./${1:language}.json\"",
+            "}"
+        ]
     }
 }
