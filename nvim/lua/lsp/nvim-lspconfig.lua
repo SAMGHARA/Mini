@@ -1,28 +1,38 @@
 local lspserver = {
-    "lua_ls",
-    "bashls",
-    "clangd",
-    "jsonls",
-    "gopls",
+    -- mason                   nvim-lspconfig
+    ["gopls"]                = "gopls",
+    ["clangd"]               = "clangd",
+    ["json-lsp"]             = "jsonls",
+    ["lua-language-server"]  = "lua_ls",
+    ["bash-language-server"] = "bashls",
 }
 
 local mason = {
-    -- https://github.com/williamboman/mason-lspconfig.nvim
-    "williamboman/mason-lspconfig.nvim",
-
     -- https://github.com/williamboman/mason.nvim
-    dependencies = "williamboman/mason.nvim",
+    "williamboman/mason.nvim",
+
     config = function()
         require("mason").setup {}
-        require("mason-lspconfig").setup { ensure_installed = lspserver }
-    end
+
+        -- automatically install missing lspserver
+        local registry = require("mason-registry")
+        local lsp_need_install = nil
+        for lsp, _ in pairs(lspserver) do
+            if not registry.is_installed(lsp) then
+                lsp_need_install = lsp_need_install and (lsp_need_install .. lsp) or lsp .. " "
+            end
+        end
+        if lsp_need_install then
+            vim.api.nvim_command("MasonInstall " .. lsp_need_install)
+        end
+    end,
 }
 
 local lspconfig = {
     -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
 
-    dependencies = "williamboman/mason-lspconfig.nvim",
+    dependencies = "williamboman/mason.nvim",
     init = function()
         local C = require("core.theme")
         require("core").setHighlights {
@@ -87,7 +97,7 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: Renames all references" }
                     },
                     {
-                        "n", "<M-F>", function() vim.lsp.buf.format { async = true } end,
+                        { "n", "v" }, "<M-F>", function() vim.lsp.buf.format { async = true } end,
                         { buffer = ev.buf, desc = "LSP: Formats a buffer" }
                     }
                 }
@@ -97,7 +107,7 @@ local lspconfig = {
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        for _, lsp in ipairs(lspserver) do
+        for _, lsp in pairs(lspserver) do
             local status, opts = pcall(require, "lsp." .. lsp)
             if not status then
                 require("lspconfig")[lsp].setup { capabilities = capabilities }
