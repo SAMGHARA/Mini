@@ -6,7 +6,14 @@
             "func main() {",
             "\t$0",
             "}"
-        ],
-        "description": "Go: main"
+        ]
+    },
+    "func": {
+        "prefix": "func",
+        "body": [
+            "func ${1:func}(${2:params}) (${3:rets} {",
+            "\t$4",
+            "}"
+        ]
     }
 }

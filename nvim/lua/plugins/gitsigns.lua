@@ -9,10 +9,10 @@ return {
             ["GitSignsAdd"]    = { guifg = C.DGreen },
             ["GitSignsChange"] = { guifg = C.Orange },
             ["GitSignsDelete"] = { guifg = C.Red    },
-            ["DiffAdd"]        = { guifg = C.Black, guibg = C.Green  },
-            ["DiffChange"]     = { guifg = C.Black, guibg = C.Yellow },
-            ["DiffDelete"]     = { guifg = C.Black, guibg = C.Red    },
-            ["DiffText"]       = { guifg = C.Black, guibg = C.Red    },
+            ["DiffAdd"]        = { guifg = C.Green , guibg = C.DGray },
+            ["DiffChange"]     = { guifg = C.Yellow, guibg = C.DGray },
+            ["DiffDelete"]     = { guifg = C.Red   , guibg = C.DGray },
+            ["DiffText"]       = { guifg = C.Red   , guibg = C.DGray },
         }
         require("core").linkHighlights {
             ["GitSignsCurrentLineBlame"] = "Comment",
@@ -26,7 +26,6 @@ return {
             { "n", "<leader>gp", "<Cmd>Gitsigns prev_hunk<CR>",    { desc = "GitSigns: prev_hunk"    } },
             { "n", "<leader>gr", "<Cmd>Gitsigns reset_hunk<CR>",   { desc = "GitSigns: reset_hunk"   } },
             { "n", "<leader>gv", "<Cmd>Gitsigns preview_hunk<CR>", { desc = "GitSigns: preview_hunk" } },
-
         }
     end,
     opts = {

@@ -8,5 +8,6 @@ return {
         { mode = "n", "<leader>gc", "<Cmd>DiffviewClose<CR>"       },
         { mode = "n", "<leader>gf", "<Cmd>DiffviewFocusFiles<CR>"  },
         { mode = "n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>" },
-    }
+    },
+    opts = { use_icons = false }
 }

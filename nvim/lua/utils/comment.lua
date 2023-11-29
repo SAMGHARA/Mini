@@ -3,6 +3,7 @@ local opts = {
         lua = "--",
         cpp = "//",
         go  = "//",
+        vim = '"',
     },
     hunk = {
         lua = { "--[[", "]]" },

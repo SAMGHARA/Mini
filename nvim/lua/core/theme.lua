@@ -46,11 +46,13 @@ local highlights = {
     ["Statement"]              = { guifg = C.Purple },
     ["Keyword"]                = { guifg = C.Purple },
     ["Conditional"]            = { guifg = C.Purple },
-    ["Comment"]                = { guifg = C.Gray   },
+    ["Comment"]                = { guifg = C.Gray, gui = "italic" },
 
-    -- lsp
-    ["@lsp.type.namespace"]    = { guifg = C.Yellow },
+    ["@constant"]              = { guifg = C.Red    },
+    ["@constant.builtin"]      = { guifg = C.Orange },
     ["@lsp.type.class"]        = { guifg = C.Yellow },
+    ["@lsp.type.namespace"]    = { guifg = C.Yellow },
+    ["@lsp.type.enumMember"]   = { guifg = C.Cyan   },
 
     -- Markdown
     ["@text.uri"]              = { guifg = C.Purple },
@@ -58,7 +60,6 @@ local highlights = {
     ["@text.strong"]           = { guifg = C.White, gui = "bold"   },
     ["@text.literal"]          = { guifg = C.Green, gui = "italic" },
     ["@text.reference"]        = { guifg = C.Blue   },
-    ["@constant.builtin"]      = { guifg = C.Orange },
     ["@punctuation.delimiter"] = { guifg = C.LGray  },
 }
 
