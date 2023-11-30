@@ -16,8 +16,7 @@ return {
             section_separators = { left = '', right = '' },
             always_divide_middle = true,
             globalstatus = true,
-            refresh = { statusline = 500, tabline = 500,
-            }
+            refresh = { statusline = 500, tabline = 500 }
         },
         sections = {
             lualine_a = { 'mode' },

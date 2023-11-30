@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazy) then
     print("Installing lazy.nvim ....")
     vim.fn.system({ "git", "clone", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy })
 end
-vim.opt.rtp:prepend(vim.env.LAZY or lazy)
+vim.opt.rtp:prepend(lazy)
 
 require("lazy").setup {
     spec = {

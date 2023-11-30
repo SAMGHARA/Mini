@@ -13,7 +13,6 @@ return {
 
     init = function()
         local C = require("core.theme")
-
         require("core").setHighlights {
             ["CmpItemAbbrMatch"]      = { guifg = C.Blue   },
             ["cmpitemkindkeyword"]    = { guifg = C.Orange },
