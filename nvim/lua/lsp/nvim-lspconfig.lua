@@ -16,14 +16,10 @@ local mason = {
 
         -- automatically install missing lspserver
         local registry = require("mason-registry")
-        local lsp_need_install = nil
         for lsp, _ in pairs(lspserver) do
             if not registry.is_installed(lsp) then
-                lsp_need_install = lsp_need_install and (lsp_need_install .. lsp) or lsp .. " "
+                vim.api.nvim_command("MasonInstall " .. lsp)
             end
-        end
-        if lsp_need_install then
-            vim.api.nvim_command("MasonInstall " .. lsp_need_install)
         end
     end,
 }
