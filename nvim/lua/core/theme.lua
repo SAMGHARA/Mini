@@ -58,6 +58,7 @@ local highlights = {
     ["@text.uri"]              = { guifg = C.Purple },
     ["@text.title"]            = { guifg = C.Red,   gui = "bold"   },
     ["@text.strong"]           = { guifg = C.White, gui = "bold"   },
+    ["@text.strike"]           = { guifg = C.Gray,  gui = "strikethrough" },
     ["@text.literal"]          = { guifg = C.Green, gui = "italic" },
     ["@text.reference"]        = { guifg = C.Blue   },
     ["@punctuation.delimiter"] = { guifg = C.LGray  },

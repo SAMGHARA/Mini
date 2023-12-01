@@ -28,6 +28,7 @@ require("lazy").setup {
         require("plugins.vim-visual-multi"),
         require("plugins.which-key"),
         require("plugins.nvim-treesitter"),
+        require("plugins.nvim-web-devicons"),
         require("lsp.LuaSnip"),
         require("lsp.nvim-cmp"),
         require("lsp.nvim-lspconfig"),

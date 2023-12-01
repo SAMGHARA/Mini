@@ -10,10 +10,12 @@ return {
     },
     opts = {
         options = {
-            icons_enabled = false,
+            icons_enabled = true,
             -- theme = "codedark",
-            component_separators = '|',
-            section_separators = { left = '', right = '' },
+            component_separators = { left = '', right = '' },
+            section_separators = { left = '', right = '' },
+            -- component_separators = '|',
+            -- section_separators = { left = '', right = '' },
             always_divide_middle = true,
             globalstatus = true,
             refresh = { statusline = 500, tabline = 500 }
