@@ -3,7 +3,7 @@ local opts = { noremap = true, silent = true }
 
 require("core").setKeyMaps {
     -- "i"                <M-o>        insert next line
-    -- "i"                <M-S-o>      insert prev line
+    -- "i"                <M-O>        insert prev line
     -- "v"                u            transform to Lowercase
     -- "v"                U            transform to Uppercase
     { { "i", "v" },      "jk",         "<ESC>",                   opts },

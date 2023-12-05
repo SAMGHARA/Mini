@@ -1,27 +1,16 @@
-local lspserver = {
-    -- mason                   nvim-lspconfig
-    ["gopls"]                = "gopls",
-    ["clangd"]               = "clangd",
-    ["json-lsp"]             = "jsonls",
-    ["lua-language-server"]  = "lua_ls",
-    ["bash-language-server"] = "bashls",
-}
-
 local mason = {
     -- https://github.com/williamboman/mason.nvim
     "williamboman/mason.nvim",
 
-    config = function()
+    config = function(_, opts)
         require("mason").setup {}
 
-        -- automatically install missing lspserver
-        local registry = require("mason-registry")
-        for lsp, _ in pairs(lspserver) do
-            if not registry.is_installed(lsp) then
+        for _, lsp in ipairs(opts) do
+            if not require("mason-registry").is_installed(lsp) then
                 vim.api.nvim_command("MasonInstall " .. lsp)
             end
         end
-    end,
+    end
 }
 
 local lspconfig = {
@@ -100,19 +89,19 @@ local lspconfig = {
             end,
         })
     end,
-    config = function()
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-        for _, lsp in pairs(lspserver) do
-            local status, opts = pcall(require, "lsp." .. lsp)
-            if not status then
-                require("lspconfig")[lsp].setup { capabilities = capabilities }
-            else
-                opts.capabilities = capabilities
-                require("lspconfig")[lsp].setup(opts)
-            end
+    config = function(_, lspopts)
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        for lsp, opts in pairs(lspopts) do
+            opts.capabilities = capabilities
+            require("lspconfig")[lsp].setup(opts)
         end
     end
 }
 
-return { mason, lspconfig }
+return {
+    mason,
+    lspconfig,
+    require("lsp.servers.c"),
+    require("lsp.servers.go"),
+    require("lsp.servers.lua"),
+}
