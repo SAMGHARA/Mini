@@ -62,17 +62,18 @@ return {
 
         cmp.setup {
             sorting = { priority_weight = 1 },
+            preselect = cmp.PreselectMode.None,
             view = { docs = { auto_open = true } },
             window = { completion = { col_offset = 1, scrollbar = true, }, },
             snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
             sources = cmp.config.sources {
+                { name = "luasnip"  },
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "path" },
-                { name = "buffer" }
+                { name = "path"     },
+                { name = "buffer"   }
             },
             mapping = {
-                ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+                ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
                 ["<A-j>"] = cmp.mapping.select_next_item(),
                 ["<A-k>"] = cmp.mapping.select_prev_item(),
                 ["<A-n>"] = cmp.mapping(
