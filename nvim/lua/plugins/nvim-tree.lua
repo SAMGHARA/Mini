@@ -2,6 +2,7 @@ return {
     -- https://github.com/nvim-tree/nvim-tree.lua
     "kyazdani42/nvim-tree.lua",
 
+    dependencies = "kyazdani42/nvim-web-devicons",
     keys = {
         { mode = "n", "<leader>e", "<Cmd>NvimTreeFocus<CR>",  desc = "NvimTree: NvimTree Focus"  },
         { mode = "n", "<leader>f", "<Cmd>NvimTreeToggle<CR>", desc = "NvimTree: NvimTree Toggle" }

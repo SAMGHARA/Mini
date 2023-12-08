@@ -3,6 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
 
     event = "VeryLazy",
+    dependencies = "kyazdani42/nvim-web-devicons",
     keys = {
         { mode = "n", "Q",       "<Cmd>bdelete<CR>",   desc = "Close buffer" },
         { mode = "n", "<Tab>",   "<Cmd>bnext<CR>",     desc = "Next buffer"  },
