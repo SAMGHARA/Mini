@@ -6,7 +6,7 @@ require("core").setKeyMaps {
     -- "i"                <M-O>        insert prev line
     -- "v"                u            transform to Lowercase
     -- "v"                U            transform to Uppercase
-    { { "i", "v" },      "jk",         "<ESC>",                   opts },
+    { { "i", "v", "s" }, "jk",         "<Esc>",                   opts },
     { "t",               "jk",         "<C-\\><C-n>",             opts }, -- in terminal switch TERMINAL mode to NORMAL mode
     { { "n", "i", "v" }, "<Home>",     utils.SmartHome,           opts },
     { { "n", "i", "v" }, "<M-b>",      utils.SmartHome,           opts },
@@ -17,11 +17,6 @@ require("core").setKeyMaps {
     { "v",               "<Tab>",      ">gv",                     opts },
     { "v",               "<S-Tab>",    "<gv",                     opts },
     { "i",               "<S-Tab>",    "<C-d>",                   opts },
-    { "i",               "<M-h>",      "<left>",                  opts },
-    { "i",               "<M-j>",      "<down>",                  opts }, -- lua/plugins/coc.lua set another keymap
-    { "i",               "<M-k>",      "<up>",                    opts }, -- lua/plugins/coc.lua set another keymap
-    { "i",               "<M-l>",      "<right>",                 opts },
-    { "n",               "C",          ":",                       opts },
     { "n",               "<leader>w",  "<Cmd>w<CR>",              opts },
     { "n",               "<leader>q",  "<Cmd>qa<CR>",             opts },
     { "n",               "<leader>h",  "gd",                      opts },

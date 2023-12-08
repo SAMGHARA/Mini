@@ -74,17 +74,21 @@ return {
             },
             mapping = {
                 ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
-                ["<A-j>"] = cmp.mapping.select_next_item(),
-                ["<A-k>"] = cmp.mapping.select_prev_item(),
-                ["<A-n>"] = cmp.mapping(
-                    function(fallback) if luasnip.expand_or_jumpable() then luasnip.expand_or_jump() else fallback() end end, { "i", "s" }
-                ),
-                ["<A-p>"] = cmp.mapping(
-                    function(fallback) if luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end, { "i", "s" }
-                ),
-                ["<ESC>"] = cmp.mapping(
-                    function(fallback) if cmp.visible() then cmp.close() else fallback() end end, { "i", "s" }
-                ),
+                ["<Esc>"] = cmp.mapping(function(fallback)
+                    return cmp.visible() and cmp.close() or fallback()
+                end, { "i", "s" }),
+                ["<M-j>"] = cmp.mapping(function()
+                    return cmp.visible() and cmp.select_next_item() or luasnip.choice_active() and luasnip.change_choice(1)
+                end, { "i", "s" }),
+                ["<M-k>"] = cmp.mapping(function()
+                    return cmp.visible() and cmp.select_prev_item() or luasnip.choice_active() and luasnip.change_choice(-1)
+                end, { "i", "s" }),
+                ["<M-n>"] = cmp.mapping(function()
+                    return luasnip.expand_or_jumpable() and luasnip.expand_or_jump()
+                end, { "i", "s" }),
+                ["<M-p>"] = cmp.mapping(function()
+                    return luasnip.jumpable(-1) and luasnip.jump()
+                end, { "i", "s" }),
             },
             formatting = {
                 fields = { "kind", "abbr" },
