@@ -4,7 +4,17 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
-            clangd = { settings = {} }
+            clangd = {
+                cmd = { 'clangd', '--clang-tidy' },
+                init_options = {
+                    clangdFileStatus = true,
+                    usePlaceholders = true,
+                    completeUnimported = true,
+                    semanticHighlighting = true,
+                    snippetSupport = false,
+                },
+                settings = {}
+            }
         }
     }
 }

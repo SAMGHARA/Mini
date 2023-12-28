@@ -90,7 +90,9 @@ local lspconfig = {
         })
     end,
     config = function(_, lspopts)
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         for lsp, opts in pairs(lspopts) do
+            opts.capabilities = capabilities
             require("lspconfig")[lsp].setup(opts)
         end
     end

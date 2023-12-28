@@ -17,6 +17,8 @@ require("core").setKeyMaps {
     { "v",               "<Tab>",      ">gv",                     opts },
     { "v",               "<S-Tab>",    "<gv",                     opts },
     { "i",               "<S-Tab>",    "<C-d>",                   opts },
+    { "i",               "<M-h>",      "<Left>",                  opts },
+    { "i",               "<M-l>",      "<Right>",                 opts },
     { "n",               "<leader>w",  "<Cmd>w<CR>",              opts },
     { "n",               "<leader>q",  "<Cmd>qa<CR>",             opts },
     { "n",               "<leader>h",  "gd",                      opts },
