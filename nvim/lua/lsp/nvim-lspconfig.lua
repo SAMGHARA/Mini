@@ -104,4 +104,5 @@ return {
     require("lsp.servers.c"),
     require("lsp.servers.go"),
     require("lsp.servers.lua"),
+    require("lsp.servers.cmake"),
 }
