@@ -1,76 +1,62 @@
 #!/bin/zsh
 
-ZSHRC="${HOME}/.zshrc"
-XDG_CONFIG_HOME="${HOME}/.config"
-NVIM_HOME="$XDG_CONFIG_HOME/nvim"
+ZSHRC="$HOME/.zshrc"
+XDG_CONFIG_HOME="$HOME/.config"
+NVIM="$XDG_CONFIG_HOME/nvim"
 
-typeset -A MINI=(
-    MZ     "${0:A:h}/mz"
-    NVIM   "${0:A:h}/nvim"
-    OTHERS "${0:A:h}/others"
-)
+MINI_CONF="${0:A:h}/conf"
+MINI_NVIM="${0:A:h}/nvim"
+MINI_ZSHRC="${0:A:h}/zsh/zshrc"
 
-OTHER_LINKS=(
+CONFS=(
     "clang-format"
     "tmux.conf"
     "gitconfig"
 )
 
-OTHER_PROGRAMS=(
-    "fd"
-    "bat"
-    "diff-so-fancy"
-)
-
 function install() {
-    # Add "source Mini/mz/mz.zsh" to ~/.zshrc
-    if [[ ! -e ${ZSHRC} || `grep -c "source ${MINI[MZ]}/mz.zsh" ${ZSHRC}` == 0 ]] {
-        echo "echo \"source ${MINI[MZ]}/mz.zsh\" >> ${ZSHRC}"
-        echo "source ${MINI[MZ]}/mz.zsh" >> ${ZSHRC}
+    # add "source $MINI_ZSHRC" to $ZSHRC
+    [[ ! -e $ZSHRC || `grep -c "source $MINI_ZSHRC" $ZSHRC` == 0 ]] && {
+        echo "echo \"source $MINI_ZSHRC\" >> $ZSHRC"
+        echo "source $MINI_ZSHRC" >> $ZSHRC
     }
 
-    # Link Mini/nvim to ${XDG_CONFIG_HOME}/nvim
-    [[ ! -d ${XDG_CONFIG_HOME} ]] && mkdir ${XDG_CONFIG_HOME}
+    # create symlink from $MINI_NVIM to $NVIM
+    mkdir -p $XDG_CONFIG_HOME
 
-    if [[ ! -e ${NVIM_HOME} ]] {
-        echo "ln -s ${MINI[NVIM]} ${NVIM_HOME}"
-        ln -s ${MINI[NVIM]} ${NVIM_HOME}
+    [[ ! -e $NVIM ]] && {
+        echo "ln -s $MINI_NVIM $NVIM"
+        ln -s $MINI_NVIM $NVIM
     }
 
-    # Link Mini/others/* to ~/*
-    for file (${OTHER_LINKS}) {
-        if [[ ! -e "${HOME}/.${file}" ]] {
-            echo "ln -s ${MINI[OTHERS]}/${file} ${HOME}/.${file}"
-            ln -s "${MINI[OTHERS]}/${file}" "${HOME}/.${file}"
+    # create symlink for other dotfiles
+    for conf (${CONFS}) {
+        [[ ! -e "${HOME}/.${conf}" ]] && {
+            echo "ln -s $MINI_CONF/$conf $HOME/.$conf"
+            ln -s "$MINI_CONF/$conf" "$HOME/.$conf"
         }
     }
 
-    # Install Other Programs
-    for program (${OTHER_PROGRAMS}) {
-        which ${program} > /dev/null
-        if (( $? != 0 )) {
-            echo "install ${program} ..."
-            sudo pacman -S --nedded ${program}
-        }
-    }
     echo "Install Finished"
 }
 
 function uninstall() {
-    if [[ `grep -c "source ${MINI[MZ]}/mz.zsh" ${ZSHRC}` != 0 ]] {
-        echo "sed -i \"/Mini\/mz\/mz.zsh/d\" ${ZSHRC}"
-        sed -i "/Mini\/mz\/mz.zsh/d" ${ZSHRC}
+    # remove "source $MINI_ZSHRC"
+    [[ `grep -c "source $MINI_ZSHRC" $ZSHRC` != 0 ]] && {
+        echo "sed -i '\,$MINI_ZSHRC,d' $ZSHRC"
+        sed -i "\,$MINI_ZSHRC,d" $ZSHRC
     }
 
-	if [[ -h ${NVIM_HOME} ]] {
-		echo "rm ${NVIM_HOME}"
-		rm ${NVIM_HOME}
+    # remove symlink $NVIM
+	[[ -h $NVIM ]] && {
+		echo "rm $NVIM" && rm $NVIM
 	}
 
-	for file (${OTHER_LINKS}) {
-		if [[ -h "${HOME}/.${file}" ]] {
-			echo "rm ${HOME}/.${file}"
-			rm "${HOME}/.${file}"
+    # remove symlink other dotfiles
+	for conf (${CONFS}) {
+		[[ -h "${HOME}/.${conf}" ]] && {
+			echo "rm ${HOME}/.${conf}"
+			rm "${HOME}/.${conf}"
 		}
 	}
 

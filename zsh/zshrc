@@ -1,0 +1,98 @@
+#!/bin/zsh
+
+export XDG_LOCAL_HOME="$HOME/.local"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export MINI="$XDG_CONFIG_HOME/mini"
+
+########### save history zsh command to HISTFILE
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=1000
+SAVEHIST=1000
+
+###########
+setopt no_nomatch
+setopt rmstarsilent
+
+########### ignore <Tab> completion case
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+########### add environment path
+function addEnvironments() { 
+    for i (${(P)2}) {
+        [[ ${(P)1} != *$i* ]] && export $1=${(P)1}:$i
+    }
+}
+
+PATH_NEW=(
+    "$XDG_LOCAL_HOME/bin"
+    "$XDG_LOCAL_HOME/go/bin"
+    "$XDG_LOCAL_HOME/redis/bin"
+    "$XDG_LOCAL_HOME/node/node_modules/.bin"
+)
+addEnvironments "PATH" PATH_NEW 
+
+CPATH_NEW=(
+    "$XDG_LOCAL_HOME/include"
+    "$XDG_LOCAL_HOME/include/nginx"
+)
+addEnvironments "CPATH" CPATH_NEW 
+
+LIBRARY_PATH_NEW=(
+    "$XDG_LOCAL_HOME/lib"
+    "$XDG_LOCAL_HOME/hiredis/lib"
+    "$XDG_LOCAL_HOME/mysql/lib"
+)
+addEnvironments "LD_LIBRARY_PATH" LIBRARY_PATH_NEW 
+
+########### add alias
+alias     ls="ls --color"
+alias     la="ls --color -la"
+alias     rf="rm -rf"
+alias     lg="lazygit"
+alias    src="source $HOME/.zshrc"
+alias    vrc="vim $MINI/zsh/zshrc"
+alias    vvi="vim $MINI/nvim/init.lua"
+# tmux
+alias     tn="tmux new -s"
+alias     ta="tmux attach -t"
+alias   trns="tmux rename-session"
+alias   trnw="tmux rename-window"
+# pacman
+alias   syyu="sudo pacman -Syyu"
+alias   qdtq="sudo pacman -Rn \$(sudo pacman -Qdtq)"
+
+########### add keybinds
+bindkey    "\e[1~"    beginning-of-line    # <Home>
+bindkey    "^[[H"     beginning-of-line    # <Home>
+bindkey    "\e[4~"    end-of-line          # <End>
+bindkey    "^[[F"     end-of-line          # <End>
+bindkey    "\e[3~"    delete-char          # <Delete>
+bindkey    "^[[j~"    delete-char          # <Delete>
+bindkey    "\eh"      backward-char        # <Alt-h> <Left>
+bindkey    "\ej"      down-line-or-history # <Alt-j> <Down>
+bindkey    "\ek"      up-line-or-history   # <Alt-k> <Up>
+bindkey    "\el"      forward-char         # <Alt-l> <Right>
+
+########### colorful echo
+function cecho() {
+    (( $# != 2 )) && echo $1 && return
+    case $1 {
+        (Red)    echo -e "\e[31m$2\e[0m" ;;
+        (Green)  echo -e "\e[32m$2\e[0m" ;;
+        (Yellow) echo -e "\e[33m$2\e[0m" ;;
+        (Blue)   echo -e "\e[34m$2\e[0m" ;;
+        (Cyan)   echo -e "\e[36m$2\e[0m" ;;
+        (*)      echo $2 ;;
+    }
+}
+
+###########
+function duh() {
+    local depth=$1
+    du -h --max-depth=${depth:-1}
+}
+
+source "${0:A:h}/themes/zshrc"
+source "${0:A:h}/plugins/zshrc"

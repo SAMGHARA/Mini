@@ -1,0 +1,5 @@
+[user]
+	email = samgharama@outlook.com
+	name = samgh
+[core]
+	editor = nvim

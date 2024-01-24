@@ -1,18 +1,18 @@
-[submodule "mz/themes/powerlevel10k"]
-	path = mz/themes/powerlevel10k
-	url = https://gitee.com/romkatv/powerlevel10k.git
-[submodule "mz/plugins/zsh-autosuggestions"]
-	path = mz/plugins/zsh-autosuggestions
+[submodule "zsh/themes/powerlevel10k"]
+	path = zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "mz/plugins/zsh-syntax-highlighting"]
-	path = mz/plugins/zsh-syntax-highlighting
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "mz/plugins/zsh-completions"]
-	path = mz/plugins/zsh-completions
+[submodule "zsh/plugins/zsh-completions"]
+	path = zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "mz/plugins/z.lua"]
-	path = mz/plugins/z.lua
+[submodule "zsh/plugins/z.lua"]
+	path = zsh/plugins/z.lua
 	url = https://github.com/skywind3000/z.lua
-[submodule "mz/plugins/fzf"]
-	path = mz/plugins/fzf
+[submodule "zsh/plugins/fzf"]
+	path = zsh/plugins/fzf
 	url = https://github.com/junegunn/fzf
