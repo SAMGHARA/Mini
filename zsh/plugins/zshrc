@@ -1,15 +1,5 @@
 MINI_ZSH_PLUGIN=${0:A:h}
 
-########### z.lua    https://github.com/skywind3000/z.lua
-[[ -f "$MINI_ZSH_PLUGIN/z.lua/z.lua.plugin.zsh" ]] && {
-    _ZL_NO_ALIASES=1
-
-    source "$MINI_ZSH_PLUGIN/z.lua/z.lua.plugin.zsh"
-
-    alias zz="z -I"
-    alias zb="z -b"
-}
-
 ########### zsh-completions    https://github.com/zsh-users/zsh-completions
 [[ -f "$MINI_ZSH_PLUGIN/zsh-completions/zsh-completions.plugin.zsh" ]] && {
     autoload -Uz compinit && compinit
@@ -26,74 +16,9 @@ MINI_ZSH_PLUGIN=${0:A:h}
     source "$MINI_ZSH_PLUGIN/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 }
 
-########### fzf    https://github.com/junegunn/fzf
-[[ -f "$MINI_ZSH_PLUGIN/fzf/install" ]] && {
-    FZF="$MINI_ZSH_PLUGIN/fzf"
-
-    export FZF_COMPLETION_TRIGGER="\\"
-    export FZF_DEFAULT_OPTS="
-        --color bg+:#3E4452,border:#3E4452
-        --bind 'alt-j:down'
-        --bind 'alt-k:up'
-        --bind 'tab:accept'
-        --bind 'ctrl-j:preview-down'
-        --bind 'ctrl-k:preview-up'
-        --bind 'alt--:change-preview-window()'
-        --bind 'alt-=:change-preview-window(right,99%)'
-    "
-
-    [[ ! -f "$FZF/bin/fzf" ]] && $FZF/install --bin
-
-    [[ "$PATH" != *$FZF/bin* ]] && PATH="${PATH:+${PATH}:}$FZF/bin"
-
-    [[ $- == *i* ]] && source "$FZF/shell/completion.zsh" 2> /dev/null
-
-    source "$FZF/shell/key-bindings.zsh"
-}
-
 ########### extract
 [[ -f "$MINI_ZSH_PLUGIN/extract.zsh" ]] && {
     source "$MINI_ZSH_PLUGIN/extract.zsh"
 }
 
-###########
-# https://github.com/wfxr/forgit
-# https://github.com/junegunn/fzf/wiki/Examples
-#
-# pacman install package
-function install() {
-    pacman -Slq | fzf -q "$1" -m --preview 'pacman -Si {1}'| xargs -ro sudo pacman -S
-}
-
-# pacman uninstall package
-function uninstall() {
-    pacman -Qq | fzf -q "$1" -m --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns
-}
-
-function GIT_INSIDE_WORK_TREE() { git rev-parse --is-inside-work-tree > /dev/null }
-
-# archive all modification files between ${BeginCommit} to ${EndCommit}
-function git_commit_archive() {
-    GIT_INSIDE_WORK_TREE || return
-
-    local function error_hash() {
-        [[ $1 =~ "^HEAD\^*$" || $1 =~ "^[a-f0-9]+$" ]] && return 1
-        return 0
-    }
-
-    ( (( $# < 2 )) || error_hash $1 || error_hash $2 ) && {
-        echo "Usage: git_commit_archive [BeginCommit] [EndCommit] [Output.zip]" && return
-    }
-
-    local BeginCommit=$1 EndCommit=$2 Output=${3:-"Output.zip"}
-
-    [[ $Output =~ "\.zip$" ]] || Output="$Output.zip"
-
-    local ArchiveFiles=$(git diff --name-only $BeginCommit $EndCommit)
-
-    echo "Archive File List:"
-    echo $ArchiveFiles | xargs -I % echo -e "\t%"
-    echo "====> $Output"
-
-    git archive -o $Output $EndCommit $(git diff --name-only $BeginCommit $EndCommit)
-}
+source "$MINI_ZSH_PLUGIN/fzf.zsh"

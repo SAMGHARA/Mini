@@ -1,6 +1,4 @@
-alias x=extract
-
-extract() {
+function x() {
 	local remove_archive
 	local success
 	local extract_dir
