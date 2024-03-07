@@ -46,7 +46,8 @@ local highlights = {
     ["Statement"]              = { guifg = C.Purple },
     ["Keyword"]                = { guifg = C.Purple },
     ["Conditional"]            = { guifg = C.Purple },
-    ["Comment"]                = { guifg = C.Gray, gui = "italic" },
+    ["Comment"]                = { guifg = C.Gray   },
+    ["Todo"]                   = { guifg = C.Gray, guibg = C.Blue },
 
     ["@constant"]              = { guifg = C.Red    },
     ["@constant.builtin"]      = { guifg = C.Orange },

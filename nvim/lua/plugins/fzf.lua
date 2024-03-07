@@ -5,6 +5,7 @@ return {
     keys = {
         { mode = "n", "\\",            "<Cmd>FzfLua builtin<CR>",      desc = "FZF"           },
         { mode = "n", "F",             "<Cmd>FzfLua files<CR>",        desc = "Find files"    },
+        { mode = "n", "B",             "<Cmd>FzfLua buffers<CR>",      desc = "Find buffers"  },
         { mode = "n", "<C-f>",         "<Cmd>FzfLua lgrep_curbuf<CR>", desc = "Curbuf search" },
         { mode = "n", "<leader><C-f>", "<Cmd>FzfLua live_grep<CR>",    desc = "Global search" },
     },

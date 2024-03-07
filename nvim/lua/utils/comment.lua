@@ -1,98 +1,130 @@
 local opts = {
     line = {
-        lua = "--",
-        cpp = "//",
-        go  = "//",
-        vim = '"',
+        lua     = "--",
+        cpp     = "//",
+        go      = "//",
+        vim     = '"',
+        default = '#',
     },
     hunk = {
         lua = { "--[[", "]]" },
-        cpp = { "/*", "*/" },
-        go  = { "/*", "*/" },
+        default = { "/*", "*/" },
     },
-    space_padding = true,
+    space_padding = 1,
 }
 
-local SpacePadding = function() return opts.space_padding and " " or "" end
-
-local CommentChSize = function(ch)
-    return type(ch) == "string" and #ch + (opts.space_padding and 1 or 0)
-        or #ch[1] + (opts.space_padding and 2 or 1) + #ch[2]
+local spacePadding = function()
+    return string.rep(" ", opts.space_padding)
 end
 
-local getCommentRange = function()
+local commentRanges = function()
+    local range = {}
     local mode = vim.api.nvim_get_mode().mode
     if mode == "n" or mode == "i" then
         local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
-        return {
-            srow = row,
-            erow = row,
-        }
+        range.srow, range.erow = row, row
     else
         local spos, epos = vim.fn.getpos("v"), vim.fn.getpos(".")
-        return {
-            srow = math.min(spos[2], epos[2]),
-            erow = math.max(spos[2], epos[2]),
-        }
+        range.srow, range.erow = math.min(spos[2], epos[2]), math.max(spos[2], epos[2])
     end
+    range.lines = vim.api.nvim_buf_get_lines(0, range.srow - 1, range.erow, false)
+    return range
 end
 
-local lineCommentCheck = function(ch, range)
-    local commented = true
-    range.scol = {}
-    range.space_padding = {}
-    range.lines = vim.api.nvim_buf_get_lines(0, range.srow - 1, range.erow, false)
 
+local lineCommentCheck = function(ch, range)
     for i = 1, #range.lines do
-        range.scol[i] = range.lines[i]:find("%S") or #range.lines[i] + 1
-        if (range.lines[i]:sub(range.scol[i], range.scol[i] - 1 + #ch) == ch) then
-            range.space_padding[i] = range.lines[i]:match(" ", range.scol[i] + 1) and 1 or 0
-        else
-            commented = false
+        local _, pos = range.lines[i]:find("^%s*" .. ch:gsub("(%p)", "%%%1"))
+        if pos == nil then
+            return false
         end
     end
-    return commented
+    return true
 end
 
 local hunkCommentCheck = function(ch, range)
-    local commented = true
-    range.lines = vim.api.nvim_buf_get_lines(0, range.srow - 1, range.erow, false)
     local sline, eline = range.lines[1], range.lines[#range.lines]
 
-    range.scol = sline:find("%S") or #sline + 1
-    if (sline:sub(range.scol, range.scol - 1 + #ch[1]) == ch[1] and eline:sub(#eline - #ch[2] + 1) == ch[2]) then
-        range.space_padding = { sline:match(" ", range.scol + 1) and 1 or 0, eline:match(" ", #eline - #ch[2]) and 1 or 0 }
-    else
-        commented = false
+    local spos, _ = sline:find("^%s*" .. ch[1]:gsub("(%p)", "%%%1"))
+    local epos, _ = eline:find(ch[2]:gsub("(%p)", "%%%1") .. "%s*")
+    if not spos or not epos then
+        return false
     end
-    return commented
+
+    return true
 end
 
---
---
+local lineCommentUpdate = function(ch, range, commented)
+    if commented then
+        for i = 1, #range.lines do
+            local spos, epos = range.lines[i]:find(ch:gsub("(%p)", "%%%1") .. "%s?")
+            if spos and epos then
+                range.lines[i] = string.rep(" ", spos - 1) .. range.lines[i]:sub(epos + 1)
+            else
+                range.lines[i] = ""
+            end
+        end
+    else
+        local minpos = -1
+        for i = 1, #range.lines do
+            local _, epos = range.lines[i]:find("^%s*%S")
+            if minpos == -1 or (epos and epos < minpos) then
+                minpos = epos
+            end
+        end
+
+        for i = 1, #range.lines do
+            if minpos then
+                range.lines[i] = string.rep(" ", minpos - 1) .. ch .. spacePadding() .. range.lines[i]:sub(minpos)
+            else
+                range.lines[i] = ch .. spacePadding()
+            end
+        end
+    end
+end
+
+local hunkCommentUpdate = function(ch, range, commented)
+    if commented then
+        local spos, epos = range.lines[1]:find(ch[1]:gsub("(%p)", "%%%1") .. "%s?")
+        if spos and epos then
+            range.lines[1] = string.rep(" ", spos - 1) .. range.lines[1]:sub(epos + 1)
+        end
+
+        spos, epos = range.lines[#range.lines]:find("%s?" .. ch[2]:gsub("(%p)", "%%%1"))
+        if spos and epos then
+            range.lines[#range.lines] = range.lines[#range.lines]:sub(0, spos - 1)
+        end
+    else
+        local _, epos = range.lines[1]:find("^%s*%S")
+        if epos then
+            range.lines[1] = string.rep(" ", epos - 1) .. ch[1] .. spacePadding() .. range.lines[1]:sub(epos)
+        else
+            range.lines[1] = ch[1] .. spacePadding()
+        end
+        range.lines[#range.lines] = range.lines[#range.lines] .. spacePadding() .. ch[2]
+    end
+end
+
 local Comment = {
     CommentLine = function()
         local ft = vim.bo.filetype
         local ch = vim.deepcopy(opts.line[ft])
-        if not ch then return print(string.format("None '%s' line-comment!", ft)) end
+        if not ch then ch = vim.deepcopy(opts.line["default"]) end
 
-        local range = getCommentRange()
+        local range = commentRanges()
         local commented = lineCommentCheck(ch, range)
 
-        if commented then -- uncomment
-            for i = 1, #range.lines do
-                range.lines[i] = range.lines[i]:sub(0, range.scol[i] - 1) ..
-                    range.lines[i]:sub(range.scol[i] + #ch + range.space_padding[i])
-            end
-        else -- comment
-            local mincol = math.min(unpack(range.scol))
-            for i = 1, #range.lines do
-                range.lines[i] = range.lines[i]:sub(0, mincol - 1) .. ch .. SpacePadding() .. range.lines[i]:sub(mincol)
+        local start_insert = false
+        if not commented and range.srow == range.erow then
+            if not range.lines[1]:find("%S") then
+                start_insert = true
             end
         end
+
+        lineCommentUpdate(ch, range, commented)
         vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
 
-        if not commented and range.srow == range.erow and #range.lines[1] == range.scol[1] - 1 + CommentChSize(ch) then
+        if start_insert then
             vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] })
             if vim.api.nvim_get_mode().mode == "n" then
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, false, true), "n", false)
@@ -104,26 +136,21 @@ local Comment = {
         local ch = vim.deepcopy(opts.hunk[ft])
         if not ch then return print(string.format("None '%s' hunk-comment!", ft)) end
 
-        local range = getCommentRange()
+        local range = commentRanges()
         local commented = hunkCommentCheck(ch, range)
 
-        if commented then -- uncomment
-            local sline = range.lines[1]
-            range.lines[1] = sline:sub(0, range.scol - 1) .. sline:sub(range.scol + #ch[1] + range.space_padding[1])
-
-            local eline = range.lines[#range.lines]
-            range.lines[#range.lines] = eline:sub(0, #eline - #ch[2] - range.space_padding[2])
-        else -- comment
-            local sline = range.lines[1]
-            range.lines[1] = sline:sub(0, range.scol - 1) .. ch[1] .. SpacePadding() .. sline:sub(range.scol)
-
-            local eline = range.lines[#range.lines]
-            range.lines[#range.lines] = eline .. SpacePadding() .. ch[2]
+        local start_insert = false
+        if not commented and range.srow == range.erow then
+            if not range.lines[1]:find("%S") then
+                start_insert = true
+            end
         end
+
+        hunkCommentUpdate(ch, range, commented)
         vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
 
-        if not commented and range.srow == range.erow and (#range.lines[1] == range.scol - 1 + CommentChSize(ch)) then
-            vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] - #ch[2] - (opts.space_padding and 1 or 0) })
+        if start_insert then
+            vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] - #ch[2] - #spacePadding() })
             if vim.api.nvim_get_mode().mode == "n" then
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
             end

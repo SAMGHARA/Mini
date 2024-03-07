@@ -2,7 +2,7 @@ local Utils = {
     SmartHome = function()
         local feedkeys
         local _, col = unpack(vim.api.nvim_win_get_cursor(0))
-        if col == 0 or vim.api.nvim_get_current_line():sub(0, col):match('^[ \t]+$') then
+        if col == 0 or vim.api.nvim_get_current_line():sub(0, col):match("^%s*$") then
             -- move cursor to the real beginning of the line
             feedkeys = "<Home>"
         else

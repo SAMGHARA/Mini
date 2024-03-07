@@ -79,10 +79,10 @@ return {
                 end, { "i", "s" }),
                 ["<M-j>"] = cmp.mapping(function()
                     return cmp.visible() and cmp.select_next_item() or luasnip.choice_active() and luasnip.change_choice(1)
-                end, { "i", "s" }),
+                end, { "i", "s", "c" }),
                 ["<M-k>"] = cmp.mapping(function()
                     return cmp.visible() and cmp.select_prev_item() or luasnip.choice_active() and luasnip.change_choice(-1)
-                end, { "i", "s" }),
+                end, { "i", "s", "c" }),
                 ["<M-n>"] = cmp.mapping(function()
                     return luasnip.expand_or_jumpable() and luasnip.expand_or_jump()
                 end, { "i", "s" }),

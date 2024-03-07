@@ -40,4 +40,5 @@ ls.add_snippets("go", {
     s("fpl", fmt([[fmt.Println({})]], i(0))),
     s("json", fmt([[`json:"{}"`]], i(0))),
     s("db", fmt([[`db:"{}"`]], i(0))),
+    s("date", t([["2006-01-02 15:04:05"]])),
 })

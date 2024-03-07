@@ -76,7 +76,7 @@ return {
             },
             special_files = { "README.md", "readme.md", "Makefile", "CMakeLists.txt" },
         },
-        update_focused_file = { enable = true, update_root = true },
+        update_focused_file = { enable = true, update_root = false },
         diagnostics = { enable = true, icons = { hint = "", info = "", warning = "", error = "", }, },
         actions = { expand_all = { exclude = { ".git", "build" } } },
         trash = { cmd = "gio trash" },
