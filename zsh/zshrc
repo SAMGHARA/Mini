@@ -94,5 +94,10 @@ function duh() {
     du -h --max-depth=${depth:-1}
 }
 
+###########
+function ulimitc() {
+    ulimit -c unlimited
+}
+
 source "${0:A:h}/themes/zshrc"
 source "${0:A:h}/plugins/zshrc"
