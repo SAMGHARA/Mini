@@ -39,7 +39,6 @@ local options = {
         loaded_perl_provider    = 0,
         loaded_ruby_provider    = 0,
         loaded_python3_provider = 0,
-        load_doxygen_syntax     = 1,
     }
 }
 
@@ -55,6 +54,7 @@ if vim.env.TMUX then
             ["+"] = "tmux save-buffer -",
             ["*"] = "tmux save-buffer -",
         },
+        cache_enabled = 1,
     }
 elseif require("core").is_wsl() then
     options.opt.clipboard = vim.opt.clipboard ^ { "unnamed,unnamedplus" }
@@ -65,10 +65,10 @@ elseif require("core").is_wsl() then
             ["*"] = "clip.exe",
         },
         paste = {
-            ["+"] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
-            ["*"] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+            ["+"] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('\r', ''))",
+            ["*"] = "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('\r', ''))",
         },
-        cache_enabled = 0,
+        cache_enabled = 1,
     }
 end
 

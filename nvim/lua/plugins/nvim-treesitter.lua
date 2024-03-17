@@ -4,27 +4,28 @@ local treesitter = {
 
     event = "VeryLazy",
     build = ":TSUpdate",
-    cmd = {
-        "TSInstall",
-        "TSBufEnable",
-        "TSBufDisable",
-        "TSEnable",
-        "TSDisable",
-        "TSModuleInfo",
-    },
     config = function()
         require("nvim-treesitter.configs").setup {
             ensure_installed = {
-                "lua", "cpp", "go",
-                "bash", "cmake", "yaml",
+                "lua",
+                "cpp", "doxygen",
+                "go", "printf",
+                "bash", "cmake", "yaml", "json5",
                 "markdown", "markdown_inline",
             },
             sync_install = false,
             highlight = {
                 enable = true,
-                disable = { "lua", "cpp" }, -- treesitter doesn't support cpp doxygen comment highlight
+                additional_vim_regex_highlighting = false
+            },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<CR>"
+                }
             }
         }
+        vim.treesitter.language.register("json5", "json")
     end
 }
 

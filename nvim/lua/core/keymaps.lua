@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("core.utils")
 local opts = { noremap = true, silent = true }
 
 require("core").setKeyMaps {
@@ -8,8 +8,8 @@ require("core").setKeyMaps {
     -- "v"                U            transform to Uppercase
     { { "i", "v", "s" }, "jk",         "<Esc>",                   opts },
     { "t",               "jk",         "<C-\\><C-n>",             opts }, -- in terminal switch TERMINAL mode to NORMAL mode
-    { { "n", "i", "v" }, "<Home>",     utils.SmartHome,           opts },
-    { { "n", "i", "v" }, "<M-b>",      utils.SmartHome,           opts },
+    { { "n", "i", "v" }, "<Home>",     utils.Home,                opts },
+    { { "n", "i", "v" }, "<M-b>",      utils.Home,                opts },
     { { "n", "i", "v" }, "<M-e>",      "<End>",                   opts },
     { { "n", "i" },      "<C-s>",      "<Cmd>w<CR>",              opts },
     { { "n", "i" },      "<C-z>",      "<Cmd>undo<CR>",           opts },
@@ -44,6 +44,6 @@ require("core").setKeyMaps {
     { "v",               "<M-k>",      ":move '<-2<CR>gv",        opts }, -- move select block up
     { "v",               "<M-J>",      ":copy '<-1<CR>gv",        opts }, -- copy select block down
     { "v",               "<M-K>",      ":copy '><CR>gv",          opts }, -- copy select block up
-    { { "n", "i", "v" }, "<C-_>",      utils.Comment.CommentLine, opts }, -- line-comment
-    { { "n", "i", "v" }, "<M-A>",      utils.Comment.CommentHunk, opts }, -- hunk-comment
+    { { "n", "i", "v" }, "<C-_>",      utils.CommentLine,         opts }, -- line-comment
+    { { "n", "i", "v" }, "<M-A>",      utils.CommentHunk,         opts }, -- hunk-comment
 }

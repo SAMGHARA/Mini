@@ -1,3 +1,20 @@
+local M = {}
+
+-- Home
+M.Home = function()
+    local feedkeys
+    local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+    if col == 0 or vim.api.nvim_get_current_line():sub(0, col):match("^%s*$") then
+        -- move cursor to the real beginning of the line
+        feedkeys = "<Home>"
+    else
+        -- move cursor to beginning of non-whitespace characters of the line
+        if vim.api.nvim_get_mode().mode == "i" then feedkeys = "<C-o>^" else feedkeys = "^" end
+    end
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(feedkeys, true, false, true), "n", false)
+end
+
+-- Comment
 local opts = {
     line = {
         lua     = "--",
@@ -105,57 +122,56 @@ local hunkCommentUpdate = function(ch, range, commented)
     end
 end
 
-local Comment = {
-    CommentLine = function()
-        local ft = vim.bo.filetype
-        local ch = vim.deepcopy(opts.line[ft])
-        if not ch then ch = vim.deepcopy(opts.line["default"]) end
+M.CommentLine = function()
+    local ft = vim.bo.filetype
+    local ch = vim.deepcopy(opts.line[ft])
+    if not ch then ch = vim.deepcopy(opts.line["default"]) end
 
-        local range = commentRanges()
-        local commented = lineCommentCheck(ch, range)
+    local range = commentRanges()
+    local commented = lineCommentCheck(ch, range)
 
-        local start_insert = false
-        if not commented and range.srow == range.erow then
-            if not range.lines[1]:find("%S") then
-                start_insert = true
-            end
-        end
-
-        lineCommentUpdate(ch, range, commented)
-        vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
-
-        if start_insert then
-            vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] })
-            if vim.api.nvim_get_mode().mode == "n" then
-                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, false, true), "n", false)
-            end
-        end
-    end,
-    CommentHunk = function()
-        local ft = vim.bo.filetype
-        local ch = vim.deepcopy(opts.hunk[ft])
-        if not ch then return print(string.format("None '%s' hunk-comment!", ft)) end
-
-        local range = commentRanges()
-        local commented = hunkCommentCheck(ch, range)
-
-        local start_insert = false
-        if not commented and range.srow == range.erow then
-            if not range.lines[1]:find("%S") then
-                start_insert = true
-            end
-        end
-
-        hunkCommentUpdate(ch, range, commented)
-        vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
-
-        if start_insert then
-            vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] - #ch[2] - #spacePadding() })
-            if vim.api.nvim_get_mode().mode == "n" then
-                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
-            end
+    local start_insert = false
+    if not commented and range.srow == range.erow then
+        if not range.lines[1]:find("%S") then
+            start_insert = true
         end
     end
-}
 
-return Comment
+    lineCommentUpdate(ch, range, commented)
+    vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
+
+    if start_insert then
+        vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] })
+        if vim.api.nvim_get_mode().mode == "n" then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", true, false, true), "n", false)
+        end
+    end
+end
+
+M.CommentHunk = function()
+    local ft = vim.bo.filetype
+    local ch = vim.deepcopy(opts.hunk[ft])
+    if not ch then return print(string.format("None '%s' hunk-comment!", ft)) end
+
+    local range = commentRanges()
+    local commented = hunkCommentCheck(ch, range)
+
+    local start_insert = false
+    if not commented and range.srow == range.erow then
+        if not range.lines[1]:find("%S") then
+            start_insert = true
+        end
+    end
+
+    hunkCommentUpdate(ch, range, commented)
+    vim.api.nvim_buf_set_lines(0, range.srow - 1, range.erow, false, range.lines)
+
+    if start_insert then
+        vim.api.nvim_win_set_cursor(0, { range.srow, #range.lines[1] - #ch[2] - #spacePadding() })
+        if vim.api.nvim_get_mode().mode == "n" then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", false)
+        end
+    end
+end
+
+return M

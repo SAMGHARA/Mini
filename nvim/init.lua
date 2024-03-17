@@ -4,7 +4,7 @@ require("core.keymaps")
 
 local lazy = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy) then
-    print("Installing lazy.nvim ....")
+    print("Installing lazy.nvim ...")
     vim.fn.system({ "git", "clone", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy })
 end
 vim.opt.rtp:prepend(lazy)

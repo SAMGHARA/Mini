@@ -36,20 +36,23 @@ local highlights = {
     ["Boolean"]                = { guifg = C.Orange },
     ["Number"]                 = { guifg = C.Orange },
     ["PreProc"]                = { guifg = C.Yellow },
-    ["Type"]                   = { guifg = C.Purple },
+    ["Type"]                   = { guifg = C.Yellow },
     ["String"]                 = { guifg = C.Green  },
-    ["Character"]              = { guifg = C.Green  },
+    ["Character"]              = { guifg = C.Blue   },
     ["Constant"]               = { guifg = C.Cyan   },
     ["Special"]                = { guifg = C.Blue   },
     ["Include"]                = { guifg = C.Blue   },
     ["Function"]               = { guifg = C.Blue   },
-    ["Statement"]              = { guifg = C.Purple },
     ["Keyword"]                = { guifg = C.Purple },
     ["Conditional"]            = { guifg = C.Purple },
     ["Comment"]                = { guifg = C.Gray   },
     ["Todo"]                   = { guifg = C.Gray, guibg = C.Blue },
 
-    ["@constant"]              = { guifg = C.Red    },
+    -- Treesitter
+    ["@type.builtin"]          = { guifg = C.Purple },
+    ["@module"]                = { guifg = C.Yellow },
+    ["@operator"]              = { guifg = C.Cyan   },
+    ["@constant"]              = { guifg = C.Yellow },
     ["@constant.builtin"]      = { guifg = C.Orange },
     ["@lsp.type.class"]        = { guifg = C.Yellow },
     ["@lsp.type.namespace"]    = { guifg = C.Yellow },
@@ -62,22 +65,26 @@ local highlights = {
     ["@text.strike"]           = { guifg = C.Gray,  gui = "strikethrough" },
     ["@text.literal"]          = { guifg = C.Green, gui = "italic" },
     ["@text.reference"]        = { guifg = C.Blue   },
+
+    ["@punctuation.special"]   = { guifg = C.Purple },
+    ["@punctuation.bracket"]   = { guifg = C.LGray  },
     ["@punctuation.delimiter"] = { guifg = C.LGray  },
 }
 
 local highlights_link = {
-    ["@storageclass"]  = "Keyword",
+    ["@storageclass"]       = "Keyword",
+    ["@keyword.function"]   = "Function",
+    ["@string.special.url"] = "Comment",
 
-    -- zsh
+    -- syntax
+    ["luaFunc"]        = "Function",
     ["zshVariable"]    = "Identifier",
     ["zshOperator"]    = "Operator",
     ["zshKSHFunction"] = "Function",
-
-    -- lsp
-    ["luaFunc"] = "Function",
 }
 
 local highlights_clear = {
+    "Statement",
     "SignColumn",
     "CursorLineNr",
     "StatusLine",

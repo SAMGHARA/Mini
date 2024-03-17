@@ -2,10 +2,9 @@ local mason = {
     -- https://github.com/williamboman/mason.nvim
     "williamboman/mason.nvim",
 
-    config = function(_, opts)
+    config = function()
         require("mason").setup {}
-
-        for _, lsp in ipairs(opts) do
+        for _, lsp in ipairs(require("lsp.lspserver").servers) do
             if not require("mason-registry").is_installed(lsp) then
                 vim.api.nvim_command("MasonInstall " .. lsp)
             end
@@ -89,20 +88,10 @@ local lspconfig = {
             end,
         })
     end,
-    config = function(_, lspopts)
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        for lsp, opts in pairs(lspopts) do
-            opts.capabilities = capabilities
-            require("lspconfig")[lsp].setup(opts)
-        end
+    config = function()
+        local lspconfig = require("lspconfig")
+        require("lsp.lspserver").setup(lspconfig)
     end
 }
 
-return {
-    mason,
-    lspconfig,
-    require("lsp.servers.c"),
-    require("lsp.servers.go"),
-    require("lsp.servers.lua"),
-    require("lsp.servers.cmake"),
-}
+return { mason, lspconfig }

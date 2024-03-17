@@ -1,13 +1,17 @@
+local C = function(cmd)
+    return "<Cmd>lua require('fzf-lua')." .. cmd .. "({resume=true})<CR>"
+end
+
 return {
     -- https://github.com/ibhagwan/fzf-lua
     "ibhagwan/fzf-lua",
 
     keys = {
-        { mode = "n", "\\",            "<Cmd>FzfLua builtin<CR>",      desc = "FZF"           },
-        { mode = "n", "F",             "<Cmd>FzfLua files<CR>",        desc = "Find files"    },
-        { mode = "n", "B",             "<Cmd>FzfLua buffers<CR>",      desc = "Find buffers"  },
-        { mode = "n", "<C-f>",         "<Cmd>FzfLua lgrep_curbuf<CR>", desc = "Curbuf search" },
-        { mode = "n", "<leader><C-f>", "<Cmd>FzfLua live_grep<CR>",    desc = "Global search" },
+        { mode = "n", "\\",            C("builtin"),      desc = "FZF"           },
+        { mode = "n", "F",             C("files"),        desc = "Find files"    },
+        { mode = "n", "B",             C("buffers"),      desc = "Find buffers"  },
+        { mode = "n", "<C-f>",         C("lgrep_curbuf"), desc = "Curbuf search" },
+        { mode = "n", "<leader><C-f>", C("live_grep"),    desc = "Global search" },
     },
     config = function()
         require("fzf-lua").setup {
