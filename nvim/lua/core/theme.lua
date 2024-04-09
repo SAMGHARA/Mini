@@ -59,12 +59,17 @@ local highlights = {
     ["@lsp.type.enumMember"]   = { guifg = C.Cyan   },
 
     -- Markdown
-    ["@text.uri"]              = { guifg = C.Purple },
-    ["@text.title"]            = { guifg = C.Red,   gui = "bold"   },
-    ["@text.strong"]           = { guifg = C.White, gui = "bold"   },
-    ["@text.strike"]           = { guifg = C.Gray,  gui = "strikethrough" },
-    ["@text.literal"]          = { guifg = C.Green, gui = "italic" },
-    ["@text.reference"]        = { guifg = C.Blue   },
+    ["@markup.list"]           = { guifg = C.Blue   },
+    ["@markup.raw"]            = { guifg = C.Yellow },
+    ["@markup.heading"]        = { guifg = C.Orange },
+    ["@markup.link"]           = { guifg = C.Blue   },
+    ["@markup.link.url"]       = { guifg = C.Cyan   },
+    -- ["@text.uri"]              = { guifg = C.Purple },
+    -- ["@text.title"]            = { guifg = C.Red,   gui = "bold"   },
+    -- ["@text.strong"]           = { guifg = C.White, gui = "bold"   },
+    -- ["@text.strike"]           = { guifg = C.Gray,  gui = "strikethrough" },
+    -- ["@text.literal"]          = { guifg = C.Green, gui = "italic" },
+    -- ["@text.reference"]        = { guifg = C.Blue   },
 
     ["@punctuation.special"]   = { guifg = C.Purple },
     ["@punctuation.bracket"]   = { guifg = C.LGray  },

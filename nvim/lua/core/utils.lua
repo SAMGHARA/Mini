@@ -21,6 +21,7 @@ local opts = {
         cpp     = "//",
         go      = "//",
         vim     = '"',
+        rust    = "//",
         default = '#',
     },
     hunk = {
@@ -151,7 +152,7 @@ end
 M.CommentHunk = function()
     local ft = vim.bo.filetype
     local ch = vim.deepcopy(opts.hunk[ft])
-    if not ch then return print(string.format("None '%s' hunk-comment!", ft)) end
+    if not ch then ch = vim.deepcopy(opts.hunk["default"]) end
 
     local range = commentRanges()
     local commented = hunkCommentCheck(ch, range)

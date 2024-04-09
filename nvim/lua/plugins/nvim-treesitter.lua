@@ -8,6 +8,7 @@ local treesitter = {
         require("nvim-treesitter.configs").setup {
             ensure_installed = {
                 "lua",
+                "rust",
                 "cpp", "doxygen",
                 "go", "printf",
                 "bash", "cmake", "yaml", "json5",
