@@ -1,66 +1,37 @@
 #!/bin/zsh
 
-ZSHRC="$HOME/.zshrc"
+MINI="${0:A:h}"
+XDG_LOCAL_HOME="$HOME/.local"
+XDG_CACHE_HOME="$HOME/.cache"
 XDG_CONFIG_HOME="$HOME/.config"
-NVIM="$XDG_CONFIG_HOME/nvim"
 
-MINI_CONF="${0:A:h}/conf"
-MINI_NVIM="${0:A:h}/nvim"
-MINI_ZSHRC="${0:A:h}/zsh/zshrc"
+function link() {
+    [[ ! -e "$2" ]] && echo "ln -s $1 $2" && ln -s "$1" "$2"
+}
 
-CONFS=(
-    "clang-format"
-    "tmux.conf"
-    "gitconfig"
-)
+function unlink() {
+    [[ -h "$1" ]] && echo "rm $1" && rm "$1"
+}
 
 function install() {
-    # add "source $MINI_ZSHRC" to $ZSHRC
-    [[ ! -e $ZSHRC || `grep -c "source $MINI_ZSHRC" $ZSHRC` == 0 ]] && {
-        echo "echo \"source $MINI_ZSHRC\" >> $ZSHRC"
-        echo "source $MINI_ZSHRC" >> $ZSHRC
-    }
+    mkdir -p $XDG_LOCAL_HOME $XDG_CACHE_HOME $XDG_CONFIG_HOME
 
-    # create symlink from $MINI_NVIM to $NVIM
-    mkdir -p $XDG_CONFIG_HOME
-
-    [[ ! -e $NVIM ]] && {
-        echo "ln -s $MINI_NVIM $NVIM"
-        ln -s $MINI_NVIM $NVIM
-    }
-
-    # create symlink for other dotfiles
-    for conf (${CONFS}) {
-        [[ ! -e "${HOME}/.${conf}" ]] && {
-            echo "ln -s $MINI_CONF/$conf $HOME/.$conf"
-            ln -s "$MINI_CONF/$conf" "$HOME/.$conf"
-        }
-    }
-
-    echo "Install Finished"
+    link "$MINI/zsh/zshrc"             "$HOME/.zshrc"
+    link "$MINI/conf/gitconfig"        "$HOME/.gitconfig"
+    link "$MINI/conf/clang-format"     "$HOME/.clang-format"
+    link "$MINI/nvim"                  "$XDG_CONFIG_HOME/nvim"
+    link "$MINI/conf/tmux"             "$XDG_CONFIG_HOME/tmux"
+    link "$MINI/conf/neofetch"         "$XDG_CONFIG_HOME/neofetch"
+    link "$MINI/conf/rust/config.toml" "$XDG_LOCAL_HOME/rust/config.toml"
 }
 
 function uninstall() {
-    # remove "source $MINI_ZSHRC"
-    [[ `grep -c "source $MINI_ZSHRC" $ZSHRC` != 0 ]] && {
-        echo "sed -i '\,$MINI_ZSHRC,d' $ZSHRC"
-        sed -i "\,$MINI_ZSHRC,d" $ZSHRC
-    }
-
-    # remove symlink $NVIM
-	[[ -h $NVIM ]] && {
-		echo "rm $NVIM" && rm $NVIM
-	}
-
-    # remove symlink other dotfiles
-	for conf (${CONFS}) {
-		[[ -h "${HOME}/.${conf}" ]] && {
-			echo "rm ${HOME}/.${conf}"
-			rm "${HOME}/.${conf}"
-		}
-	}
-
-    echo "Uninstall Finished"
+    unlink "$HOME/.zshrc"
+    unlink "$HOME/.gitconfig"
+    unlink "$HOME/.clang-format"
+    unlink "$XDG_CONFIG_HOME/nvim"
+    unlink "$XDG_CONFIG_HOME/tmux"
+    unlink "$XDG_CONFIG_HOME/neofetch"
 }
 
 case $1 {

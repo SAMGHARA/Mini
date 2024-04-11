@@ -1,15 +1,47 @@
 #!/bin/zsh
 
+########### XDG
 export XDG_LOCAL_HOME="$HOME/.local"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+########### MINI
 export MINI="$XDG_CONFIG_HOME/mini"
 
-########### save history zsh command to HISTFILE
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=1000
-SAVEHIST=1000
+########### zsh history command
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=1000
+
+########### tmux tempdir
+export TMUX_TMPDIR="/tmp"
+
+########### golang env
+export GOPATH="$XDG_LOCAL_HOME/go"
+export GOPROXY="https://goproxy.io,direct"
+
+########### rust env
+export CARGO_HOME="$XDG_LOCAL_HOME/rust"
+export RUSTUP_HOME="$XDG_LOCAL_HOME/rust"
+export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
+
+########### PATH
+function __export() { [[ ${(P)1} != *$2* ]] && export $1=$2:${(P)1} }
+__export    "PATH"            "$XDG_LOCAL_HOME/bin"
+__export    "PATH"            "$XDG_LOCAL_HOME/rust/bin"
+
+__export    "CPATH"           "$XDG_LOCAL_HOME/include"
+__export    "CPATH"           "$XDG_LOCAL_HOME/mysql/include"
+__export    "CPATH"           "$XDG_LOCAL_HOME/hiredis/include"
+
+__export    "LIBRARY_PATH"    "$XDG_LOCAL_HOME/lib"
+__export    "LIBRARY_PATH"    "$XDG_LOCAL_HOME/mysql/lib"
+__export    "LIBRARY_PATH"    "$XDG_LOCAL_HOME/hiredis/lib"
+
+__export    "LD_LIBRARY_PATH" "$XDG_LOCAL_HOME/lib"
+__export    "LD_LIBRARY_PATH" "$XDG_LOCAL_HOME/mysql/lib"
+__export    "LD_LIBRARY_PATH" "$XDG_LOCAL_HOME/hiredis/lib"
+unfunction __export
 
 ###########
 setopt no_nomatch
@@ -18,50 +50,21 @@ setopt rmstarsilent
 ########### ignore <Tab> completion case
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-########### add environment path
-function addEnvironments() { 
-    for i (${(P)2}) {
-        [[ ${(P)1} != *$i* ]] && export $1=${(P)1}:$i
-    }
-}
-
-PATH_NEW=(
-    "$XDG_LOCAL_HOME/bin"
-    "$XDG_LOCAL_HOME/go/bin"
-    "$XDG_LOCAL_HOME/redis/bin"
-    "$XDG_LOCAL_HOME/node/node_modules/.bin"
-)
-addEnvironments "PATH" PATH_NEW 
-
-CPATH_NEW=(
-    "$XDG_LOCAL_HOME/include"
-    "$XDG_LOCAL_HOME/include/nginx"
-)
-addEnvironments "CPATH" CPATH_NEW 
-
-LIBRARY_PATH_NEW=(
-    "$XDG_LOCAL_HOME/lib"
-    "$XDG_LOCAL_HOME/hiredis/lib"
-    "$XDG_LOCAL_HOME/mysql/lib"
-)
-addEnvironments "LD_LIBRARY_PATH" LIBRARY_PATH_NEW 
-
 ########### add alias
-alias     ls="ls --color"
-alias     la="ls --color -la"
-alias     rf="rm -rf"
-alias     lg="lazygit"
-alias    src="source $HOME/.zshrc"
-alias    vrc="vim $MINI/zsh/zshrc"
-alias    vvi="vim $MINI/nvim/init.lua"
+function __alias() { alias "$1"="$2" }
+__alias    "ls"      "ls --color"
+__alias    "la"      "ls --color -la"
+__alias    "rf"      "rm -rf"
+__alias    "lg"      "lazygit"
+__alias    "src"     "source $HOME/.zshrc"
+__alias    "vrc"     "vim $HOME/.zshrc"
+__alias    "vvi"     "vim $MINI/nvim/init.lua"
 # tmux
-alias     tn="tmux new -s"
-alias     ta="tmux attach -t"
-alias   trns="tmux rename-session"
-alias   trnw="tmux rename-window"
-# pacman
-alias   syyu="sudo pacman -Syyu"
-alias   qdtq="sudo pacman -Rn \$(sudo pacman -Qdtq)"
+__alias    "tn"      "tmux new -s"
+__alias    "ta"      "tmux attach -t"
+__alias    "trns"    "tmux rename-session"
+__alias    "trnw"    "tmux rename-window"
+unfunction __alias
 
 ########### add keybinds
 bindkey    "\e[1~"    beginning-of-line    # <Home>
@@ -88,16 +91,8 @@ function cecho() {
     }
 }
 
-###########
-function duh() {
-    local depth=$1
-    du -h --max-depth=${depth:-1}
-}
+function duh()     { du -h --max-depth=${1:-1} }
+function ulimitc() { ulimit -c unlimited }
 
-###########
-function ulimitc() {
-    ulimit -c unlimited
-}
-
-source "${0:A:h}/themes/zshrc"
-source "${0:A:h}/plugins/zshrc"
+source "$MINI/zsh/themes/zshrc"
+source "$MINI/zsh/plugins/zshrc"
