@@ -28,7 +28,6 @@ local options = {
         hlsearch       = true,               --
         incsearch      = true,               --
     },
-
     g = {
         fileencodings           = "UTF-8,GBK,GB2312", -- file encoding
         mapleader               = " ",
@@ -39,6 +38,9 @@ local options = {
         loaded_perl_provider    = 0,
         loaded_ruby_provider    = 0,
         loaded_python3_provider = 0,
+    },
+    b = {
+        did_ftplugin = 0,
     }
 }
 

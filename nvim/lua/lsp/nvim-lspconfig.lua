@@ -38,7 +38,7 @@ local lspconfig = {
 
         require("core").setKeyMaps {
             {
-                "n", "<space>le", vim.diagnostic.open_float,
+                "n", "<leader>le", vim.diagnostic.open_float,
                 { desc = "LSP: Show diagnostics in a floating window" }
             },
             {
@@ -50,7 +50,7 @@ local lspconfig = {
                 { desc = "LSP: Move to the prev diagnostic" }
             },
             {
-                "n", "<space>lq", vim.diagnostic.setloclist,
+                "n", "<leader>lq", vim.diagnostic.setloclist,
                 { desc = "LSP: Add buffer diagnostics to the location list" }
             },
         }

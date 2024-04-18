@@ -5,13 +5,13 @@ local M = {
         "clangd",
         "rust-analyzer",
         "lua-language-server",
-        "cmake-language-server",
+        -- "cmake-language-server",
     }
 }
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 M.setup = function(lspconfig)
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- gopls
     lspconfig.gopls.setup {
@@ -32,7 +32,7 @@ M.setup = function(lspconfig)
         --         client.server_capabilities.semanticTokensProvider = nil
         --     end
         -- end,
-        cmd = { 'clangd', '--clang-tidy' },
+        cmd = { "clangd", "--clang-tidy" },
         init_options = {
             clangdFileStatus = true,
             usePlaceholders = true,
@@ -46,16 +46,12 @@ M.setup = function(lspconfig)
 
     -- rust-analyzer
     -- https://www.andersevenrud.net/neovim.github.io/lsp/configurations/rust_analyzer/
-    require 'lspconfig'.rust_analyzer.setup {
+    lspconfig.rust_analyzer.setup {
         capabilities = capabilities,
         settings = {
-            ['rust-analyzer'] = {
-                cargo = {
-                    allFeatures = true,
-                    loadOutDirsFromCheck = true,
-                    runBuildScripts = true,
-                },
+            ["rust-analyzer"] = {
                 checkOnSave = {
+                    enable = true,
                     allFeatures = true,
                     command = "clippy",
                     extraArgs = { "--no-deps" },

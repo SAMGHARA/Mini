@@ -14,54 +14,61 @@ return {
     init = function()
         local C = require("core.theme")
         require("core").setHighlights {
-            ["CmpItemAbbrMatch"]      = { guifg = C.Blue   },
-            ["cmpitemkindkeyword"]    = { guifg = C.Orange },
-            ["CmpItemKindVariable"]   = { guifg = C.White  },
-            ["CmpItemKindFunction"]   = { guifg = C.Purple },
-            ["CmpItemAbbrDeprecated"] = { guifg = C.Gray   },
-        }
-        require("core").linkHighlights {
-            ["CmpItemKindText"]       = "CmpItemKindVariable",
-            ["CmpItemKindUnit"]       = "CmpItemKindKeyword",
-            ["CmpItemKindMethod"]     = "CmpItemKindFunction",
-            ["CmpItemKindProperty"]   = "CmpItemKindKeyword",
-            ["CmpItemKindInterface"]  = "CmpItemKindVariable",
-            ["CmpItemAbbrMatchFuzzy"] = "CmpItemAbbrMatch",
+            ["CmpItemAbbrMatch"]         = { guifg = C.Blue   },
+            ["CmpItemAbbrDeprecated"]    = { guifg = C.Gray   },
+            ["CmpItemAbbrMatchFuzzy"]    = { guifg = C.Blue   },
+            ["CmpItemKindText"]          = { guifg = C.White  },
+            ["CmpItemKindMethod"]        = { guifg = C.Purple },
+            ["CmpItemKindFunction"]      = { guifg = C.Purple },
+            ["CmpItemKindConstructor"]   = { guifg = C.Orange },
+            ["CmpItemKindField"]         = { guifg = C.Orange },
+            ["CmpItemKindVariable"]      = { guifg = C.White  },
+            ["CmpItemKindClass"]         = { guifg = C.Yellow },
+            ["CmpItemKindInterface"]     = { guifg = C.Purple },
+            ["CmpItemKindModule"]        = { guifg = C.Yellow },
+            ["CmpItemKindProperty"]      = { guifg = C.Orange },
+            ["CmpItemKindUnit"]          = { guifg = C.Orange },
+            ["CmpItemKindValue"]         = { guifg = C.Blue   },
+            ["CmpItemKindEnum"]          = { guifg = C.Blue   },
+            ["CmpItemKindKeyword"]       = { guifg = C.Purple },
+            ["CmpItemKindSnippet"]       = { guifg = C.Yellow },
+            ["CmpItemKindColor"]         = { guifg = C.Orange },
+            ["CmpItemKindFile"]          = { guifg = C.Orange },
+            ["CmpItemKindReference"]     = { guifg = C.Orange },
+            ["CmpItemKindFolder"]        = { guifg = C.Orange },
+            ["CmpItemKindEnumMember"]    = { guifg = C.Blue   },
+            ["CmpItemKindConstant"]      = { guifg = C.Orange },
+            ["CmpItemKindStruct"]        = { guifg = C.Yellow },
+            ["CmpItemKindEvent"]         = { guifg = C.Orange },
+            ["CmpItemKindOperator"]      = { guifg = C.Orange },
+            ["CmpItemKindTypeParameter"] = { guifg = C.Purple },
         }
     end,
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
-        local cmp_kinds = {
-            Text = "",
-            Method = "",
-            Function = "",
-            Constructor = "",
-            Field = "",
-            Variable = "",
-            Class = "",
-            Interface = "",
-            Module = "",
-            Property = "",
-            Unit = "",
-            Value = "",
-            Enum = "",
-            Keyword = "",
-            Snippet = "",
-            Color = "",
-            File = "",
-            Reference = "",
-            Folder = "",
-            EnumMember = "",
-            Constant = "",
-            Struct = "",
-            Event = "",
-            Operator = "",
-            TypeParameter = "",
-        }
-
+        local kinds = require('cmp.types').lsp.CompletionItemKind
         cmp.setup {
-            sorting = { priority_weight = 1 },
+            sorting = {
+                priority_weight = 2,
+                comparators = {
+                    function(entry1, entry2)
+                        local kind1, kind2 = entry1:get_kind(), entry2:get_kind()
+                        if kind1 ~= kind2 then
+                            if kind1 == kinds.Field then
+                                return true
+                            end
+                            if kind1 == kinds.Text or kind2 == kinds.Field then
+                                return false
+                            end
+                        end
+                    end,
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.length,
+                }
+            },
             preselect = cmp.PreselectMode.None,
             view = { docs = { auto_open = true } },
             window = { completion = { col_offset = 1, scrollbar = true, }, },
@@ -93,14 +100,11 @@ return {
             formatting = {
                 fields = { "kind", "abbr" },
                 format = function(_, item)
-                    item.kind = string.format("%s %s", cmp_kinds[item.kind], item.kind)
-
-                    local content_width = math.floor(vim.api.nvim_win_get_width(0) * 0.3)
-                    if #item.abbr > content_width then
-                        item.abbr = vim.fn.strcharpart(item.abbr, 0, content_width - 3) .. "..."
-                    else
-                        item.abbr = item.abbr .. (" "):rep(content_width - #item.abbr)
-                    end
+                    local width = 30
+                    item.menu = ""
+                    item.abbr = #item.abbr > width
+                        and vim.fn.strcharpart(item.abbr, 0, width - 3) .. "..."
+                        or item.abbr .. (" "):rep(width - #item.abbr)
                     return item
                 end,
             },

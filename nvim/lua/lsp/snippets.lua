@@ -111,3 +111,14 @@ ls.add_snippets("cpp", {
         ]], { i(1), i(0) }
     )),
 })
+
+ls.add_snippets("rust", {
+    s("main", fmt(
+        [[
+            fn main() {{
+                {}
+            }}
+        ]], i(0)
+    )),
+    s("println", fmt([[println!("{}");]], i(0))),
+})

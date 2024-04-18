@@ -8,6 +8,7 @@ require("core").setKeyMaps {
     -- "v"                U            transform to Uppercase
     { { "i", "v", "s" }, "jk",         "<Esc>",                   opts },
     { "t",               "jk",         "<C-\\><C-n>",             opts }, -- in terminal switch TERMINAL mode to NORMAL mode
+    { "n",               "<M-2>",      "@q",                      opts },
     { { "n", "i", "v" }, "<Home>",     utils.Home,                opts },
     { { "n", "i", "v" }, "<M-b>",      utils.Home,                opts },
     { { "n", "i", "v" }, "<M-e>",      "<End>",                   opts },
@@ -27,7 +28,6 @@ require("core").setKeyMaps {
     { "n",               "<C-d>",      "viw",                     opts }, -- VISUAL mode select current word
     { "n",               "<C-v>",      "p",                       opts },
     { "v",               "<C-v>",      "pgvy",                    opts },
-    { "v",               "p",          "pgvy",                    opts },
     { "v",               "<C-x>",      "d",                       opts },
     { "v",               "<C-c>",      "y",                       opts },
     { "n",               "<M-a>",      "<C-o>",                   opts },
