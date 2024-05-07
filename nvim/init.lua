@@ -25,7 +25,7 @@ require("lazy").setup {
     require("plugins.toggleterm"),
     require("plugins.vim-visual-multi"),
     require("plugins.which-key"),
-    require("lsp.LuaSnip"),
+    require("lsp.luasnip"),
     require("lsp.nvim-cmp"),
     require("lsp.nvim-lspconfig"),
 

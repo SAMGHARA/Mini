@@ -65,8 +65,12 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: Show hover information" }
                     },
                     {
-                        "n", "<leader>ld", vim.lsp.buf.definition,
+                        "n", "<leader>ldf", vim.lsp.buf.definition,
                         { buffer = ev.buf, desc = "LSP: Jumps to the definition" }
+                    },
+                    {
+                        "n", "<leader>ld", vim.lsp.buf.declaration,
+                        { buffer = ev.buf, desc = "LSP: Jumps to the declaration" }
                     },
                     {
                         "n", "<leader>lr", vim.lsp.buf.references,
