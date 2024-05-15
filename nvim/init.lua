@@ -16,6 +16,7 @@ require("lazy").setup {
     require("plugins.gitsigns"),
     require("plugins.indent-blankline"),
     require("plugins.lualine"),
+    require("plugins.markdown-preview"),
     require("plugins.neogen"),
     require("plugins.nvim-surround"),
     require("plugins.nvim-tree"),
