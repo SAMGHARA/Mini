@@ -3,7 +3,10 @@ local mason = {
     "williamboman/mason.nvim",
 
     config = function()
-        require("mason").setup {}
+        require("mason").setup {
+            github = { download_url_template = "https://github.com/%s/releases/download/%s/%s" }
+        }
+
         for _, lsp in ipairs(require("lsp.lspserver").servers) do
             if not require("mason-registry").is_installed(lsp) then
                 vim.api.nvim_command("MasonInstall " .. lsp)
@@ -21,8 +24,8 @@ local lspconfig = {
         local C = require("core.theme")
         require("core").setHighlights {
             ["DiagnosticError"]          = { guifg = C.DRed },
-            ["DiagnosticUnderlineWarn"]  = { guifg = C.Yellow, gui = "underline" },
-            ["DiagnosticUnderlineError"] = { guifg = C.DRed,   gui = "underline" },
+            ["DiagnosticUnderlineWarn"]  = { guifg = C.Yellow, gui = C.Underline },
+            ["DiagnosticUnderlineError"] = { guifg = C.DRed,   gui = C.Underline },
         }
 
         require("core").setFileTypeCallBack("qf", function()
@@ -65,7 +68,7 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: Show hover information" }
                     },
                     {
-                        "n", "<leader>ldf", vim.lsp.buf.definition,
+                        "n", "<leader>lD", vim.lsp.buf.definition,
                         { buffer = ev.buf, desc = "LSP: Jumps to the definition" }
                     },
                     {
@@ -77,7 +80,7 @@ local lspconfig = {
                         { buffer = ev.buf, desc = "LSP: List all the references" }
                     },
                     {
-                        { "n", "v" }, "<leader>lca", vim.lsp.buf.code_action,
+                        { "n", "v" }, "<leader>la", vim.lsp.buf.code_action,
                         { buffer = ev.buf, desc = "LSP: Code Action" }
                     },
                     {

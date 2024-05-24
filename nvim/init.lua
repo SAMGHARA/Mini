@@ -10,7 +10,6 @@ end
 vim.opt.rtp:prepend(lazy)
 
 require("lazy").setup {
-    require("plugins.autolist"),
     require("plugins.flash"),
     require("plugins.fzf"),
     require("plugins.gitsigns"),
@@ -26,7 +25,7 @@ require("lazy").setup {
     require("plugins.toggleterm"),
     require("plugins.vim-visual-multi"),
     require("plugins.which-key"),
-    require("lsp.luasnip"),
+    require("lsp.LuaSnip"),
     require("lsp.nvim-cmp"),
     require("lsp.nvim-lspconfig"),
 

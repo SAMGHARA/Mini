@@ -2,43 +2,36 @@ return {
     -- https://github.com/nvim-lualine/lualine.nvim
     "nvim-lualine/lualine.nvim",
 
-    event = "VeryLazy",
-    dependencies = "kyazdani42/nvim-web-devicons",
-    keys = {
-        { mode = "n", "Q",       "<Cmd>bdelete<CR>",   desc = "Close buffer" },
-        { mode = "n", "<Tab>",   "<Cmd>bnext<CR>",     desc = "Next buffer"  },
-        { mode = "n", "<S-Tab>", "<Cmd>bprevious<CR>", desc = "Prev buffer"  },
-    },
-    opts = {
-        options = {
-            -- theme = "codedark",
-            -- icons_enabled = true,
-            -- component_separators = { left = '', right = '' },
-            -- section_separators = { left = '', right = '' },
-            icons_enabled = false,
-            component_separators = '|',
-            section_separators = { left = '', right = '' },
-            always_divide_middle = true,
-            globalstatus = true,
-            refresh = { statusline = 500, tabline = 500 }
-        },
-        sections = {
-            lualine_a = { 'mode' },
-            lualine_b = {
-                { 'branch',      color = { fg = '#56B6C2' } },
-                { 'diff',        symbols = { added = '+', modified = '*', removed = '-' } },
-                { 'diagnostics', symbols = { error = 'Err.', warn = 'War.', info = "Tips." } }
+    event  = "VeryLazy",
+    config = function()
+        local C = require("core.theme")
+        require("lualine").setup {
+            options = {
+                theme = {
+                    normal  = { a = { fg = C.DGray, bg = C.Green  }, b = { bg = C.DGray }, c = { bg = C.None } },
+                    insert  = { a = { fg = C.DGray, bg = C.Blue   } },
+                    visual  = { a = { fg = C.DGray, bg = C.Purple } },
+                    replace = { a = { fg = C.DGray, bg = C.Red    } },
+                },
+                globalstatus = true,
+                icons_enabled = false,
+                section_separators = "",
+                component_separators = "",
+                always_divide_middle = false,
+                refresh = { statusline = 500 },
             },
-            lualine_c = { 'filesize', 'searchcount' },
-            lualine_x = { 'encoding', 'fileformat', 'filetype' },
-            lualine_y = { 'progress' },
-            lualine_z = { 'location' }
-        },
-        tabline = {
-            lualine_a = {
-                { 'buffers', filetype_names = { NvimTree = "NvimTree" }, symbols = { alternate_file = '' } }
+            sections = {
+                lualine_a = { { "mode", separator = { left = "", right = "" } } },
+                lualine_b = {
+                    { "branch",      separator = { right = "" } },
+                    { "diff",        separator = { right = "" }, symbols = { added = "+", modified = "~", removed = "-" } },
+                    { "diagnostics", separator = { right = "" }, symbols = { error = "Err.", warn = "War.", info = "Tip." } },
+                },
+                lualine_c = { "%=", { "filename", path = 1 } },
+                lualine_x = { "filesize", { "filetype", icons_enabled = true }, "encoding", "fileformat" },
+                lualine_y = { { "location", separator = { left = "" } }, { "progress", separator = { left = "", right = "" } } },
+                lualine_z = {}
             },
-            lualine_y = { 'tabs' },
         }
-    }
+    end
 }

@@ -25,12 +25,12 @@ return {
         --]]
         local C = require("core.theme")
         require("core").setHighlights {
-            ["doxygenComment"]            = { guifg = C.Gray,   gui = "italic" }, -- [1]doxygenStartL  /**/ -> doxygenStart
-            ["doxygenSpecial"]            = { guifg = C.Purple, gui = "italic" }, -- [2]
-            ["doxygenParam"]              = { guifg = C.Purple, gui = "italic" }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
-            ["doxygenBrief"]              = { guifg = C.LGray,  gui = "italic" }, -- [4]
-            ["doxygenParamName"]          = { guifg = C.Red,    gui = "italic" }, -- [7]
-            ["doxygenSpecialOnelineDesc"] = { guifg = C.Gray,   gui = "italic" }, -- [8]
+            ["doxygenComment"]            = { guifg = C.Gray,   gui = C.Italic }, -- [1]doxygenStartL  /**/ -> doxygenStart
+            ["doxygenSpecial"]            = { guifg = C.Purple, gui = C.Italic }, -- [2]
+            ["doxygenParam"]              = { guifg = C.Purple, gui = C.Italic }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
+            ["doxygenBrief"]              = { guifg = C.LGray,  gui = C.Italic }, -- [4]
+            ["doxygenParamName"]          = { guifg = C.Red,    gui = C.Italic }, -- [7]
+            ["doxygenSpecialOnelineDesc"] = { guifg = C.Gray,   gui = C.Italic }, -- [8]
         }
     end,
     config = function()

@@ -6,7 +6,7 @@ return {
     init = function()
         local options = {
             g = {
-                VM_theme = "ocean",
+                VM_theme = "iceblue",
                 VM_highlight_matches = "underline",
                 VM_default_mappings = 0,
                 VM_maps = {

@@ -1,4 +1,4 @@
-return {
+local pairs = {
     -- https://github.com/ZhiyuanLck/smart-pairs
     "ZhiyuanLck/smart-pairs",
 
@@ -57,3 +57,21 @@ return {
         }
     end
 }
+
+local autolist = {
+    -- https://github.com/gaoDean/autolist.nvim
+    "gaoDean/autolist.nvim",
+
+    ft = { "txt", "markdown" },
+    config = function()
+        require("autolist").setup()
+
+        local keymaps = {
+            { "n", "o", "o<Cmd>AutolistNewBullet<CR>" },
+            { "n", "O", "O<Cmd>AutolistNewBulletBefore<CR>" },
+        }
+        require("core").setKeyMaps(keymaps)
+    end
+}
+
+return { pairs, autolist }

@@ -5,7 +5,7 @@ local M = {
         "clangd",
         "rust-analyzer",
         "lua-language-server",
-        -- "cmake-language-server",
+        "cmake-language-server",
     }
 }
 

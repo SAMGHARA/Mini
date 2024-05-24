@@ -15,6 +15,9 @@ require("core").setKeyMaps {
     { { "n", "i" },      "<C-s>",      "<Cmd>w<CR>",              opts },
     { { "n", "i" },      "<C-z>",      "<Cmd>undo<CR>",           opts },
     { { "n", "i" },      "<C-y>",      "<Cmd>redo<CR>",           opts },
+    { "n",               "Q",          "<Cmd>bdelete<CR>",        opts },
+    { "n",               "<Tab>",      "<Cmd>bnext<CR>",          opts },
+    { "n",               "<S-Tab>",    "<Cmd>bprevious<CR>",      opts },
     { "v",               "<Tab>",      ">gv",                     opts },
     { "v",               "<S-Tab>",    "<gv",                     opts },
     { "i",               "<S-Tab>",    "<C-d>",                   opts },
@@ -45,5 +48,6 @@ require("core").setKeyMaps {
     { "v",               "<M-J>",      ":copy '<-1<CR>gv",        opts }, -- copy select block down
     { "v",               "<M-K>",      ":copy '><CR>gv",          opts }, -- copy select block up
     { { "n", "i", "v" }, "<C-_>",      utils.CommentLine,         opts }, -- line-comment
+    { { "n", "i", "v" }, "<C-/>",      utils.CommentLine,         opts }, -- line-comment
     { { "n", "i", "v" }, "<M-A>",      utils.CommentHunk,         opts }, -- hunk-comment
 }
