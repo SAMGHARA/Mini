@@ -1,8 +1,5 @@
-local pairs = {
-    -- https://github.com/ZhiyuanLck/smart-pairs
-    "ZhiyuanLck/smart-pairs",
-
-    event = "InsertEnter",
+return {
+    source = "https://github.com/ZhiyuanLck/smart-pairs",
     config = function()
         require("pairs"):setup {
             pairs = {
@@ -55,23 +52,18 @@ local pairs = {
                 end
             },
         }
-    end
-}
 
-local autolist = {
-    -- https://github.com/gaoDean/autolist.nvim
-    "gaoDean/autolist.nvim",
-
-    ft = { "txt", "markdown" },
-    config = function()
-        require("autolist").setup()
-
-        local keymaps = {
-            { "n", "o", "o<Cmd>AutolistNewBullet<CR>" },
-            { "n", "O", "O<Cmd>AutolistNewBulletBefore<CR>" },
+        MiniDeps.later_add {
+            source = "https://github.com/gaoDean/autolist.nvim",
+            config = function()
+                Core.createAutoCommand("InsertEnter", { "*.txt", "*.md" }, function()
+                    require("autolist").setup {}
+                    Core.setKeyMaps {
+                        { "n", "o", "o<Cmd>AutolistNewBullet<CR>" },
+                        { "n", "O", "O<Cmd>AutolistNewBulletBefore<CR>" },
+                    }
+                end)
+            end
         }
-        require("core").setKeyMaps(keymaps)
     end
 }
-
-return { pairs, autolist }

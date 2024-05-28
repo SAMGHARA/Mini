@@ -1,3 +1,5 @@
+local Core = require("core")
+
 local options = {
     opt = {
         fileencodings  = "UTF-8,GBK,GB2312", -- file encoding
@@ -27,12 +29,12 @@ local options = {
         signcolumn     = "yes",              -- always show the sign column.
         hlsearch       = true,               --
         incsearch      = true,               --
+        clipboard      = "unnamedplus",
     },
     g = {
         fileencodings           = "UTF-8,GBK,GB2312", -- file encoding
         mapleader               = " ",
         maplocalleader          = " ",
-        completeopt             = "menu,menuone,noselect,noinsert",
         loaded_netrw            = 1,
         loaded_netrwPlugin      = 1,
         loaded_perl_provider    = 0,
@@ -46,7 +48,6 @@ local options = {
 }
 
 if vim.env.TMUX then
-    options.opt.clipboard = vim.opt.clipboard ^ { "unnamed,unnamedplus" }
     options.g.clipboard = {
         name = "TmuxClipboard",
         copy = {
@@ -59,8 +60,7 @@ if vim.env.TMUX then
         },
         cache_enabled = 1,
     }
-elseif require("core").is_wsl() then
-    options.opt.clipboard = vim.opt.clipboard ^ { "unnamed,unnamedplus" }
+elseif Core.wsl() then
     options.g.clipboard = {
         name = "WslClipboard",
         copy = {
@@ -75,6 +75,12 @@ elseif require("core").is_wsl() then
     }
 end
 
-require("core").setOptions(options)
+Core.setOptions(options)
 
-require("core").setFileTypeCallBack("go", function() vim.opt.formatoptions:prepend("or") end)
+Core.createAutoCommand("TextYankPost", nil, function()
+    vim.highlight.on_yank({ higroup = "Search", timeout = 100 })
+end)
+
+Core.createAutoCommand("FileType", "go", function()
+    vim.opt.formatoptions:prepend("or")
+end)

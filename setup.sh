@@ -1,6 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
 
-MINI="${0:A:h}"
+MINI=$(cd "$(dirname "$0")" && pwd)
+
 XDG_LOCAL_HOME="$HOME/.local"
 XDG_CACHE_HOME="$HOME/.cache"
 XDG_CONFIG_HOME="$HOME/.config"
@@ -16,13 +17,12 @@ function unlink() {
 function install() {
     mkdir -p $XDG_LOCAL_HOME $XDG_CACHE_HOME $XDG_CONFIG_HOME
 
-    link "$MINI/zsh/zshrc"             "$HOME/.zshrc"
-    link "$MINI/conf/gitconfig"        "$HOME/.gitconfig"
-    link "$MINI/conf/clang-format"     "$HOME/.clang-format"
-    link "$MINI/nvim"                  "$XDG_CONFIG_HOME/nvim"
-    link "$MINI/conf/tmux"             "$XDG_CONFIG_HOME/tmux"
-    link "$MINI/conf/neofetch"         "$XDG_CONFIG_HOME/neofetch"
-    link "$MINI/conf/rust/config.toml" "$XDG_LOCAL_HOME/rust/config.toml"
+    link "$MINI/zsh/zshrc"        "$HOME/.zshrc"
+    link "$MINI/gitconfig"        "$HOME/.gitconfig"
+    link "$MINI/clang-format"     "$HOME/.clang-format"
+    link "$MINI/nvim"             "$XDG_CONFIG_HOME/nvim"
+    link "$MINI/tmux"             "$XDG_CONFIG_HOME/tmux"
+    link "$MINI/fish"             "$XDG_CONFIG_HOME/fish"
 }
 
 function uninstall() {
@@ -31,18 +31,19 @@ function uninstall() {
     unlink "$HOME/.clang-format"
     unlink "$XDG_CONFIG_HOME/nvim"
     unlink "$XDG_CONFIG_HOME/tmux"
-    unlink "$XDG_CONFIG_HOME/neofetch"
+    unlink "$XDG_CONFIG_HOME/fish"
 }
 
-case $1 {
-    (install || -i)
+case $1 in
+    install|-i)
         install
         ;;
-    (uninstall || -u)
+    uninstall|-u)
         uninstall
         ;;
-    (*)
+    *)
         install
         ;;
-}
+esac
+
 

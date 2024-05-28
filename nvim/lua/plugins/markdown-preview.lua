@@ -1,13 +1,14 @@
 return {
-    -- https://github.com/iamcco/markdown-preview.nvim
-    "iamcco/markdown-preview.nvim",
-
-    ft    = "markdown",
-    cmd   = "MarkdownPreview",
-    build = "cd app && yarn install",
-    init  = function()
-        local core = require("core")
-        core.setOptions {
+    source = "https://github.com/iamcco/markdown-preview.nvim",
+    hooks = {
+        post_install = function() vim.fn["mkdp#util#install"]() end,
+        post_checkout = function() vim.fn["mkdp#util#install"]() end
+    },
+    config = function()
+        Core.setKeyMaps {
+            { "n", "<leader>mp", "<Cmd>MarkdownPreview<CR>", { desc = "[Markdown]: Preview" } }
+        }
+        Core.setOptions {
             g = {
                 -- specify browser to open preview page
                 -- mkdp_browser = core.is_wsl() and "MicrosoftEdge.exe" or "firefox",
@@ -17,10 +18,5 @@ return {
                 mkdp_echo_preview_url = 1,
             }
         }
-        core.setFileTypeCallBack("markdown", function()
-            core.setKeyMaps {
-                { "n", "<leader>mp", "<Cmd>MarkdownPreview<CR>", { desc = "Markdown Preview" } }
-            }
-        end)
     end
 }

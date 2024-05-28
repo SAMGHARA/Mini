@@ -17,6 +17,7 @@ MINI_ZSH_PLUGIN=${0:A:h}
 }
 
 ########### zoxide    https://github.com/ajeetdsouza/zoxide
+# curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 command -v zoxide > /dev/null && {
     eval "$(zoxide init zsh)"
 }

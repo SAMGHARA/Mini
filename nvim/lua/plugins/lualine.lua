@@ -1,17 +1,16 @@
 return {
-    -- https://github.com/nvim-lualine/lualine.nvim
-    "nvim-lualine/lualine.nvim",
-
-    event  = "VeryLazy",
+    source = "https://github.com/nvim-lualine/lualine.nvim",
+    depends = { "https://github.com/nvim-tree/nvim-web-devicons" },
     config = function()
-        local C = require("core.theme")
         require("lualine").setup {
             options = {
                 theme = {
-                    normal  = { a = { fg = C.DGray, bg = C.Green  }, b = { bg = C.DGray }, c = { bg = C.None } },
-                    insert  = { a = { fg = C.DGray, bg = C.Blue   } },
-                    visual  = { a = { fg = C.DGray, bg = C.Purple } },
-                    replace = { a = { fg = C.DGray, bg = C.Red    } },
+                    normal   = { a = { fg = C.DGray, bg = C.Green  }, b = { bg = C.DGray }, c = { bg = C.None } },
+                    insert   = { a = { fg = C.DGray, bg = C.Blue   } },
+                    visual   = { a = { fg = C.DGray, bg = C.Purple } },
+                    replace  = { a = { fg = C.DGray, bg = C.Red    } },
+                    command  = { a = { fg = C.DGray, bg = C.Orange } },
+                    terminal = { a = { fg = C.DGray, bg = C.Orange } },
                 },
                 globalstatus = true,
                 icons_enabled = false,

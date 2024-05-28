@@ -1,114 +1,113 @@
 vim.g.colors_name = "onedark"
 
-local C = {
-    Red           = "#E06C75",
-    DRed          = "#BD3D37",
-    Orange        = "#D19A66",
-    Yellow        = "#E5C07B",
-    Green         = "#98C379",
-    DGreen        = "#109868",
-    Cyan          = "#56B6C2",
-    Blue          = "#61AFEF",
-    Purple        = "#C678DD",
-    Gray          = "#5C6370",
-    DGray         = "#3e4452",
-    LGray         = "#ABB2BF",
-    Black         = "#282c34",
-    White         = "#FFFFFF",
+local Core = require("core")
 
+C = {
+    None   = "None",
+    Red    = "#E06C75",
+    DRed   = "#BD3D37",
+    Orange = "#D19A66",
+    Yellow = "#E5C07B",
+    Green  = "#98C379",
+    DGreen = "#109868",
+    Cyan   = "#56B6C2",
+    Blue   = "#61AFEF",
+    Purple = "#C678DD",
+    Gray   = "#5C6370",
+    DGray  = "#3e4452",
+    LGray  = "#ABB2BF",
+    Black  = "#282c34",
+    White  = "#FFFFFF",
+}
+
+S = {
+    None          = "None",
     Bold          = "Bold",
+    Italic        = "Italic",
+    Reverse       = "Reverse",
+    Inverse       = "Inverse",
+    Altfont       = "Altfont",
+    Standout      = "Standout",
+    Nocombine     = "Nocombine",
     Underline     = "Underline",
     Undercurl     = "Undercurl",
     Underdouble   = "Underdouble",
     Underdotted   = "Underdotted",
     Underdashed   = "Underdashed",
     Strikethrough = "Strikethrough",
-    Reverse       = "Reverse",
-    Inverse       = "Inverse",
-    Italic        = "Italic",
-    Standout      = "Standout",
-    Altfont       = "Altfont",
-    Nocombine     = "Nocombine",
-    None          = "None",
 }
 
-local highlights = {
-    -- Core
-    ["LineNr"]                 = { guifg = C.Gray   },
-    ["NonText"]                = { guifg = C.DGray  },
-    ["CursorLine"]             = { guibg = C.DGray  },
-    ["Title"]                  = { guifg = C.Orange },
-    ["Directory"]              = { guifg = C.Blue   },
-    ["MatchParen"]             = { guibg = C.Gray   },
-    ["PmenuSbar"]              = { guibg = C.DGray  },
-    ["PmenuThumb"]             = { guibg = C.LGray  },
-    ["NormalFloat"]            = { guibg = C.DGray  },
-    ["Visual"]                 = { guibg = C.DGray  },
-    ["Identifier"]             = { guifg = C.Red    },
-    ["Boolean"]                = { guifg = C.Orange },
-    ["Number"]                 = { guifg = C.Orange },
-    ["PreProc"]                = { guifg = C.Yellow },
-    ["Type"]                   = { guifg = C.Yellow },
-    ["String"]                 = { guifg = C.Green  },
-    ["Character"]              = { guifg = C.Blue   },
-    ["Constant"]               = { guifg = C.Cyan   },
-    ["Special"]                = { guifg = C.Blue   },
-    ["Include"]                = { guifg = C.Blue   },
-    ["Function"]               = { guifg = C.Blue   },
-    ["Keyword"]                = { guifg = C.Purple },
-    ["Conditional"]            = { guifg = C.Purple },
-    ["Comment"]                = { guifg = C.Gray,  gui   = C.Italic },
-    ["Normal"]                 = { guifg = C.LGray, guibg = C.None   },
-    ["Pmenu"]                  = { guifg = C.LGray, guibg = C.DGray  },
-    ["PmenuSel"]               = { guifg = C.White, guibg = C.Blue   },
-    ["Search"]                 = { guifg = C.Black, guibg = C.Orange },
-    ["Todo"]                   = { guifg = C.Gray,  guibg = C.Blue   },
+Core.setHighlights {
+    ["Visual"]                 = { bg = C.DGray },
+    ["CursorLine"]             = { bg = C.DGray },
+    ["NormalFloat"]            = { bg = C.None  },
+    ["LineNr"]                 = { fg = C.Gray  },
+    ["Normal"]                 = { fg = C.LGray, bg = C.None },
+
+    ["PmenuSbar"]              = { bg = C.DGray },
+    ["PmenuThumb"]             = { bg = C.LGray },
+    ["Pmenu"]                  = { fg = C.LGray, bg = C.None },
+    ["PmenuSel"]               = { fg = C.White, bg = C.Blue },
+
+    ["Title"]                  = { fg = C.Orange },
+    ["NonText"]                = { fg = C.DGray  },
+    ["Directory"]              = { fg = C.Blue   },
+    ["MatchParen"]             = { bg = C.Gray   },
+    ["Identifier"]             = { fg = C.Red    },
+    ["Boolean"]                = { fg = C.Orange },
+    ["Number"]                 = { fg = C.Orange },
+    ["PreProc"]                = { fg = C.Yellow },
+    ["Type"]                   = { fg = C.Yellow },
+    ["String"]                 = { fg = C.Green  },
+    ["Character"]              = { fg = C.Blue   },
+    ["Constant"]               = { fg = C.Cyan   },
+    ["Special"]                = { fg = C.Blue   },
+    ["Include"]                = { fg = C.Blue   },
+    ["Function"]               = { fg = C.Blue   },
+    ["Keyword"]                = { fg = C.Purple },
+    ["Conditional"]            = { fg = C.Purple },
+    ["Comment"]                = { fg = C.Gray,  ui = S.Italic },
+    ["Search"]                 = { fg = C.Black, bg = C.Orange },
+    ["Todo"]                   = { fg = C.Gray,  bg = C.Blue   },
 
     -- Treesitter
-    ["@variable"]              = { guifg = C.Red    },
-    ["@type.builtin"]          = { guifg = C.Purple },
-    ["@module"]                = { guifg = C.Yellow },
-    ["@operator"]              = { guifg = C.Cyan   },
-    ["@constant"]              = { guifg = C.Yellow },
-    ["@constant.builtin"]      = { guifg = C.Orange },
-    ["@lsp.type.class"]        = { guifg = C.Yellow },
-    ["@lsp.type.namespace"]    = { guifg = C.Yellow },
-    ["@lsp.type.enumMember"]   = { guifg = C.Cyan   },
+    ["@variable"]              = { fg = C.Red    },
+    ["@type.builtin"]          = { fg = C.Purple },
+    ["@module"]                = { fg = C.Yellow },
+    ["@operator"]              = { fg = C.Cyan   },
+    ["@constant"]              = { fg = C.Yellow },
+    ["@constant.builtin"]      = { fg = C.Orange },
+    ["@lsp.type.class"]        = { fg = C.Yellow },
+    ["@lsp.type.namespace"]    = { fg = C.Yellow },
+    ["@lsp.type.enumMember"]   = { fg = C.Cyan   },
 
     -- Markdown
-    ["@markup.list"]           = { guifg = C.Blue   },
-    ["@markup.raw"]            = { guifg = C.Yellow },
-    ["@markup.heading"]        = { guifg = C.Orange },
-    ["@markup.link"]           = { guifg = C.Blue   },
-    ["@markup.link.url"]       = { guifg = C.Cyan   },
+    ["@markup.list"]           = { fg = C.Blue   },
+    ["@markup.raw"]            = { fg = C.Yellow },
+    ["@markup.heading"]        = { fg = C.Orange },
+    ["@markup.link"]           = { fg = C.Blue   },
+    ["@markup.link.url"]       = { fg = C.Cyan   },
 
-    ["@punctuation.special"]   = { guifg = C.Purple },
-    ["@punctuation.bracket"]   = { guifg = C.LGray  },
-    ["@punctuation.delimiter"] = { guifg = C.LGray  },
+    ["@punctuation.special"]   = { fg = C.Purple },
+    ["@punctuation.bracket"]   = { fg = C.LGray  },
+    ["@punctuation.delimiter"] = { fg = C.LGray  },
 }
 
-local highlights_link = {
+Core.linkHighlights {
     ["@storageclass"]       = "Keyword",
-    ["@keyword.function"]   = "Function",
     ["@string.special.url"] = "Comment",
 
     -- syntax
-    ["luaFunc"]        = "Function",
-    ["zshVariable"]    = "Identifier",
-    ["zshOperator"]    = "Operator",
-    ["zshKSHFunction"] = "Function",
+    ["luaFunc"]             = "Function",
+    ["zshVariable"]         = "Identifier",
+    ["zshOperator"]         = "Operator",
+    ["zshKSHFunction"]      = "Function",
 }
 
-local highlights_clear = {
+Core.clearHighlights {
     "Statement",
     "SignColumn",
     "CursorLineNr",
     "StatusLine",
     "TabLineFill",
 }
-
-require("core").setHighlights(highlights)
-require("core").linkHighlights(highlights_link)
-require("core").clearHighlights(highlights_clear)
-
-return C

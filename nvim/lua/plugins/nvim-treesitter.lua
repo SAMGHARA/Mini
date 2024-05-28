@@ -1,13 +1,10 @@
-local treesitter = {
-    -- https://github.com/nvim-treesitter/nvim-treesitter
-    "nvim-treesitter/nvim-treesitter",
-
-    event = "VeryLazy",
-    build = ":TSUpdate",
+return {
+    source = "https://github.com/nvim-treesitter/nvim-treesitter",
+    hooks = { post_install = function() vim.cmd("TSUpdate") end },
     config = function()
         require("nvim-treesitter.configs").setup {
             ensure_installed = {
-                "lua",
+                "lua", "vimdoc", "query",
                 "rust",
                 "cpp", "doxygen",
                 "go", "printf",
@@ -27,18 +24,12 @@ local treesitter = {
             }
         }
         vim.treesitter.language.register("json5", "json")
+
+        MiniDeps.later_add {
+            source = "https://github.com/nvim-treesitter/playground",
+            config = function()
+                Core.setKeyMaps { { "n", "<F2>", "<Cmd>TSHighlightCapturesUnderCursor<CR>" } }
+            end
+        }
     end
 }
-
-local playground = {
-    -- https://github.com/nvim-treesitter/playground
-    "nvim-treesitter/playground",
-
-    -- https://github.com/nvim-treesitter/nvim-treesitter
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    keys = {
-        { mode = "n", "<F2>", "<Cmd>TSHighlightCapturesUnderCursor<CR>" }
-    }
-}
-
-return { treesitter, playground }

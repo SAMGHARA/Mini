@@ -1,15 +1,13 @@
 return {
-    -- https://github.com/danymat/neogen
-    "danymat/neogen",
-
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    keys = {
-        {
-            mode = "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>",
-            noremap = true, silent = true, desc = "Neogen: generate annotations"
+    source = "https://github.com/danymat/neogen",
+    depends = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+        Core.setKeyMaps {
+            {
+                "n", "<leader>ng", "<Cmd>lua require('neogen').generate()<CR>",
+                { noremap = true, silent = true, desc = "[Neogen] generate annotations" },
+            }
         }
-    },
-    init = function()
         --[[
             c/cpp Doxygen comments highlight
 
@@ -23,17 +21,14 @@ return {
             template<typename T>
             int func(T x, int y);
         --]]
-        local C = require("core.theme")
-        require("core").setHighlights {
-            ["doxygenComment"]            = { guifg = C.Gray,   gui = C.Italic }, -- [1]doxygenStartL  /**/ -> doxygenStart
-            ["doxygenSpecial"]            = { guifg = C.Purple, gui = C.Italic }, -- [2]
-            ["doxygenParam"]              = { guifg = C.Purple, gui = C.Italic }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
-            ["doxygenBrief"]              = { guifg = C.LGray,  gui = C.Italic }, -- [4]
-            ["doxygenParamName"]          = { guifg = C.Red,    gui = C.Italic }, -- [7]
-            ["doxygenSpecialOnelineDesc"] = { guifg = C.Gray,   gui = C.Italic }, -- [8]
+        Core.setHighlights {
+            ["doxygenComment"]            = { fg = C.Gray,   ui = S.Italic }, -- [1]doxygenStartL  /**/ -> doxygenStart
+            ["doxygenSpecial"]            = { fg = C.Purple, ui = S.Italic }, -- [2]
+            ["doxygenParam"]              = { fg = C.Purple, ui = S.Italic }, -- [6] [3]doxygenBriefWord [5]doxygenTParam [9]doxygenOther
+            ["doxygenBrief"]              = { fg = C.LGray,  ui = S.Italic }, -- [4]
+            ["doxygenParamName"]          = { fg = C.Red,    ui = S.Italic }, -- [7]
+            ["doxygenSpecialOnelineDesc"] = { fg = C.Gray,   ui = S.Italic }, -- [8]
         }
-    end,
-    config = function()
         local i = require("neogen.types.template").item
         require("neogen").setup {
             placeholders_hl = "none",

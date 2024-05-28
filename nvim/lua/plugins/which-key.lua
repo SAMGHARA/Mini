@@ -1,8 +1,10 @@
 return {
-    -- https://github.com/folke/which-key.nvim
-    "folke/which-key.nvim",
-
-    -- event = "VeryLazy",
-    keys = "<leader>",
-    opts = {}
+    source = "https://github.com/folke/which-key.nvim",
+    config = function()
+        require("which-key").setup {
+            window = {
+                border = "single"
+            }
+        }
+    end
 }

@@ -1,24 +1,20 @@
-local C = function(cmd)
-    return "<Cmd>lua require('fzf-lua')." .. cmd .. "({resume=true})<CR>"
-end
-
 return {
-    -- https://github.com/ibhagwan/fzf-lua
-    "ibhagwan/fzf-lua",
-
-    keys = {
-        { mode = "n", "\\",            C("builtin"),      desc = "FZF"           },
-        { mode = "n", "F",             C("files"),        desc = "Find files"    },
-        { mode = "n", "B",             C("buffers"),      desc = "Find buffers"  },
-        { mode = "n", "<C-f>",         C("lgrep_curbuf"), desc = "Curbuf search" },
-        { mode = "n", "<leader><C-f>", C("live_grep"),    desc = "Global search" },
-    },
+    source = "https://github.com/ibhagwan/fzf-lua",
     config = function()
+        local fzf = function(cmd, opts) return string.format("<Cmd>lua require('fzf-lua').%s(%s)<CR>", cmd, opts) end
+        Core.setKeyMaps {
+            { "n", "\\",            fzf("builtin", "{resume=true}"),      { desc = "[Fzf] builtin"       } },
+            { "n", "F",             fzf("files"),                         { desc = "[Fzf] Find files"    } },
+            { "n", "B",             fzf("buffers"),                       { desc = "[Fzf] Find buffers"  } },
+            { "n", "<C-f>",         fzf("lgrep_curbuf", "{resume=true}"), { desc = "[Fzf] Curbuf search" } },
+            { "n", "<leader><C-f>", fzf("live_grep", "{resume=true}"),    { desc = "[Fzf] Global search" } },
+        }
+
         require("fzf-lua").setup {
             winopts      = {
                 height = 0.95,
                 width = 0.85,
-                border = "single",
+                border = "border",
                 preview = { default = "builtin", vertical = "right", horizontal = "right" },
             },
             builtin      = { winopts = { height = 0.80, width = 0.80 } },

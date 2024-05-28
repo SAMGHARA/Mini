@@ -1,16 +1,13 @@
 return {
-    -- https://github.com/kylechui/nvim-surround
-    "kylechui/nvim-surround",
-
-    event = "VeryLazy",
-    -- ( [ {    ===>    (  ) [  ] {  }
-    -- ) ] }    ===>    () [] {}
-    opts = {
-        keymaps = {
-            normal = "ys",
-            visual = "S",
-            delete = "ds",
-            change = "cs"
+    source = "https://github.com/kylechui/nvim-surround",
+    config = function()
+        require("nvim-surround").setup {
+            keymaps = {
+                normal = "ys",
+                visual = "S",
+                delete = "ds",
+                change = "cs",
+            }
         }
-    }
+    end
 }

@@ -136,7 +136,7 @@ copy = {
 
 `checkhealth` 的错误与警告修复方法:
 
-![Nvim-Tmux-CheckHealth](../images/nvim-tmux-checkhealth.png)
+![Nvim-Tmux-CheckHealth](./images/nvim-tmux-checkhealth.png)
 
 1. echo "set -g escape-time 10" >> ~/.tmux.conf
 2. echo "set -g focus-events on" >> ~/.tmux.conf
@@ -166,11 +166,11 @@ copy = {
     - 使用 `vscode` 的 `.json` 代码块配置: `"snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"]` [coc-snippets/issues/280](https://github.com/neoclide/coc-snippets/issues/280)
     - 添加了 `endsnippet` 后代码补全提示会出现两个相同 `snippet` 的问题:
 
-        ![duplicate snippet](../images/coc-snippets-duplicate-snippet.png)
+        ![duplicate snippet](./images/coc-snippets-duplicate-snippet.png)
 
         通过 `:CocCommand snippets.openOutput` 查看日志可以发现同一个 `.snippets` 文件被 `snipmate` 和 `UltiSnip` 分别加载了一次
 
-        ![snippets output](../images/coc-snippets-output.png)
+        ![snippets output](./images/coc-snippets-output.png)
 
         所以通过 `CocConfig` 禁用掉其中一个就可以了: `"snippets.snipmate.enable": false`
 

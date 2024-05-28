@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+export LC_TIME="en_us.UTF-8"
 ########### XDG
 export XDG_LOCAL_HOME="$HOME/.local"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -10,7 +11,7 @@ export MINI="$XDG_CONFIG_HOME/mini"
 
 ########### zsh history command
 export HISTFILE="$HOME/.zsh_history"
-export SAVEHIST=1000
+export SAVEHIST=10000
 
 ########### tmux tempdir
 export TMUX_TMPDIR="/tmp"
@@ -28,6 +29,7 @@ export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
 ########### PATH
 function __export() { [[ ${(P)1} != *$2* ]] && export $1=$2:${(P)1} }
 __export    "PATH"            "$XDG_LOCAL_HOME/bin"
+__export    "PATH"            "$XDG_LOCAL_HOME/go/bin"
 __export    "PATH"            "$XDG_LOCAL_HOME/rust/bin"
 
 __export    "CPATH"           "$XDG_LOCAL_HOME/include"
@@ -44,8 +46,9 @@ __export    "LD_LIBRARY_PATH" "$XDG_LOCAL_HOME/hiredis/lib"
 unfunction __export
 
 ###########
-setopt no_nomatch
-setopt rmstarsilent
+setopt NO_NOMATCH
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
 
 ########### ignore <Tab> completion case
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
