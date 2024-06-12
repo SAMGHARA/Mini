@@ -12,7 +12,7 @@ return {
             "json-lsp",
             "rust-analyzer",
             "lua-language-server",
-            "cmake-language-server",
+            -- "cmake-language-server",
         }
         for _, lsp in ipairs(mason_servers) do
             if not require("mason-registry").is_installed(lsp) then

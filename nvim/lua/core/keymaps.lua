@@ -12,6 +12,8 @@ Core.setKeyMaps {
     { { "n", "i" },      "<C-s>",      "<Cmd>w<CR>",              opts },
     { { "n", "i" },      "<C-z>",      "<Cmd>undo<CR>",           opts },
     { { "n", "i" },      "<C-y>",      "<Cmd>redo<CR>",           opts },
+    { { "n", "v" },      "-",          "g_",                      opts },
+    { "n",               "d-",         "d$",                      opts },
     { "n",               "Q",          "<Cmd>bdelete<CR>",        opts },
     { "n",               "<Tab>",      "<Cmd>bnext<CR>",          opts },
     { "n",               "<S-Tab>",    "<Cmd>bprevious<CR>",      opts },
@@ -23,7 +25,7 @@ Core.setKeyMaps {
     { "n",               "<leader>q",  "<Cmd>qa<CR>",             opts },
     { "n",               "<leader>h",  "gd",                      opts },
     { "n",               "<leader>nh", "<Cmd>noh<CR>",            opts },
-    { "n",               "<C-a>",      "ggVG",                    opts }, -- VISUAL mode select all
+    { "n",               "<C-a>",      "ggVG",                    opts },
     { "n",               "<M-a>",      "<C-o>",                   opts },
     { "n",               "<M-d>",      "<C-i>",                   opts },
     { { "n", "t" },      "<Leader>wh", "<Cmd>wincmd h<CR>",       opts },

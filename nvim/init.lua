@@ -19,7 +19,7 @@ require("mini-deps").later_add {
     require("plugins.lspsaga"),
 
     -- Tools
-    require("plugins.fzf"),
+    require("plugins.telescope"),
     require("plugins.nvim-tree"),
     require("plugins.flash"),
     require("plugins.smart-pairs"),

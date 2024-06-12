@@ -2,10 +2,16 @@ return {
     source = "https://github.com/nvimdev/lspsaga.nvim",
     depends = { "https://github.com/nvim-tree/nvim-web-devicons" },
     config = function()
+        Core.linkHighlights {
+            ["SagaVirtLine"]  = "IndentBlanklineChar",
+            ["SagaInCurrent"] = "IndentBlanklineContextChar"
+        }
         local function lspsaga(cmd) return string.format("<Cmd>Lspsaga %s<CR>", cmd) end
         Core.setKeyMaps {
             { "n", "K",          lspsaga("hover_doc"),                  { desc = "[lspsaga] Lsp hover"                             } },
+            { "n", "gd",         lspsaga("goto_definition"),            { desc = "[lspsaga] Lsp goto_definition"                   } },
             { "n", "<leader>t",  lspsaga("term_toggle"),                { desc = "[lspsaga] Float terminal"                        } },
+            { "n", "<leader>lf", lspsaga("finder"),                     { desc = "[lspsaga] Finder"                                } },
             { "n", "<leader>rn", lspsaga("rename"),                     { desc = "[lspsaga] Rename"                                } },
             { "n", "<leader>la", lspsaga("code_action"),                { desc = "[lspsaga] Code Action"                           } },
             { "n", "<leader>ln", lspsaga("diagnostic_jump_next"),       { desc = "[lspsaga] Jump to the next diagnostic"           } },
@@ -23,7 +29,7 @@ return {
                 expand = "⊞",
                 collapse = "⊟",
                 code_action = "💡",
-                lines = { "┗", "┣", "┃", "━", "┏" },
+                lines = { "└", "│", "│", "─", " " },
                 kind = nil,
                 button = { "", "" },
                 imp_sign = "󰳛 ",
@@ -76,8 +82,8 @@ return {
                 enable_in_insert = true,
             },
             scroll_preview = {
-                scroll_down = "<C-f>",
-                scroll_up = "<C-b>",
+                scroll_down = "<PageDown>",
+                scroll_up = "<PageUp>",
             },
             request_timeout = 2000,
             finder = {

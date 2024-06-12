@@ -9,7 +9,7 @@ return {
                     insert   = { a = { fg = C.DGray, bg = C.Blue   } },
                     visual   = { a = { fg = C.DGray, bg = C.Purple } },
                     replace  = { a = { fg = C.DGray, bg = C.Red    } },
-                    command  = { a = { fg = C.DGray, bg = C.Orange } },
+                    command  = { a = { fg = C.DGray, bg = C.Yellow } },
                     terminal = { a = { fg = C.DGray, bg = C.Orange } },
                 },
                 globalstatus = true,
