@@ -4,9 +4,11 @@ return {
     config = function()
         local telescope = function(cmd) return string.format("<Cmd>Telescope %s<CR>", cmd) end
         Core.setKeyMaps {
-            { "n", "\\", telescope("builtin"),    { desc = "[Telescope] builtin"    } },
-            { "n", "F",  telescope("find_files"), { desc = "[Telescope] find_files" } },
-            { "n", "B",  telescope("buffers"),    { desc = "[Telescope] buffers"    } },
+            { "n", "\\",            telescope("builtin"),                   { desc = "[Telescope] builtin"    } },
+            { "n", "F",             telescope("find_files"),                { desc = "[Telescope] find_files" } },
+            { "n", "B",             telescope("buffers"),                   { desc = "[Telescope] buffers"    } },
+            { "n", "<C-f>",         telescope("current_buffer_fuzzy_find"), { desc = "[Telescope] buffers"    } },
+            { "n", "<leader><C-f>", telescope("live_grep"),                 { desc = "[Telescope] buffers"    } },
 
         }
         local actions = require("telescope.actions")

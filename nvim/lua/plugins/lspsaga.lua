@@ -88,7 +88,7 @@ return {
             request_timeout = 2000,
             finder = {
                 max_height = 0.5,
-                left_width = 0.4,
+                left_width = 0.3,
                 methods = {},
                 default = "ref+imp",
                 layout = "float",
@@ -99,7 +99,7 @@ return {
                 sp_global = false,
                 ly_botright = false,
                 keys = {
-                    shuttle = "[w",
+                    shuttle = "e",
                     toggle_or_open = "o",
                     vsplit = "s",
                     split = "i",
