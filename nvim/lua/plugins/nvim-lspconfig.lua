@@ -35,20 +35,24 @@ local lspconfig = function()
         settings = {
             ["rust-analyzer"] = {
                 -- cargo = { allFeatures = true }
-                checkOnSave = {
-                    enable = true,
-                    allFeatures = true,
-                    command = "clippy",
-                    extraArgs = { "--no-deps" },
+                -- checkOnSave = {
+                -- enable = true,
+                -- allFeatures = true,
+                -- command = "clippy",
+                -- extraArgs = { "--no-deps" },
+                -- },
+                import = { prefix = "crate" },
+                completion = {
+                    autoimport = { enable = false }
                 },
-                procMacro = {
-                    enable = true,
-                    ignored = {
-                        ["async-trait"] = { "async_trait" },
-                        ["napi-derive"] = { "napi" },
-                        ["async-recursion"] = { "async_recursion" },
-                    },
-                },
+                -- procMacro = {
+                --     enable = true,
+                --     ignored = {
+                --         ["async-trait"] = { "async_trait" },
+                --         ["napi-derive"] = { "napi" },
+                --         ["async-recursion"] = { "async_recursion" },
+                --     },
+                -- },
             }
         }
     }

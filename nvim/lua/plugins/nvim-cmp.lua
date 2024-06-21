@@ -17,7 +17,7 @@ return {
             ["CmpItemKindFunction"]      = { fg = C.Purple },
             ["CmpItemKindConstructor"]   = { fg = C.Orange },
             ["CmpItemKindField"]         = { fg = C.Orange },
-            ["CmpItemKindVariable"]      = { fg = C.White  },
+            ["CmpItemKindVariable"]      = { fg = C.Yellow },
             ["CmpItemKindClass"]         = { fg = C.Yellow },
             ["CmpItemKindInterface"]     = { fg = C.Purple },
             ["CmpItemKindModule"]        = { fg = C.Yellow },
@@ -47,20 +47,26 @@ return {
                 priority_weight = 2,
                 comparators = {
                     function(entry1, entry2)
-                        local kind1, kind2 = entry1:get_kind(), entry2:get_kind()
-                        if kind1 ~= kind2 then
-                            if kind1 == kinds.Field then
-                                return true
-                            end
-                            if kind1 == kinds.Text or kind2 == kinds.Field then
-                                return false
-                            end
+                        local scores = {
+                            [kinds.Field]     = 1,
+                            [kinds.Method]    = 2,
+                            [kinds.Keyword]   = 3,
+                            [kinds.Variable]  = 4,
+                            [kinds.Class]     = 5,
+                            [kinds.Interface] = 6,
+                            [kinds.Snippet]   = 7,
+                        }
+                        local score1, score2 = scores[entry1:get_kind()], scores[entry2:get_kind()]
+                        if score1 then
+                            if score2 then return score1 < score2 else return true end
+                        else
+                            return false
                         end
                     end,
+                    cmp.config.compare.length,
                     cmp.config.compare.offset,
                     cmp.config.compare.exact,
                     cmp.config.compare.locality,
-                    cmp.config.compare.length,
                 }
             },
             preselect = cmp.PreselectMode.None,
