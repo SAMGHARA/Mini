@@ -26,7 +26,7 @@ require("mini-deps").later_add {
     require("plugins.nvim-surround"),
     require("plugins.vim-visual-multi"),
     require("plugins.which-key"),
-    require("plugins.neogen"),
-    require("plugins.todo-comments"),
-    require("plugins.markdown-preview"),
+    -- require("plugins.neogen"),
+    -- require("plugins.todo-comments"),
+    -- require("plugins.markdown-preview"),
 }
